@@ -1,0 +1,13 @@
+﻿<form role="form" class="col-xs-12">
+<div class="form-group">
+	<label for="titre">Titre du point d'intêret</label>
+	<input type="texte" ng-model="poi.title" id="titre" class="form-control" placeholder="Saisissez le titre"></input>
+</div>
+<div class="form-group">
+	<label for="image">Ajoutez l'image</label>
+	<button id="image" class="form-control btn btn-default">Ajouter...</button>
+	<img />
+	<button ng-click="ajoutPOI()" class="btn btn-default">Créer</button>
+
+</div>
+</form>

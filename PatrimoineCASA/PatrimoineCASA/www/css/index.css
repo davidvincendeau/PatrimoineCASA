@@ -8,6 +8,9 @@ li {
 	margin-right: 15px;
 	margin-left: 15px;
 }
+p, label, a {
+    font-size: 20px;
+}
 
 .mbotop {
 	margin-top:  20px;
