@@ -1,3 +1,19 @@
 ﻿body {
     padding-top: 70px;
+    font-size: 20px;
+    color: #690000;
 }
+
+li {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.mbotop {
+	margin-top:  20px;
+	margin-bottom: 20px;
+}
+
+.btn-primary:visited, .btn-warning:visited, .btn-danger:visited, .btn-success:visited, .btn-info:visited, .btn-inverse:visited {
+	color: #007700;
+} 

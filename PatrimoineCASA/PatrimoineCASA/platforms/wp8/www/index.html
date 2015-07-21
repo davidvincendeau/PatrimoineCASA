@@ -1,20 +1,42 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="Patrimoine">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
-    <title>PatrimoineCASA</title>
+    <title>Patrimoine CASA</title>
 
     <!-- Références PatrimoineCASA -->
     <link href="css/index.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <p>Bonjour, votre application est prête !</p>
+    <p>Patrimoine</p>
+    <!-- Angular JS -->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-route.js"></script>
 
+    <!-- custom JS -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/introController.js"></script>
+    <script src="js/controllers/paysagesController.js"></script>
+    <script src="js/controllers/siteshistoriquesController.js"></script>
     <!-- Référence Cordova ajoutée à votre application une fois générée. -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
 
-    <script src="scripts/index.js"></script>
+    <script src="js/index.js"></script>
+
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <ul class="nav navbar-nav">
+                <li class="pull-left"><a href="#/">Intro</a></li>
+                <li class="pull-right"><a href="#/paysages">Paysages</a></li>
+                <li class="pull-right"><a href="#//sitehistoriques">Sites historiques</a></li>
+            </ul>
+        </nav>
+        <div>
+            <ng-view></ng-view>
+        </div>
+    </div>
 </body>
 </html>
