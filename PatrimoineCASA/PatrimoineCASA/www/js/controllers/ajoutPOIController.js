@@ -15,8 +15,8 @@ app.controller('ajoutPOIController', function ($scope, $location) {
 
 	};
 	$scope.save = function () {
-
-		requestFileSystem(window.PERSISTENT, 0, fsReceived, errorHandler);
+     
+	    requestFileSystem(window.PERSISTENT, 0, fsReceived, errorHandler);
 		$location.path('/');
 	};
 	var fsReceived = function(fileSystem) {

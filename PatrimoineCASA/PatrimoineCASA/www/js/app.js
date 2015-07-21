@@ -15,6 +15,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'partials/siteshistoriques.html',
             controller: 'siteshistoriquesController'
         })
+        .when('/ajout', {
+            templateUrl: 'partials/ajoutPOI.html',
+            controller: 'ajoutPOIController'
+        })
         .otherwise({ redirectTo: '/' });
 
 });

@@ -12,4 +12,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
+    <feature name="File">
+        <param name="wp-package" value="File" />
+    </feature>
 </widget>
