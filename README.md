@@ -5,4 +5,4 @@ Application Cordova Visual Studio 2015
 
 Bibliothèques utilisées:
 - Angular.js
-- Bootstrap
+- Ionic

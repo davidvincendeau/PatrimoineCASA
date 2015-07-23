@@ -867,7 +867,11 @@
     "www\\scripts\\i18n\\angular-locale_kam-ke.js",
     "www\\scripts\\angular.min.js.map",
     "www\\scripts\\i18n\\angular-locale_vai-vaii.js",
-    "www\\templates\\tab-accueil.html"
+    "www\\templates\\tab-accueil.html",
+    "www\\fonts\\ionicons.woff",
+    "www\\fonts\\ionicons.eot",
+    "www\\fonts\\ionicons.ttf",
+    "www\\fonts\\ionicons.svg"
   ],
   "deletedFilesIos": [
     "Content\\ionic.css",
@@ -2448,12 +2452,7 @@
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\index.html",
-    "www\\templates\\tab-dash.html",
-    "www\\templates\\tab-accueil.html",
-    "www\\templates\\tabs.html",
-    "www\\js\\app.js",
-    "www\\js\\controllers.js"
+    "www\\index.html"
   ],
   "deletedFiles": [],
   "addedPlugins": [],

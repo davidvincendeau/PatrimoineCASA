@@ -19,4 +19,16 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('MainCtrl', function ($scope, $ionicSideMenuDelegate) {
+
+    $scope.toggleLeft = function () {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    $scope.toggleRight = function () {
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
 });

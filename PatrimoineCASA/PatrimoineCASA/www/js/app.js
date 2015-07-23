@@ -29,37 +29,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
     $stateProvider
 
-    .state('eventmenu', {
-        url: "/accueil",
-        abstract: true,
-        templateUrl: "templates/event-menu.html"
-    })
-    .state('eventmenu.home', {
-        url: "/home",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/tab-accueil.html"
-            }
-        }
-    })
-    .state('eventmenu.checkin', {
-        url: "/dash",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/tab-dash.html",
-                controller: "DashCtrl"
-            }
-        }
-    })
-    .state('eventmenu.attendees', {
-        url: "/chats",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/tab-chats.html",
-                controller: "ChatsCtrl"
-            }
-        }
-    })
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: "/tab",
