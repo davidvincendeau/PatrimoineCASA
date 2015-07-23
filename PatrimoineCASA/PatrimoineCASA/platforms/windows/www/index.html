@@ -10,13 +10,17 @@
     <link href="Content/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-
+    <p>Patrimoine</p>
     <!-- Angular JS -->
     <script src="scripts/angular.js"></script>
     <script src="scripts/angular-route.js"></script>
 
     <!-- custom JS -->
     <script src="js/app.js"></script>
+    <script src="js/controllers/introController.js"></script>
+    <script src="js/controllers/paysagesController.js"></script>
+    <script src="js/controllers/siteshistoriquesController.js"></script>
+    <script src="js/controllers/ajoutPOIController.js"></script>
     <!-- Référence Cordova ajoutée à votre application une fois générée. -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
@@ -26,8 +30,10 @@
     <div class="container">
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <ul class="nav navbar-nav">
-                <li class="pull-left"><a href="">Intro</a></li>
-                <li class="pull-right"><a href="">Paysage</a></li>
+                <li class="pull-left"><a href="#/">Intro</a></li>
+                <li class="pull-left"><a href="#/paysages">Paysages</a></li>
+                <li class="pull-right"><a href="#/sitehistoriques">Sites historiques</a></li>
+                <li class="pull-right"><a href="#/ajout">Ajout</a></li>
             </ul>
         </nav>
         <div>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--CE FICHIER EST GÉNÉRÉ PAR LE PROCESSUS DE BUILD VISUAL STUDIO À DES FINS DE TÉLÉMÉTRIE-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="AppxManifestMetadata">
+    <AppxManifestMetaData Include="VisualStudio">
+      <Version>14.0</Version>
+    </AppxManifestMetaData>
+    <AppxManifestMetaData Include="VisualStudioEdition">
+      <Value>Microsoft Visual Studio Professional 2015</Value>
+    </AppxManifestMetaData>
+    <AppxManifestMetaData Include="C:\WINDOWS\system32\cmd.exe">
+      <Name>OperatingSystem</Name>
+    </AppxManifestMetaData>
+    <AppxManifestMetaData Include="ProjectGUID">
+      <Value>39107089-01b3-4a61-b9c3-d4a8b50fbb41</Value>
+    </AppxManifestMetaData>
+  </ItemGroup>
+</Project>

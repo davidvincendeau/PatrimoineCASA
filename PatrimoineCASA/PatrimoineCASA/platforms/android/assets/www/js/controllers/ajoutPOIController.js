@@ -1,7 +1,7 @@
 app.controller('ajoutPOIController', function ($scope, $location) {
     $scope.poi = {
 
-    	image: 'images/casa.jpg',
+    	image: 'images/casa.png',
     	titre: ''
 
     };
@@ -17,7 +17,7 @@ app.controller('ajoutPOIController', function ($scope, $location) {
 	$scope.save = function () {
      
 	    requestFileSystem(window.PERSISTENT, 0, fsReceived, errorHandler);
-		$location.path('/');
+		//$location.path('/');
 	};
 	var fsReceived = function(fileSystem) {
 		fileSystem.root.getFile('pois.json', { create: true, exclusive: false}, feReceived, errorHandler);
@@ -31,6 +31,6 @@ app.controller('ajoutPOIController', function ($scope, $location) {
 	};
 	var errorHandler = function(error) {
 		
-		//alert(error);
+		alert(error);
 	};
 });
