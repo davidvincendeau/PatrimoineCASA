@@ -4,23 +4,8 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {
-            "config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"File\"><param name=\"wp-package\" value=\"File\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            }
-        }
+        "files": {}
     },
-    "installed_plugins": {
-        "org.apache.cordova.file": {
-            "PACKAGE_NAME": "{001dba00-2eb3-11e5-8091-b546969b42cb}"
-        }
-    },
+    "installed_plugins": {},
     "dependent_plugins": {}
 }

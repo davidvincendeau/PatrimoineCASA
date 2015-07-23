@@ -17,7 +17,7 @@
  under the License. 
 -->
 <Application 
-    x:Class="io.cordova.myapp74828cf430f54368817c99526ea45cb5.App"
+    x:Class="io.cordova.myappe2785d518e9f4f6ea03055878dd7a400.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"

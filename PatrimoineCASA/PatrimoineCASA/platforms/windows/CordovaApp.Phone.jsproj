@@ -54,6 +54,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
   <PropertyGroup>
+    <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.phone.appxmanifest">
@@ -66,9 +67,6 @@
   </ItemGroup>
   <Import Label="Shared" Project="CordovaApp.projitems" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
-  <PropertyGroup>
-    <DefaultLanguage>fr-FR</DefaultLanguage>
-  </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
       cd /d $(MSBuildThisFileDirectory)

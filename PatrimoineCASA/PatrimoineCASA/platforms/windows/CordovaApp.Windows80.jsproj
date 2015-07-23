@@ -50,6 +50,7 @@
   <PropertyGroup>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>CordovaApp_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
@@ -66,9 +67,6 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <PropertyGroup>
     <BuildFromCordovaTooling>false</BuildFromCordovaTooling>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DefaultLanguage>fr-FR</DefaultLanguage>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

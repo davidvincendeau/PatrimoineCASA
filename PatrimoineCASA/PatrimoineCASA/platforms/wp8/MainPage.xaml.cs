@@ -34,7 +34,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
 
-namespace io.cordova.myapp74828cf430f54368817c99526ea45cb5
+namespace io.cordova.myappe2785d518e9f4f6ea03055878dd7a400
 {
     public partial class MainPage : PhoneApplicationPage
     {
