@@ -1,8 +1,10 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('AccueilCtrl', function ($scope) { })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('DashCtrl', function ($scope) { })
+
+.controller('ChatsCtrl', function ($scope, Chats) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
