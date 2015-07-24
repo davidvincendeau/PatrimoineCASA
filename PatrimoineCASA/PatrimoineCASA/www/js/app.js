@@ -77,12 +77,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
-  .state('tab.account', {
-      url: '/account',
+  .state('tab.eau-milieumarin', {
+      url: '/eau-milieumarin',
       views: {
-          'tab-account': {
-              templateUrl: 'templates/tab-account.html',
-              controller: 'AccountCtrl'
+          'eau-milieumarin': {
+              templateUrl: 'templates/eau-milieumarin.html',
+              controller: 'EauMilieumarinCtrl'
           }
       }
   });

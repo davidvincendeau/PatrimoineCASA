@@ -4,19 +4,31 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function ($scope) { })
 
-.controller('ChatsCtrl', function ($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+.controller('PaysagesCtrl', function ($scope, Paysages) {
+    $scope.paysages = Paysages.all();
+    $scope.remove = function (paysage) {
+        Paysages.remove(paysage);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('PaysageDetailCtrl', function ($scope, $stateParams, Paysages) {
+    $scope.paysage = Paysages.get($stateParams.paysageId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('EauMilieumarinCtrl', function ($scope) {
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('MainCtrl', function ($scope, $ionicSideMenuDelegate) {
+
+    $scope.toggleLeft = function () {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    $scope.toggleRight = function () {
+        $ionicSideMenuDelegate.toggleRight();
+    };
+
 });

@@ -31,10 +31,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // setup an abstract state for the tabs directive
     .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
+        url: "/tab",
+        abstract: true,
+        templateUrl: "templates/tabs.html"
+    })
 
   // Each tab has its own nav history stack:
 
@@ -42,52 +42,64 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/accueil',
       views: {
           'tab-accueil': {
-              templateUrl: 'templates/tab-accueil.html',
+              templateUrl: 'templates/accueil.html',
               controller: 'AccueilCtrl'
           }
       }
   })
 
-  .state('tab.dash', {
-      url: '/dash',
+  .state('paysages-intro', {
+      url: '/paysages-intro',
       views: {
-          'tab-dash': {
-              templateUrl: 'templates/tab-dash.html',
-              controller: 'DashCtrl'
+          'paysages-intro': {
+              templateUrl: 'templates/paysages-intro.html',
+              controller: 'PaysagesIntroCtrl'
           }
       }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.paysages', {
+      url: '/paysages',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+          'tab-paysages': {
+              templateUrl: 'templates/tab-paysages.html',
+              controller: 'PaysagesCtrl'
+          }
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+  })
+    .state('tab.paysage-detail', {
+        url: '/paysages/:paysageId',
+        views: {
+            'tab-paysages': {
+                templateUrl: 'templates/paysage-detail.html',
+                controller: 'PaysageDetailCtrl'
+            }
         }
-      }
     })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+  .state('tab.eau-milieumarin', {
+      url: '/eau-milieumarin',
+      views: {
+          'eau-milieumarin': {
+              templateUrl: 'templates/eau-milieumarin.html',
+              controller: 'EauMilieumarinCtrl'
+          }
       }
-    }
   });
+      
+  // if none of the above states are matched, use this as the fallback  
+  $urlRouterProvider.otherwise("/tab/accueil");
+})
+ 
+.controller('MainCtrl', function($scope, $ionicSideMenuDelegate) {
+ 
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+   
+    $scope.toggleRight = function() {
+        $ionicSideMenuDelegate.toggleRight();
+    };  
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/accueil');
 
 });

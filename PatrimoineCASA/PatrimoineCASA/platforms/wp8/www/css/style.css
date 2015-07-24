@@ -1,1 +1,26 @@
 /* Empty. Add your own CSS if you like */
+.img-responsive{
+width: 100%;
+}.titre {
+	font-size: 16px;
+	color: #900;
+	font-weight: bold;
+}
+
+.position_gauche {
+	float: left;
+	width: 33.33%;
+	text-align: center;
+	/* [disabled]height: 100%; */
+}
+.position_centre {
+	width: 33.33%;
+	float: left;
+	text-align: center;
+}
+.position_droite {
+	width: 33.33%;
+	float: right;
+	text-align: center;
+	height: auto;
+}

@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
     $scope.paysage = Paysages.get($stateParams.paysageId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('EauMilieumarinCtrl', function ($scope) {
   $scope.settings = {
     enableFriends: true
   };
