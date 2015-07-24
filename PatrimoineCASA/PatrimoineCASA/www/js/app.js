@@ -48,11 +48,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
 
-  .state('paysages-intro', {
-      url: '/paysages-intro',
+  .state('tab.paysages-paysages', {
+      url: '/paysages-paysages',
       views: {
-          'paysages-intro': {
-              templateUrl: 'templates/paysages-intro.html',
+          'paysages-paysages': {
+              templateUrl: 'templates/paysages-paysages.html',
               controller: 'PaysagesIntroCtrl'
           }
       }

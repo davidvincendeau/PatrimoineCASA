@@ -724,7 +724,6 @@
     "www\\scripts\\i18n\\angular-locale_fr-gp.js",
     "merges\\windows\\scripts\\platformOverrides.js",
     "www\\scripts\\i18n\\angular-locale_kw-gb.js",
-    "www\\templates\\eau-milieumarin.html",
     "www\\scripts\\angular-aria.min.js",
     "www\\scripts\\i18n\\angular-locale_nnh-cm.js",
     "www\\scripts\\i18n\\angular-locale_pt-gw.js",
@@ -923,14 +922,21 @@
     "www\\scripts\\i18n\\angular-locale_vai.js",
     "www\\scripts\\i18n\\angular-locale_kea-cv.js",
     "www\\scripts\\i18n\\angular-locale_fy-nl.js",
-    "www\\scripts\\i18n\\angular-locale_shi.js"
+    "www\\scripts\\i18n\\angular-locale_shi.js",
+    "www\\templates\\eau-milieumarin.html",
+    "www\\img\\Patrimoine_eau.png",
+    "www\\templates\\paysages-paysages.html",
+    "www\\img\\Patrimoine-naturel-et-paysager.png"
   ],
   "deletedFilesIos": [
     "www\\templates\\tab-account.html"
   ],
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
-  "changedFiles": [],
+  "changedFiles": [
+    "www\\templates\\tabs.html",
+    "www\\js\\app.js"
+  ],
   "deletedFiles": [],
   "addedPlugins": [],
   "deletedPlugins": []
