@@ -8,57 +8,57 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Paysages',
     lastText: 'Introduction',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+    face: '../img/plateau2.jpg'
   }, {
     id: 1,
     name: 'Paysages',
     lastText: 'Les plateaux',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+    face: '../img/plateau1.jpg'
   }, {
     id: 2,
     name: 'Paysages',
     lastText: 'Les collines',
-    face: '../img/parcs7.jpg'
+    face: '../img/colline3.jpg'
   }, {
     id: 3,
     name: 'Paysages',
     lastText: 'Le littoral',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+    face: '../img/litto3b.jpg'
   }, {
       id: 4,
       name: 'Les espaces naturels',
       lastText: 'Introduction',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/natura9.jpg'
   }, {
       id: 5,
       name: 'Les espaces naturels',
       lastText: 'Natura 2000 terrestre',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/natura4.jpg'
   }, {
       id: 6,
       name: 'Les espaces naturels',
       lastText: 'Les parcs naturels',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/parcs5.jpg'
   }, {
       id: 7,
       name: 'Les espaces naturels',
       lastText: 'ZNIEFF terrestre',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/znieff.jpg'
   }, {
       id: 8,
       name: 'L\'eau',
       lastText: 'Les axes bleus',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/bateau.jpg'
   }, {
       id: 9,
       name: 'L\'eau',
       lastText: 'Le milieu marin',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/marin2.jpg'
   }, {
       id: 10,
       name: 'L\'eau',
       lastText: 'Les phares',
-      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      face: '../img/phare3.jpg'
   }];
 
   return {
