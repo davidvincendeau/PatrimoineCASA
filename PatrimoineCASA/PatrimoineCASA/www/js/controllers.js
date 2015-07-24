@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('AccueilCtrl', function ($scope) { })
+.controller('PaysagesIntroCtrl', function ($scope) { })
 
 .controller('DashCtrl', function ($scope) { })
 

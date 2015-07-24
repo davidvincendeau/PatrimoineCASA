@@ -934,8 +934,7 @@
   "addedPluginsIos": [],
   "deletedPluginsIos": [],
   "changedFiles": [
-    "www\\templates\\tabs.html",
-    "www\\js\\app.js"
+    "www\\js\\controllers.js"
   ],
   "deletedFiles": [],
   "addedPlugins": [],
