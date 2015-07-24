@@ -1,47 +1,77 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Paysages', function () {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var chats = [{
+    var paysages = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
+    name: 'Paysages',
+    lastText: 'Introduction',
     face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
+    name: 'Paysages',
+    lastText: 'Les plateaux',
     face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
   }, {
     id: 2,
-    name: 'Andrew Jostlin',
-    lastText: 'Did you get the ice cream?',
-    face: 'https://pbs.twimg.com/profile_images/491274378181488640/Tti0fFVJ.jpeg'
+    name: 'Paysages',
+    lastText: 'Les collines',
+    face: '../img/parcs7.jpg'
   }, {
     id: 3,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
+    name: 'Paysages',
+    lastText: 'Le littoral',
     face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
   }, {
-    id: 4,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+      id: 4,
+      name: 'Les espaces naturels',
+      lastText: 'Introduction',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+  }, {
+      id: 5,
+      name: 'Les espaces naturels',
+      lastText: 'Natura 2000 terrestre',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+  }, {
+      id: 6,
+      name: 'Les espaces naturels',
+      lastText: 'Les parcs naturels',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+  }, {
+      id: 7,
+      name: 'Les espaces naturels',
+      lastText: 'ZNIEFF terrestre',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+  }, {
+      id: 8,
+      name: 'L\'eau',
+      lastText: 'Les axes bleus',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+  }, {
+      id: 9,
+      name: 'L\'eau',
+      lastText: 'Le milieu marin',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+  }, {
+      id: 10,
+      name: 'L\'eau',
+      lastText: 'Les phares',
+      face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
   }];
 
   return {
     all: function() {
-      return chats;
+        return paysages;
     },
     remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+        paysages.splice(paysages.indexOf(paysage), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function (paysageId) {
+        for (var i = 0; i < paysages.length; i++) {
+            if (paysages[i].id === parseInt(paysageId)) {
+                return paysages[i];
         }
       }
       return null;

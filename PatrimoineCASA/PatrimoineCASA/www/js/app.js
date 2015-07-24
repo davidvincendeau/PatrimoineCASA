@@ -42,37 +42,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/accueil',
       views: {
           'tab-accueil': {
-              templateUrl: 'templates/tab-accueil.html',
+              templateUrl: 'templates/accueil.html',
               controller: 'AccueilCtrl'
           }
       }
   })
 
-  .state('tab.dash', {
-      url: '/dash',
+  .state('paysages-intro', {
+      url: '/paysages-intro',
       views: {
-          'tab-dash': {
-              templateUrl: 'templates/tab-dash.html',
-              controller: 'DashCtrl'
+          'paysages-intro': {
+              templateUrl: 'templates/paysages-intro.html',
+              controller: 'PaysagesIntroCtrl'
           }
       }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.paysages', {
+      url: '/paysages',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          'tab-paysages': {
+              templateUrl: 'templates/tab-paysages.html',
+              controller: 'PaysagesCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.paysage-detail', {
+        url: '/paysages/:paysageId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+          'tab-paysages': {
+              templateUrl: 'templates/paysage-detail.html',
+              controller: 'PaysageDetailCtrl'
         }
       }
     })
