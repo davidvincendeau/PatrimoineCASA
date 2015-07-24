@@ -7,3 +7,20 @@ width: 100%;
 	font-weight: bold;
 }
 
+.position_gauche {
+	float: left;
+	width: 33.33%;
+	text-align: center;
+	/* [disabled]height: 100%; */
+}
+.position_centre {
+	width: 33.33%;
+	float: left;
+	text-align: center;
+}
+.position_droite {
+	width: 33.33%;
+	float: right;
+	text-align: center;
+	height: auto;
+}
