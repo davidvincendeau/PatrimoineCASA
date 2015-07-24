@@ -1,4 +1,9 @@
 /* Empty. Add your own CSS if you like */
 .img-responsive{
 width: 100%;
+}.titre {
+	font-size: 16px;
+	color: #900;
+	font-weight: bold;
 }
+
