@@ -132,4 +132,12 @@ width: 100%;
 	font-size: 12px;
 	background-color: #f3f3f3;
 	text-align: justify;
+	padding: 5px;
+}
+.italique {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	font-style: italic;
+	text-align: center;
+	background-color: #f5f5f5;
 }
