@@ -4,13 +4,30 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "package.appxmanifest": {
+                "parents": {
+                    "/Package/Capabilities": [
+                        {
+                            "xml": "<DeviceCapability Name=\"location\" />",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
     },
     "installed_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "PatrimoineCASA"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "PatrimoineCASA"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "PatrimoineCASA"
         },
-        "cordova-plugin-file": {
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "PatrimoineCASA"
         }
     },
