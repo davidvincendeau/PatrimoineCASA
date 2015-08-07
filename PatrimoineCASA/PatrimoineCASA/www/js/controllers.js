@@ -1,25 +1,20 @@
 angular.module('starter.controllers', [])
 
 .controller('AccueilCtrl', function ($scope) { })
-.controller('PaysagesIntroCtrl', function ($scope) { })
-
-.controller('DashCtrl', function ($scope) { })
+.controller('PatrimoineCtrl', function ($scope) { })
 
 .controller('PaysagesCtrl', function ($scope, Paysages) {
     $scope.paysages = Paysages.all();
-    $scope.remove = function (paysage) {
-        Paysages.remove(paysage);
-  }
+
+})
+
+.controller('HistoireCtrl', function ($scope, Histoires) {
+    $scope.histoires = Histoires.allHistoires();
+    
 })
 
 .controller('PaysageDetailCtrl', function ($scope, $stateParams, Paysages) {
     $scope.paysage = Paysages.get($stateParams.paysageId);
-})
-
-.controller('EauMilieumarinCtrl', function ($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
 })
 
 .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate) {
