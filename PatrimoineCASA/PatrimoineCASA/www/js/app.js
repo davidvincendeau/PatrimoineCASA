@@ -66,6 +66,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
+    .state('tab.paysages-plateaux', {
+        url: '/paysages/paysages-plateaux',
+        views: {
+            'tab-paysages-plateaux': {
+                templateUrl: 'templates/paysages-plateaux.html',
+                controller: 'PaysagesPlateauxCtrl'
+            }
+        }
+    })
   .state('tab.histoire', {
       url: '/histoire',
       views: {

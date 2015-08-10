@@ -2,6 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('AccueilCtrl', function ($scope) { })
 .controller('PatrimoineCtrl', function ($scope) { })
+.controller('PaysagesPlateauxCtrl', function ($scope) { })
 
 .controller('PaysagesCtrl', function ($scope, Paysages) {
     $scope.paysages = Paysages.all();
