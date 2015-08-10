@@ -1,21 +1,20 @@
 angular.module('starter.controllers', [])
 
 .controller('AccueilCtrl', function ($scope) { })
-.controller('PatrimoineCtrl', function ($scope) { })
-.controller('PaysagesPlateauxCtrl', function ($scope) { })
 
 .controller('PaysagesCtrl', function ($scope, Paysages) {
     $scope.paysages = Paysages.all();
-
 })
 
 .controller('HistoireCtrl', function ($scope, Histoires) {
-    $scope.histoires = Histoires.allHistoires();
-    
+    $scope.histoires = Histoires.all();    
 })
 
-.controller('PaysageDetailCtrl', function ($scope, $stateParams, Paysages) {
+.controller('DetailPaysageCtrl', function ($scope, $stateParams, Paysages) {
     $scope.paysage = Paysages.get($stateParams.paysageId);
+})
+.controller('DetailHistoireCtrl', function ($scope, $stateParams, Histoires) {
+    $scope.histoire = Histoires.get($stateParams.histoireId);
 })
 
 .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate) {

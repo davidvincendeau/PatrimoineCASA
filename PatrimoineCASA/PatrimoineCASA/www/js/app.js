@@ -57,21 +57,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
       }
   })
-    .state('tab.paysage-detail', {
+    .state('tab.detail-paysage', {
         url: '/paysages/:paysageId',
         views: {
             'tab-paysages': {
-                templateUrl: 'templates/paysage-detail.html',
-                controller: 'PaysageDetailCtrl'
-            }
-        }
-    })
-    .state('tab.paysages-plateaux', {
-        url: '/paysages/paysages-plateaux',
-        views: {
-            'tab-paysages-plateaux': {
-                templateUrl: 'templates/paysages-plateaux.html',
-                controller: 'PaysagesPlateauxCtrl'
+                templateUrl: 'templates/detail-paysage.html',
+                controller: 'DetailPaysageCtrl'
             }
         }
     })
@@ -79,7 +70,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/histoire',
       views: {
           'tab-histoire': {
-              templateUrl: 'templates/tab-histoire.html'
+              templateUrl: 'templates/tab-histoire.html',
+              controller: 'HistoireCtrl'
           }
       }
   })
@@ -87,12 +79,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.patrimoine', {
       url: '/patrimoine',
       views: {
-          'patrimoine': {
+          'tab-patrimoine': {
               templateUrl: 'templates/tab-patrimoine.html',
               controller: 'PatrimoineCtrl'
           }
       }
-  });
+  })
+        .state('tab.detail-patrimoine', {
+            url: '/patrimoine/:patrimoineId',
+            views: {
+                'tab-patrimoine': {
+                    templateUrl: 'templates/detail-patrimoine.html',
+                    controller: 'DetailPatrimoineCtrl'
+                }
+            }
+        });
 
     // if none of the above states are matched, use this as the fallback  
     $urlRouterProvider.otherwise("/tab/accueil");
