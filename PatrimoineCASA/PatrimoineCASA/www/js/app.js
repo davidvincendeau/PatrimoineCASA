@@ -75,7 +75,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
       }
   })
-
+.state('tab.detail-histoire', {
+    url: '/histoire/:histoireId',
+    views: {
+        'tab-histoire': {
+            templateUrl: 'templates/detail-histoire.html',
+            controller: 'DetailHistoireCtrl'
+        }
+    }
+})
   .state('tab.patrimoine', {
       url: '/patrimoine',
       views: {
