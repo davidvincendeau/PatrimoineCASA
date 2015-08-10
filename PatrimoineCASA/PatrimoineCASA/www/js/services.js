@@ -20,52 +20,52 @@ angular.module('starter.services', [])
         vignette: '../img/enceinte_naouri.jpg'
     }, {
         id: 3,
-        name: 'Antiquite',
+        name: 'ANTIQUITE',
         sousTitre: 'Partie 1',
         url: '../pages/histoire/antiquite-1.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/antiquite_opidium.jpg'
     }, {
         id: 4,
         name: 'ANTIQUITE',
         sousTitre: 'Partie 2',
         url: '../pages/histoire/antiquite-2.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/saint_andrieu2.jpg'
     }, {
         id: 5,
         name: 'ANTIQUITE',
         sousTitre: 'Partie 3',
         url: '../pages/histoire/antiquite-3.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/aqueduc.png'
     }, {
         id: 6,
         name: 'ANTIQUITE',
         sousTitre: 'Partie 4',
         url: '../pages/histoire/antiquite-4.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/enceinte_tourraque.jpg'
     }, {
         id: 7,
         name: 'FEODALISATION',
         sousTitre: 'Partie 1',
         url: '../pages/histoire/feodalisation-1.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/musee_picasso.jpg'
     }, {
         id: 7,
         name: 'FEODALISATION',
         sousTitre: 'Partie 2',
         url: '../pages/histoire/feodalisation-2.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/chateau_villeneuve_loubet.jpg'
     }, {
         id: 7,
         name: 'FEODALISATION',
         sousTitre: 'Partie 3',
         url: '../pages/histoire/feodalisation-3.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/chateau_tourrette.jpg'
     }, {
         id: 7,
         name: 'FEODALISATION',
         sousTitre: 'Partie 4',
         url: '../pages/histoire/feodalisation-4.html',
-        vignette: '../img/menhir.jpg'
+        vignette: '../img/chateau_rouret.jpg'
     }, {
         id: 8,
         name: 'Traces pre/protohistoriques',

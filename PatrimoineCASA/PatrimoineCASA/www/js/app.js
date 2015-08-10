@@ -47,6 +47,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
       }
   })
+  .state('tab.carte', {
+      url: '/carte',
+      views: {
+          'tab-carte': {
+              templateUrl: 'pages/carte/tab-carte.html',
+              controller: 'CarteCtrl'
+          }
+      }
+  })
 
   .state('tab.paysages', {
       url: '/paysages',

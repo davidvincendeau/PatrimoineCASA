@@ -17,6 +17,8 @@ angular.module('starter.controllers', [])
     $scope.histoire = Histoires.get($stateParams.histoireId);
 })
 
+.controller('CarteCtrl', function ($scope) { })
+
 .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate) {
 
     $scope.toggleLeft = function () {
