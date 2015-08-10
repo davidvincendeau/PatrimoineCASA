@@ -6,7 +6,7 @@ angular.module('starter.services', [])
         id: 0,
         name: 'Paysages',
         sousTitre: 'Introduction',
-        url: '../pages/paysages-paysages2.html',
+        url: '../pages/paysages-intro.html',
         vignette: '../img/plateau2.jpg'
     }, {
         id: 1,
@@ -30,36 +30,43 @@ angular.module('starter.services', [])
         id: 4,
         name: 'Les espaces naturels',
         sousTitre: 'Introduction',
+        url: '../pages/espaces-naturels-intro.html',
         vignette: '../img/natura9.jpg'
     }, {
         id: 5,
         name: 'Les espaces naturels',
         sousTitre: 'Natura 2000 terrestre',
+        url: '../pages/espaces-naturels-natura2000.html',
         vignette: '../img/natura4.jpg'
     }, {
         id: 6,
         name: 'Les espaces naturels',
         sousTitre: 'Les parcs naturels',
+        url: '../pages/espaces-naturels-parcs.html',
         vignette: '../img/parcs5.jpg'
     }, {
         id: 7,
         name: 'Les espaces naturels',
         sousTitre: 'ZNIEFF terrestre',
+        url: '../pages/espaces-naturels-znieff.html',
         vignette: '../img/znieff.jpg'
     }, {
         id: 8,
         name: 'L\'eau',
         sousTitre: 'Les axes bleus',
+        url: '../pages/eau-axes.html',
         vignette: '../img/bateau.jpg'
     }, {
         id: 9,
         name: 'L\'eau',
         sousTitre: 'Le milieu marin',
+        url: '../pages/eau-milieu-marin.html',
         vignette: '../img/marin2.jpg'
     }, {
         id: 10,
         name: 'L\'eau',
         sousTitre: 'Les phares',
+        url: '../pages/eau-phares.html',
         vignette: '../img/phare3.jpg'
     }];
     var histoires = [{
