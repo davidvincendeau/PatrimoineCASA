@@ -11,7 +11,7 @@
     var infos = document.querySelector("#infos");
 
     //map 
-    var map = L.map('myMap');
+    var map = L.map('carte');
     map.setView([0, 0], 3);
 
     //pattern

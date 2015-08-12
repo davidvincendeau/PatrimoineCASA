@@ -1,16 +1,12 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Carte CASA</title>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body>
-    <script type="text/javascript" src="scripts/leaflet.js"></script>
-    <script type="text/javascript" src="js/carte.js"></script>
-    <div id="myMap"></div>
- 
-</body>
-</html>
+﻿<ion-view view-title="Carte">
+    <ion-content  scroll="false">
+        <map name="carte" on-create="mapCreated(map)"></map>
+                <div id="carte"></div>
+        <p>coincoin</p>
+        <p id="infos"></p>
+        <p id="status"></p>
+    </ion-content>
+    <ion-footer-bar class="bar-stable">
+        <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate"></a>
+    </ion-footer-bar>
+</ion-view>
