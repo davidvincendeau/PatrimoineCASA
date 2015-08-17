@@ -1,7 +1,7 @@
 <ion-view view-title="Paysages et espaces naturels">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="paysage in paysages" type="item-text-wrap" href="#/tab/paysages/{{paysage.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="paysage in paysages" type="item-text-wrap" href="#/app/paysages/{{paysage.id}}">
         <img ng-src="{{paysage.vignette}}">
         <h2>{{paysage.name}}</h2>
         <p>{{paysage.sousTitre}}</p>
