@@ -1,4 +1,7 @@
 <ion-view view-title="Paysages et espaces naturels">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="paysage in paysages" type="item-text-wrap" href="#/app/paysages/{{paysage.id}}">
