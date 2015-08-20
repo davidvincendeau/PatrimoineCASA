@@ -4,8 +4,18 @@
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-
   <ion-content data-tap-disabled="true">
+    <!-- <video id="video" autoplay="autoplay" style="display:none;"></video> -->
+    <video id="video" autoplay="autoplay" style="width:320px; height:240px;" preload="metadata" controls webkit-playsinline>
+      <source type="video/mp4" src="http://www.w3schools.com/html/mov_bbb.mp4"></source>
+      <source type="video/ogg" src="http://www.w3schools.com/html/mov_bbb.ogg"></source>
+      Votre navigateur ne supporte pas la balise HTML5 video.      
+    </video>
+    <canvas id="canvas" ></canvas>
+
+</video>
+    <p id="infos"></p>
+    <p id="status"></p>
 
   </ion-content>
 
