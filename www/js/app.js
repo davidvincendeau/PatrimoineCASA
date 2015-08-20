@@ -41,7 +41,8 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate']
         url: "/ar",
         views: {
           'menuContent' :{
-            templateUrl: "templates/ar.html"
+            templateUrl: "templates/ar.html",
+            controller: 'ARController'
           }
         }
       })

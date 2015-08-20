@@ -26,7 +26,7 @@ angular.module('casa').controller('ARController',
         $scope.canvasElement = angular.element(document.querySelector('#canvas'));
         $scope.canvas = $scope.canvasElement[0];
         $scope.context = $scope.canvas.getContext('2d');
-        console.log("Canvas: "+canvas);
+        console.log("Canvas: "+$scope.canvas);
         
         $scope.context.moveTo(0,0);
         $scope.context.lineTo(200,100);
@@ -34,51 +34,72 @@ angular.module('casa').controller('ARController',
 
           $scope.video = angular.element(document.querySelector('#video')); 
 
-
-          $scope.canvas.width = parseInt(canvas.style.width);
-          $scope.canvas.height = parseInt(canvas.style.height);
-
+       console.log("Canvas width: "+$scope.canvas.width);
+ 
+          //0 $scope.canvas.width = parseInt($scope.canvas.style.width);
+          //$scope.canvas.height = parseInt($scope.canvas.style.height);
+       console.log("Canvas width: "+$scope.canvas.width);
+ 
           navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
           if (navigator.getUserMedia) {
+              console.log("navigator.getUserMedia");
 
               function successCallback(stream) {
-                  if (window.webkitURL) {
-                      $scope.video.src = window.webkitURL.createObjectURL(stream);
+                  console.log("successCallback: acceptation camera");
+                 if (window.webkitURL) {
+                        console.log("desktop window.webkitURL");
+                       $scope.video.src = window.webkitURL.createObjectURL(stream);
                   } else if (video.mozSrcObject !== undefined) {
-                      $scope.video.mozSrcObject = stream;
+                        console.log("video.mozSrcObject");
+                       $scope.video.mozSrcObject = stream;
                   } else {
-                      $scope.video.src = stream;
+                        console.log("else");
+                       $scope.video.src = stream;
                   }
               }
 
               function errorCallback(error) {
+                  console.log("errorCallback" + error);
               }
 
               navigator.getUserMedia({ video: true }, successCallback, errorCallback);
 
               $scope.detector = new AR.Detector();
+console.log("scope.video: "+$scope.video);
 
-              requestAnimationFrame(tick);
+console.log("scope.detector: "+$scope.detector);
+console.log("scope.context: "+$scope.context);
+              requestAnimationFrame($scope.tick);
           }
 
       }); //$scope.$on
 
     $scope.tick = function() {
 
-        requestAnimationFrame(tick);
+
 
         if ($scope.video.readyState === $scope.video.HAVE_ENOUGH_DATA) {
-            snapshot();
+           
 
-            var markers = detector.detect(imageData);
-            drawCorners(markers);
-            drawId(markers);
+            var duration = angular.element(document.querySelector('#duration'));
+            var vid_duration = Math.round($scope.video.duration);
+            duration = vid_duration;
+            $scope.snapshot();
+
+            var markers = $scope.detector.detect($scope.imageData);
+            $scope.drawCorners(markers);
+            $scope.drawId(markers);
+        } else {
+          console.log("else readyState: "+$scope.video.readyState); 
         }
+        requestAnimationFrame($scope.tick);
     }
 
     $scope.snapshot = function() {
-
-        $scope.context.drawImage($scope.video, 0, 0, $scope.canvas.width, $scope.canvas.height);
+        var imgObj = new Image();
+        imgObj.src = "data:image/png;base64,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";
+        $scope.context.drawImage(imgObj, 0, 0, $scope.canvas.width, $scope.canvas.height);
+        //$scope.context.drawImage($scope.video, 0, 0, $scope.canvas.width, $scope.canvas.height);
         $scope.imageData = $scope.context.getImageData(0, 0, $scope.canvas.width, $scope.canvas.height);
     }
 
