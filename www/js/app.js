@@ -37,6 +37,14 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate']
           }
         }
       })
+      .state('app.ar', {
+        url: "/ar",
+        views: {
+          'menuContent' :{
+            templateUrl: "templates/ar.html"
+          }
+        }
+      })
   .state('app.accueil', {
       url: '/accueil',
       views: {

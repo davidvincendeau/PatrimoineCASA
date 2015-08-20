@@ -9,9 +9,9 @@ angular.module('casa').factory('LocationsService', [ function() {
       lng : 7.0301
     },
     {
-      name : "CASA Siège",
-      lat : 43.6221,
-      lng : 7.0318
+      name : "Plateau de Calern",
+      lat : 43.7608778,
+      lng : 6.90125
     }
 
   ];

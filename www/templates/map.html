@@ -5,12 +5,15 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right">
+  	<a href="#/app/ar">Voir en réalité augmentée</a>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="primary">
     <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
   </ion-nav-buttons>
 
   <ion-content data-tap-disabled="true">
 
-    <leaflet defaults="map.defaults" center="map.center" markers="map.markers" ng-if="map"></leaflet>
+    <leaflet defaults="map.defaults" center="map.center" height="90%" markers="map.markers" ng-if="map"></leaflet>
 <p>Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.</p>
   </ion-content>
 
