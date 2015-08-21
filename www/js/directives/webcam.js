@@ -99,6 +99,7 @@ angular.module('webcam', [])
         var startWebcam = function startWebcam() {
           videoElem = document.createElement('video');
           videoElem.setAttribute('class', 'webcam-live');
+          videoElem.setAttribute('id', 'video');
           videoElem.setAttribute('autoplay', '');
           element.append(videoElem);
 
