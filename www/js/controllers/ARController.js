@@ -16,7 +16,16 @@ angular.module('casa').controller('ARController',
       InstructionsService
       ) {
         console.log("yo: ");
-
+        // webcam
+        $scope.canal = {
+          // the fields below are all optional
+          videoHeight: 800,
+          videoWidth: 600,
+          video: null // Will reference the video element on success
+        };
+        $scope.onError = function (err) {console.log("webcam onError: ");};
+        $scope.onStream = function (stream) {console.log("webcam onStream: ");};
+        $scope.onSuccess = function () {console.log("webcam onSuccess: ");};
     // aruco
       /**
        * Once state loaded
@@ -32,8 +41,21 @@ angular.module('casa').controller('ARController',
         $scope.context.lineTo(200,100);
         $scope.context.stroke();  
 
-          $scope.video = angular.element(document.querySelector('#video')); 
+        $scope.video = angular.element(document.querySelector('#video')); 
+        // http://forum.ionicframework.com/t/trouble-with-canvas/20694/2
+        //touch event handler. only use first touch in array. drawmark where touch occurred.
+        $scope.canvasElement.bind("touchstart", function (event) {
 
+            var coord = canvas.relativeCoords(event.targetTouches[0]);
+            // coord[0], coord[1] contain x and y
+            console.log("touchstart: "+coord[0]);
+        });
+
+        //mousedown event handler. drawMark where click occurred.
+        $scope.canvasElement.bind("mousedown", function (event) {
+            var coord = canvas.relativeCoords(event);
+            console.log("mousedown: "+coord[0]);
+        });
        console.log("Canvas width: "+$scope.canvas.width);
  
           //0 $scope.canvas.width = parseInt($scope.canvas.style.width);
@@ -65,10 +87,10 @@ angular.module('casa').controller('ARController',
               navigator.getUserMedia({ video: true }, successCallback, errorCallback);
 
               $scope.detector = new AR.Detector();
-console.log("scope.video: "+$scope.video);
+              console.log("scope.video: "+$scope.video);
 
-console.log("scope.detector: "+$scope.detector);
-console.log("scope.context: "+$scope.context);
+              console.log("scope.detector: "+$scope.detector);
+              console.log("scope.context: "+$scope.context);
               requestAnimationFrame($scope.tick);
           }
 
