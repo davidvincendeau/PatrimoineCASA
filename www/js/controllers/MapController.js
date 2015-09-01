@@ -51,7 +51,12 @@ angular.module('casa').controller('MapController',
           }
         };
 
+        for (var i = LocationsService.savedLocations.length - 1; i >= 0; i--) {
+          $scope.show(i);
+        };
+         
         $scope.goTo(0);
+
 
       });
 
@@ -83,6 +88,24 @@ angular.module('casa').controller('MapController',
         LocationsService.savedLocations.push($scope.newLocation);
         $scope.modal.hide();
         $scope.goTo(LocationsService.savedLocations.length - 1);
+      };
+
+      /**
+       * show location
+       * @param locationKey
+       */
+      $scope.show = function(locationKey) {
+
+        var location = LocationsService.savedLocations[locationKey];
+
+        $scope.map.markers[locationKey] = {
+          lat:location.lat,
+          lng:location.lng,
+          message: location.name,
+          focus: true,
+          draggable: false
+        };
+
       };
 
       /**
