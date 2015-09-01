@@ -104,8 +104,8 @@ angular.module('casa').factory('Histoires', [ function() {
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 17,
-        name: 'FEODALISATION',
-        sousTitre: 'Partie 4',
+        name: 'Les villages repeuplés',
+        sousTitre: 'Villeneuve-Loubet',
         url: 'pages/histoire/feodalisation-4.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
