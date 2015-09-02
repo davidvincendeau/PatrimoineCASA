@@ -113,7 +113,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
       views: {
           'menuContent': {
               templateUrl: 'templates/vernaculaire.html',
-              controller: 'VernaculaireController'
+              controller: 'VernaculairesController'
           }
       }
   })
