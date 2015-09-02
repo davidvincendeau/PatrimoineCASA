@@ -81,17 +81,52 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
           }
       }
   })
-.state('app.detail-histoire', {
-    url: '/histoire/:histoireId',
-    views: {
-        'menuContent': {
-            templateUrl: 'templates/detail-histoire.html',
-            controller: 'DetailHistoireController'
-        }
-    }
-})
+  .state('app.detail-histoire', {
+      url: '/histoire/:histoireId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/detail-histoire.html',
+              controller: 'DetailHistoireController'
+          }
+      }
+  })
+  .state('app.religieux', {
+      url: '/religieux',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/religieux.html',
+              controller: 'ReligieuxController'
+          }
+      }
+  })
+  .state('app.detail-religieux', {
+      url: '/religieux/:religieuxId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/detail-religieux.html',
+              controller: 'DetailReligieuxController'
+          }
+      }
+  })
+  .state('app.vernaculaire', {
+      url: '/vernaculaire',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/vernaculaire.html',
+              controller: 'VernaculaireController'
+          }
+      }
+  })
+  .state('app.detail-vernaculaire', {
+      url: '/vernaculaire/:vernaculairesId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/detail-vernaculaire.html',
+              controller: 'DetailVernaculaireController'
+          }
+      }
+  })
 
 
-    //$urlRouterProvider.otherwise('/app/map');
     $urlRouterProvider.otherwise("/app/accueil");
   });

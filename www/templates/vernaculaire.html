@@ -1,0 +1,15 @@
+<ion-view view-title="Le patrimoine vernaculaire">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="vernaculaire in vernaculaires" type="item-text-wrap" href="#/app/vernaculaire/{{vernaculaire.id}}">
+        <img ng-src="{{vernaculaire.vignette}}">
+        <h2>{{vernaculaire.name}}</h2>
+        <p>{{vernaculaire.sousTitre}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
