@@ -23,12 +23,7 @@ angular.module('casa').factory('LocationsService', [ function() {
       lat : 43.7017139,
       lng : 6.918923
     },
-	{
-      name : "Château de Gourdon",
-      lat : 43.7201152,
-      lng : 6.9784499
-    },
-	{
+  {
       name : "Baume Robert - Le Rouret",
       lat : 43.6785604,
       lng : 7.001038
