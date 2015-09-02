@@ -232,23 +232,7 @@ angular.module('casa').factory('LocationsService', [ function() {
       name : "Église Saint-Pons - Le Rouret",
       lat : 43.6745469,
       lng : 7.0067754
-    },
-    {
-      name : "Plateau de Calern",
-      lat : 43.7608778,
-      lng : 6.90125
-    },
-    {
-      name : "Plateau de Calern",
-      lat : 43.7608778,
-      lng : 6.90125
-    },
-    {
-      name : "Plateau de Calern",
-      lat : 43.7608778,
-      lng : 6.90125
     }
-
   ];
 
   return locationsObj;
