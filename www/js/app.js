@@ -17,7 +17,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
         StatusBar.styleDefault();
       }
     });
-  })
+  }) 
 
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
