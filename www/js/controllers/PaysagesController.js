@@ -1,11 +1,6 @@
-angular.module('casa').controller('PaysagesController',
-  [ '$scope',
-    'Paysages',
-    function(
-      $scope,
-      Paysages
-      ) {
+angular.module('casa').controller('PaysagesController',[ '$scope','Paysages',function($scope,Paysages)
+    {
       
-     $scope.paysages = Paysages.all();
+    	 $scope.paysages = Paysages.all();
 
     }]);
