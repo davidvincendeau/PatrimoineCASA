@@ -2,7 +2,3 @@ angular.module('casa').controller('VernaculairesController',[ '$scope','Vernacul
     {
     	 $scope.vernaculaire = Vernaculaires.all();
     }]);
-/*        
-mymonAppApp.controller('UnControlleurCommeUnAutre', function($scope, profile) {
-    $scope.profile = profile;
-});*/

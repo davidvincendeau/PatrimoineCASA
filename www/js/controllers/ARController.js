@@ -17,7 +17,7 @@ angular.module('casa').controller('ARController',
       ) {
         console.log("yo: ");
         // webcam
-        $scope.canal = {
+       /* $scope.canal = {
           // the fields below are all optional
           videoHeight: 800,
           videoWidth: 600,
@@ -26,10 +26,8 @@ angular.module('casa').controller('ARController',
         $scope.onError = function (err) {console.log("webcam onError: ");};
         $scope.onStream = function (stream) {console.log("webcam onStream: ");};
         $scope.onSuccess = function () {console.log("webcam onSuccess: ");};
-    // aruco
-      /**
-       * Once state loaded
-       */
+    //  Once state loaded
+       
       $scope.$on("$stateChangeSuccess", function() {
 
         $scope.canvasElement = angular.element(document.querySelector('#canvas'));
@@ -144,6 +142,6 @@ angular.module('casa').controller('ARController',
 
             $scope.context.strokeText(markers[i].id, x, y)
         }
-    }
+    }*/
 
     }]);
