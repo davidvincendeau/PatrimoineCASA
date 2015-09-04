@@ -126,7 +126,24 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
           }
       }
   })
-
+  .state('app.artistique', {
+      url: '/artistique',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/artistique.html',
+              controller: 'ArtistiquesController'
+          }
+      }
+  })
+  .state('app.detail-artistique', {
+      url: '/artistique/:artistiqueId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/detail-artistique.html',
+              controller: 'DetailArtistiqueController'
+          }
+      }
+  })
 
     $urlRouterProvider.otherwise("/app/accueil");
   });

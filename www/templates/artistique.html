@@ -1,0 +1,15 @@
+<ion-view view-title="Le patrimoine artistique">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="a in artistiques" type="item-text-wrap" href="#/app/artistique/{{a.id}}">
+        <img ng-src="{{a.vignette}}">
+        <h2>{{a.name}}</h2>
+        <p>{{a.sousTitre}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
