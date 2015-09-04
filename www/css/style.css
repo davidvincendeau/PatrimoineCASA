@@ -214,3 +214,6 @@ width: 100%;
 	font-size: 12px;
 	font-style: italic;
 }
+.ombre-portee {
+	box-shadow: 1px 1px 12px #555;
+}
