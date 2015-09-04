@@ -4,13 +4,13 @@ angular.module('casa').factory('Religieux', [ function() {
         id: 0,
         name: 'Les édifices religieux',
         sousTitre: 'Introduction',
-        url: '../www/pages/religieux/religieux-edifices.html',
+        url: 'pages/religieux/religieux-edifices.html',
         vignette: 'img/religieux-edifices.jpg'
         }, {
         id: 10,
         name: 'L\'eau',
         sousTitre: 'Les phares',
-        url: '../www/pages/paysages/eau-phares.html',
+        url: 'pages/paysages/eau-phares.html',
         vignette: 'img/phare3.jpg'
     }];
  

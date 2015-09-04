@@ -4,10 +4,10 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="paysage in paysages" type="item-text-wrap" href="#/app/paysages/{{paysage.id}}">
-        <img ng-src="{{paysage.vignette}}">
-        <h2>{{paysage.name}}</h2>
-        <p>{{paysage.sousTitre}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="p in paysages" type="item-text-wrap" href="#/app/paysages/{{p.id}}">
+        <img ng-src="{{p.vignette}}">
+        <h2>{{p.name}}</h2>
+        <p>{{p.sousTitre}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

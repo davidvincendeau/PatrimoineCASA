@@ -16,6 +16,12 @@ angular.module('casa').controller('ARController',
       InstructionsService
       ) {
         console.log("yo: ");
+        $scope.canvasElement = angular.element(document.querySelector('#canvas'));
+        console.log("canvasElement: "+$scope.canvasElement);
+        $scope.canvas = $scope.canvasElement[0];
+        console.log("Canvas: "+$scope.canvas);
+        $scope.context = $scope.canvas.getContext('2d');
+        console.log("context: "+$scope.context);
         // webcam
         $scope.canal = {
           // the fields below are all optional
@@ -26,17 +32,17 @@ angular.module('casa').controller('ARController',
         $scope.onError = function (err) {console.log("webcam onError: ");};
         $scope.onStream = function (stream) {console.log("webcam onStream: ");};
         $scope.onSuccess = function () {console.log("webcam onSuccess: ");};
-    // aruco
-      /**
-       * Once state loaded
-       */
+    //  Once state loaded
+        
       $scope.$on("$stateChangeSuccess", function() {
 
         $scope.canvasElement = angular.element(document.querySelector('#canvas'));
+        console.log("canvasElement: "+$scope.canvasElement);
         $scope.canvas = $scope.canvasElement[0];
-        $scope.context = $scope.canvas.getContext('2d');
         console.log("Canvas: "+$scope.canvas);
-        
+        $scope.context = $scope.canvas.getContext('2d');
+        console.log("context: "+$scope.context);
+         
         $scope.context.moveTo(0,0);
         $scope.context.lineTo(200,100);
         $scope.context.stroke();  
@@ -65,9 +71,9 @@ angular.module('casa').controller('ARController',
         console.log("scope.detector: "+$scope.detector);
         console.log("scope.context: "+$scope.context);
  
-        requestAnimationFrame($scope.tick);
+        //requestAnimationFrame($scope.tick);
       }); //$scope.$on
-
+/*
     $scope.tick = function() {
 
 
@@ -144,6 +150,6 @@ angular.module('casa').controller('ARController',
 
             $scope.context.strokeText(markers[i].id, x, y)
         }
-    }
+    }*/
 
     }]);
