@@ -1,0 +1,15 @@
+<ion-view view-title="Le patrimoine contemporain">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="contemporain in contemporains" type="item-text-wrap" href="#/app/contemporain/{{contemporain.id}}">
+        <img ng-src="{{contemporain.vignette}}">
+        <h2>{{contemporain.name}}</h2>
+        <p>{{contemporain.sousTitre}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
