@@ -1,4 +1,4 @@
-angular.module('casa').controller('DetailReligieuController',
+angular.module('casa').controller('DetailReligieuxController',
   [ '$scope',
   	'$stateParams',
     'Religieux',

@@ -16,12 +16,13 @@ angular.module('casa').controller('ARController',
       InstructionsService
       ) {
         console.log("yo: ");
-        $scope.canvas = angular.element(document.querySelector('canvas'));
-        //$scope.canvasElement = angular.element(document.querySelector('#canvas'));
-        //console.log("canvasElement: "+$scope.canvasElement);
-        //$scope.canvas = $scope.canvasElement[0];
-        console.log("Canvas: "+$scope.canvas);
-         $scope.context = $scope.canvas[0].getContext('2d');
+        //$scope.canvas = angular.element(document.querySelector('#canvas'));
+        //$scope.canvas = angular.element(document.getElementById('canvas'));
+        $scope.canvasElement = angular.element(document.getElementById('#canvas'));
+        console.log("canvasElement: "+$scope.canvasElement); // canvasElement: []
+        $scope.canvas = $scope.canvasElement[0];
+        console.log("canvas: "+$scope.canvas); // canvas: undefined
+         $scope.context = $scope.canvas.getContext('2d');
         console.log("context: "+$scope.context);
         // webcam
         $scope.canal = {

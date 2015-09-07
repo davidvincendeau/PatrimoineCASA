@@ -4,10 +4,10 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="histoire in histoires" type="item-text-wrap" href="#/app/histoire/{{histoire.id}}">
-        <img ng-src="{{histoire.vignette}}">
-        <h2>{{histoire.name}}</h2>
-        <p>{{histoire.sousTitre}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="h in histoires" type="item-text-wrap" href="#/app/histoire/{{h.id}}">
+        <img ng-src="{{h.vignette}}">
+        <h2>{{h.name}}</h2>
+        <p>{{h.sousTitre}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
