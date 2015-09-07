@@ -4,10 +4,10 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="vernaculaire in vernaculaires" type="item-text-wrap" href="#/app/vernaculaire/{{vernaculaire.id}}">
-        <img ng-src="{{vernaculaire.vignette}}">
-        <h2>{{vernaculaire.name}}</h2>
-        <p>{{vernaculaire.sousTitre}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="v in vernaculaires" type="item-text-wrap" href="#/app/vernaculaire/{{v.id}}">
+        <img ng-src="{{v.vignette}}">
+        <h2>{{v.name}}</h2>
+        <p>{{v.sousTitre}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

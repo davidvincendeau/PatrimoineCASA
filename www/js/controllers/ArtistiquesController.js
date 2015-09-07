@@ -1,4 +1,4 @@
-angular.module('casa').controller('ArtistiqueController',
+angular.module('casa').controller('ArtistiquesController',
   [ '$scope',
     'Artistiques',
     function(
