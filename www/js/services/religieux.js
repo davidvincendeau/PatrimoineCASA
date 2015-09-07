@@ -6,6 +6,30 @@ angular.module('casa').factory('Religieux', [ function() {
         sousTitre: 'Introduction',
         url: 'pages/religieux/religieux-edifices.html',
         vignette: 'img/religieux-edifices.jpg'
+        },{
+        id: 1,
+        name: 'Les édifices religieux',
+        sousTitre: 'Introduction',
+        url: 'pages/religieux/religieux-edifices.html',
+        vignette: 'img/religieux-edifices.jpg'
+        },{
+        id: 2,
+        name: 'Les édifices religieux',
+        sousTitre: 'Introduction',
+        url: 'pages/religieux/religieux-edifices.html',
+        vignette: 'img/religieux-edifices.jpg'
+        },{
+        id: 3,
+        name: 'Les édifices religieux',
+        sousTitre: 'Introduction',
+        url: 'pages/religieux/religieux-edifices.html',
+        vignette: 'img/religieux-edifices.jpg'
+        },{
+        id: 4,
+        name: 'Les édifices religieux',
+        sousTitre: 'Introduction',
+        url: 'pages/religieux/religieux-edifices.html',
+        vignette: 'img/religieux-edifices.jpg'
         }, {
         id: 10,
         name: 'L\'eau',

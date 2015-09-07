@@ -76,7 +76,7 @@ angular.module('casa').factory('Histoires', [ function() {
         id: 12,
         name: 'Sites historiques',
         sousTitre: 'Gourdon',
-        url: 'pages/histoire/a.html',
+        url: 'pages/histoire/sites-historiques-gourdon.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 13,
