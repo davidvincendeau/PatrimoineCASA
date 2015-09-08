@@ -88,25 +88,25 @@ angular.module('casa').factory('Histoires', [ function() {
         id: 14,
         name: 'Sites historiques',
         sousTitre: 'Tourrettes-sur-Loup',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-tourrettes-sur-loup.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 15,
         name: 'Sites historiques',
         sousTitre: 'Châteauneuf',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-chateauneuf.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 16,
         name: 'Sites historiques',
         sousTitre: 'Opio',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-opio.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 17,
         name: 'Les villages repeuplés',
         sousTitre: 'Villeneuve-Loubet',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-villeneuve-loubet.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 18,
