@@ -3,7 +3,7 @@ angular.module('casa').factory('Histoires', [ function() {
       var histoires = [{
         id: 0,
         name: 'Decoupage chronologique',
-        sousTitre: '',
+        sousTitre: 'Chronologie',
         url: 'pages/histoire/decoupage-chronologique.html',
         vignette: 'img/historique.png'
     }, {
@@ -146,15 +146,27 @@ angular.module('casa').factory('Histoires', [ function() {
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 26,
-        name: 'Les villages frontières ',
+        name: 'Les villages modernes ',
         sousTitre: 'La Colle sur Loup',
         url: 'pages/histoire/sites-historiques-colle-sur-loup.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 27,
-        name: 'Les villages frontières ',
+        name: 'Les villages modernes',
         sousTitre: 'Le Rouret',
         url: 'pages/histoire/sites-historiques-rouret.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 28,
+        name: 'Les villages modernes',
+        sousTitre: 'Roquefort Les Pins',
+        url: 'pages/histoire/sites-historiques-roquefort-les-pins.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 29,
+        name: 'Les villages modernes ',
+        sousTitre: 'Courmes',
+        url: 'pages/histoire/sites-historiques-courmes.html',
         vignette: 'img/chateau_rouret.jpg'
     }];
     return {
