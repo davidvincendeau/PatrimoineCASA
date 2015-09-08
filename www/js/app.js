@@ -100,7 +100,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
       }
   })
   .state('app.detail-religieux', {
-      url: '/religieux/:religieuxId',
+      url: '/religieux/:rId',
       views: {
           'menuContent': {
               templateUrl: 'templates/detail-religieux.html',

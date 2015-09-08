@@ -31,7 +31,7 @@ angular.module('casa').factory('Religieux', [ function() {
         url: 'pages/religieux/religieux-edifices.html',
         vignette: 'img/religieux-edifices.jpg'
         }, {
-        id: 10,
+        id: 5,
         name: 'L\'eau',
         sousTitre: 'Les phares',
         url: 'pages/paysages/eau-phares.html',
@@ -42,9 +42,9 @@ angular.module('casa').factory('Religieux', [ function() {
         all: function () {
             return religieux;
         },
-        get: function (religieuxId) {
+        get: function (rId) {
             for (var i = 0; i < religieux.length; i++) {
-                if (religieux[i].id === parseInt(religieuxId)) {
+                if (religieux[i].id === parseInt(rId)) {
                     return religieux[i];
                 }
             }

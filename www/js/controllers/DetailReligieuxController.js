@@ -8,6 +8,6 @@ angular.module('casa').controller('DetailReligieuxController',
       Religieux
       ) {
       
-     $scope.religieu = Religieux.get($stateParams.religieuId);
+     $scope.r = Religieux.get($stateParams.rId);
 
     }]);
