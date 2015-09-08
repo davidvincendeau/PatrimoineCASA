@@ -1,6 +1,6 @@
 angular.module('casa').factory('Contemporains', [ function() {
 
-      var Contemporains = [{
+      var contemporains = [{
         id: 0,
         name: 'L\'architecture',
         sousTitre: 'Localisation',
@@ -117,12 +117,12 @@ angular.module('casa').factory('Contemporains', [ function() {
     }];
     return {
         all: function () {
-            return histoires;
+            return contemporains;
         },
-        get: function (histoireId) {
-            for (var i = 0; i < histoires.length; i++) {
-                if (histoires[i].id === parseInt(histoireId)) {
-                    return histoires[i];
+        get: function (cId) {
+            for (var i = 0; i < contemporains.length; i++) {
+                if (contemporains[i].id === parseInt(cId)) {
+                    return contemporains[i];
                 }
             }
             return null;

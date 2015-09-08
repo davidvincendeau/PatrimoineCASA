@@ -5,9 +5,9 @@ angular.module('casa').controller('DetailContemporainController',
     function(
       $scope,
       $stateParams,
-      Histoires
+      Contemporains
       ) {
       
-     $scope.contemporain = Contemporains.get($stateParams.contemporainId);
+     $scope.contemporain = Contemporains.get($stateParams.cId);
 
     }]);

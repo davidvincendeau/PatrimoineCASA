@@ -8,6 +8,6 @@ angular.module('casa').controller('DetailVernaculaireController',
       Vernaculaires
       ) {
       
-     $scope.vernaculaire = Vernaculaires.get($stateParams.vernaculaireId);
+     $scope.vernaculaire = Vernaculaires.get($stateParams.vId);
 
     }]);

@@ -118,11 +118,29 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
       }
   })
   .state('app.detail-vernaculaire', {
-      url: '/vernaculaire/:vernaculairesId',
+      url: '/vernaculaire/:vId',
       views: {
           'menuContent': {
               templateUrl: 'templates/detail-vernaculaire.html',
               controller: 'DetailVernaculaireController'
+          }
+      }
+  })
+  .state('app.contemporain', {
+      url: '/contemporain',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/contemporain.html',
+              controller: 'ContemporainController'
+          }
+      }
+  })
+  .state('app.detail-contemporain', {
+      url: '/contemporain/:cId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/detail-contemporain.html',
+              controller: 'DetailContemporainController'
           }
       }
   })
