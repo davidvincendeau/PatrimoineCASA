@@ -19,6 +19,12 @@ angular.module('casa').factory('Histoires', [ function() {
         url: 'pages/histoire/traces-protohistoriques.html',
         vignette: 'img/enceinte_naouri.jpg'
     }, {
+        id: 20,
+        name: 'Traces protohistoriques - Les enceintes',
+        sousTitre: 'Les traces protohistoriques - Les enceintes',
+        url: 'pages/histoire/traces-protohistoriques-enceintes.html',
+        vignette: 'img/enceinte_naouri.jpg'
+    }, {
         id: 3,
         name: 'Antiquité',
         sousTitre: 'Partie 1',
@@ -70,13 +76,13 @@ angular.module('casa').factory('Histoires', [ function() {
         id: 11,
         name: 'Sites historiques',
         sousTitre: 'Introduction',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 12,
         name: 'Sites historiques',
         sousTitre: 'Gourdon',
-        url: 'pages/histoire/a.html',
+        url: 'pages/histoire/sites-historiques-gourdon.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 13,
@@ -88,32 +94,68 @@ angular.module('casa').factory('Histoires', [ function() {
         id: 14,
         name: 'Sites historiques',
         sousTitre: 'Tourrettes-sur-Loup',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-tourrettes-sur-loup.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 15,
         name: 'Sites historiques',
         sousTitre: 'Châteauneuf',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-chateauneuf.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 16,
         name: 'Sites historiques',
         sousTitre: 'Opio',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-opio.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 17,
         name: 'Les villages repeuplés',
         sousTitre: 'Villeneuve-Loubet',
-        url: 'pages/histoire/feodalisation-4.html',
+        url: 'pages/histoire/sites-historiques-villeneuve-loubet.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
-        id: 18,
-        name: 'Traces pre/protohistoriques',
-        sousTitre: 'Les traces pre et protohistoriques',
-        url: 'pages/histoire/traces-pre-protohistoriques.html',
-        vignette: 'img/menhir.jpg'
+        id: 21,
+        name: 'Les villages repeuplés',
+        sousTitre: 'Biot',
+        url: 'pages/histoire/sites-historiques-biot.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 22,
+        name: 'Les villages repeuplés',
+        sousTitre: 'Vallauris',
+        url: 'pages/histoire/sites-historiques-vallauris.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 23,
+        name: 'Les villages repeuplés',
+        sousTitre: 'Valbonne',
+        url: 'pages/histoire/sites-historiques-valbonne.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 24,
+        name: 'Les villages frontières ',
+        sousTitre: 'Saint Paul de Vence',
+        url: 'pages/histoire/sites-historiques-saint-paul.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 25,
+        name: 'Les villages frontières ',
+        sousTitre: 'Antibes',
+        url: 'pages/histoire/sites-historiques-antibes.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 26,
+        name: 'Les villages frontières ',
+        sousTitre: 'La Colle sur Loup',
+        url: 'pages/histoire/sites-historiques-colle-sur-loup.html',
+        vignette: 'img/chateau_rouret.jpg'
+    }, {
+        id: 27,
+        name: 'Les villages frontières ',
+        sousTitre: 'Le Rouret',
+        url: 'pages/histoire/sites-historiques-rouret.html',
+        vignette: 'img/chateau_rouret.jpg'
     }];
     return {
         all: function () {
