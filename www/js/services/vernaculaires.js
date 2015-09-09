@@ -101,67 +101,67 @@ angular.module('casa').factory('Vernaculaires', [ function() {
         name:  'L\'eau',
         sousTitre: 'Saint-Paul-de-Vence',
         url: 'pages/vernaculaire/vernaculaire-eau-saint-paul-de-vence.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-saintpaul.jpg'
     }, {
         id: 16,
         name:  'L\'eau',
         sousTitre: 'Bar-sur-Loup',
         url: 'pages/vernaculaire/vernaculaire-eau-bar-sur-loup.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-bar.jpg'
     }, {
         id: 17,
         name:  'L\'eau',
         sousTitre: 'Roquefort-les-Pins',
         url: 'pages/vernaculaire/vernaculaire-eau-roquefort-les-pins.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-roquefort.jpg'
     }, {
         id: 18,
         name:  'L\'eau',
         sousTitre: 'Châteauneuf',
         url: 'pages/vernaculaire/vernaculaire-eau-chateauneuf.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-chateauneuf.jpg'
     }, {
         id: 19,
         name:  'L\'eau',
         sousTitre: 'Opio',
         url: 'pages/vernaculaire/vernaculaire-eau-opio.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-opio.jpg'
     }, {
         id: 20,
         name:  'L\'eau',
         sousTitre: 'Le Rouret',
         url: 'pages/vernaculaire/vernaculaire-eau-rouret.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-rouret.jpg'
     }, {
         id: 21,
         name:  'L\'eau',
         sousTitre: 'Valbonne',
         url: 'pages/vernaculaire/vernaculaire-eau-valbonne.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-valbonne.jpg'
     }, {
         id: 22,
         name:  'L\'eau',
         sousTitre: 'Biot',
         url: 'pages/vernaculaire/vernaculaire-eau-biot.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-biot.jpg'
     }, {
         id: 23,
         name:  'L\'eau',
         sousTitre: 'Villeneuve-loubet',
         url: 'pages/vernaculaire/vernaculaire-eau-villeuneuve-loubet.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-villeneuve.jpg'
     }, {
         id: 24,
         name:  'L\'eau',
         sousTitre: 'Vallauris',
         url: 'pages/vernaculaire/vernaculaire-eau-vallauris.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-vallauris.jpg'
     }, {
         id: 25,
         name:  'L\'eau',
         sousTitre: 'Antibes',
         url: 'pages/vernaculaire/vernaculaire-eau-antibes.html',
-        vignette: 'img/phare3.jpg'
+        vignette: 'img/eau-antibes.jpg'
     }
 
     ];

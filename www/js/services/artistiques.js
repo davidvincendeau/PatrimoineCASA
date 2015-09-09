@@ -5,13 +5,13 @@ angular.module('casa').factory('Artistiques', [ function() {
         name: 'La matière',
         sousTitre: 'La poterie et la céramique',
         url: 'pages/artistique/artistique-matiere-poterie.html',
-        vignette: 'img/historique.png'
+        vignette: 'img/poterie.jpg'
     }, {
         id: 1,
         name: 'La matière',
         sousTitre: 'la verrerie d\'art',
         url: 'pages/artistique/artistique-matiere-verrerie.html',
-        vignette: 'img/menhir.jpg'
+        vignette: 'img/verrerie2.jpg'
     }, {
         id: 2,
         name: 'La matière',
@@ -23,13 +23,13 @@ angular.module('casa').factory('Artistiques', [ function() {
         name: 'Les musées',
         sousTitre: 'Les musées nationaux',
         url: 'pages/artistique/artistique-musees-musees-nationaux.html',
-        vignette: 'img/antiquite_opidium.jpg'
+        vignette: 'img/musees.jpg'
     }, {
         id: 4,
         name: 'Les musées',
         sousTitre: 'Les musées Art et histoire',
         url: 'pages/artistique/artistique-musees-musees-art-histoire.html',
-        vignette: 'img/saint_andrieu2.jpg'
+        vignette: 'img/musees-art.jpg'
     }];
     return {
         all: function () {
