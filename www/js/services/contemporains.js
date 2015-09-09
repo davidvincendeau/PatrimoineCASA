@@ -46,7 +46,7 @@ angular.module('casa').factory('Contemporains', [ function() {
         id: 7,
         name: 'L\'architecture',
         sousTitre: 'Moderne années 30',
-        url: 'pages/contemporain/          .html',
+        url: 'pages/contemporain/patrimoine-contemporain-architecture-moderne-annee30.html',
         vignette: 'img/musee_picasso.jpg'
     }, {
         id: 8,
@@ -87,33 +87,27 @@ angular.module('casa').factory('Contemporains', [ function() {
     }, {
         id: 14,
         name: 'Les déplacements',
-        sousTitre: 'Le tramway',
+        sousTitre: 'Le tramway des Alpes-Maritimes',
         url: 'pages/contemporain/patrimoine-contemporain-deplacements-tramway.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 15,
-        name: 'Sites historiques',
-        sousTitre: 'Châteauneuf',
-        url: 'pages/histoire/feodalisation-4.html',
+        name: 'Les déplacements',
+        sousTitre: 'Le tramway de Cannes',
+        url: 'pages/contemporain/patrimoine-contemporain-deplacements-tramway-cannes.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 16,
-        name: 'Sites historiques',
-        sousTitre: 'Opio',
-        url: 'pages/histoire/feodalisation-4.html',
+        name: 'Les déplacements',
+        sousTitre: 'Le tramway de Nice',
+        url: 'pages/contemporain/patrimoine-contemporain-deplacements-tramway-nice.html',
         vignette: 'img/chateau_rouret.jpg'
     }, {
         id: 17,
-        name: 'Les villages repeuplés',
-        sousTitre: 'Villeneuve-Loubet',
-        url: 'pages/histoire/feodalisation-4.html',
+        name: 'Bibliographie',
+        sousTitre: 'Les ouvrages',
+        url: 'pages/bibliographie/bibliographie.html',
         vignette: 'img/chateau_rouret.jpg'
-    }, {
-        id: 18,
-        name: 'Traces pre/protohistoriques',
-        sousTitre: 'Les traces pre et protohistoriques',
-        url: 'pages/histoire/traces-pre-protohistoriques.html',
-        vignette: 'img/menhir.jpg'
     }];
     return {
         all: function () {
