@@ -10,7 +10,7 @@ angular.module('casa').factory('Vernaculaires', [ function() {
         id: 1,
         name: 'Les cultures',
         sousTitre: 'La vigne',
-        url: 'pages/vernaculaires/vernaculaire-culture-vigne.html',
+        url: 'pages/vernaculaire/vernaculaire-culture-vigne.html',
         vignette: 'img/plateau2.jpg'
     }, {
         id: 2,
@@ -41,6 +41,12 @@ angular.module('casa').factory('Vernaculaires', [ function() {
         name: 'Le bâti',
         sousTitre: 'Les grandes exploitations',
         url: 'pages/Vernaculaire/vernaculaire-bati-grandes-exploitations.html',
+        vignette: 'img/phare3.jpg'
+    }, {
+        id: 26,
+        name: 'Le bâti',
+        sousTitre: 'Les fours',
+        url: 'pages/Vernaculaire/vernaculaire-bati-fours.html',
         vignette: 'img/phare3.jpg'
     }, {
         id: 7,
@@ -93,7 +99,7 @@ angular.module('casa').factory('Vernaculaires', [ function() {
     }, {
         id: 15,
         name:  'L\'eau',
-        sousTitre: 'Saint-Paul',
+        sousTitre: 'Saint-Paul-de-Vence',
         url: 'pages/vernaculaire/vernaculaire-eau-saint-paul-de-vence.html',
         vignette: 'img/phare3.jpg'
     }, {
