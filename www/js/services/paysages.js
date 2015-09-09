@@ -5,13 +5,13 @@ angular.module('casa').factory('Paysages', [ function() {
         name: 'Paysages',
         sousTitre: 'Introduction',
         url: 'pages/paysages/paysages-intro.html',
-        vignette: 'img/plateau2.jpg'
+        vignette: 'img/paysage.jpg'
     }, {
         id: 1,
         name: 'Paysages',
         sousTitre: 'Les plateaux',
         url: 'pages/paysages/paysages-plateaux.html',
-        vignette: 'img/plateau1.jpg'
+        vignette: 'img/plateau.jpg'
     }, {
         id: 2,
         name: 'Paysages',
