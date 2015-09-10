@@ -66,29 +66,38 @@ angular.module('casa').controller('MapController',
         this.lng  = "";
         this.name = "";
       };
-
-      $ionicModal.fromTemplateUrl('templates/addLocation.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal) {
-          $scope.modal = modal;
-        });
-
-      /**
-       * Detect user long-pressing on map to add new location
-       */
-      $scope.$on('leafletDirectiveMap.contextmenu', function(event, locationEvent){
-        $scope.newLocation = new Location();
-        $scope.newLocation.lat = locationEvent.leafletEvent.latlng.lat;
-        $scope.newLocation.lng = locationEvent.leafletEvent.latlng.lng;
-        $scope.modal.show();
-      });
-
-      $scope.saveLocation = function() {
-        LocationsService.savedLocations.push($scope.newLocation);
-        $scope.modal.hide();
-        $scope.goTo(LocationsService.savedLocations.length - 1);
-      };
+      $scope.legend = {
+              position: 'bottomleft',
+              colors: [ '#00ff00', '#28c9ff', '#0000ff', '#ecf386', '#ec0086', '#FF0000' ],
+              labels: [ 'Paysages', 'Histoire', 'Religieux', 'Vernaculaire', 'Artistique', 'Contemporain' ]
+          };
+      var local_icons = {
+        default_icon: {},
+        leaf_icon: {
+            iconUrl: 'img/poterie.jpg',
+            shadowUrl: 'img/poterie.jpg',
+             iconSize:     [38, 95], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        },
+        ici_icon: {
+            type: 'div',
+            iconSize: [230, 0],
+            html: 'Using <strong>Bold text as an icon</strong>: Lisbon',
+            popupAnchor:  [0, 0]
+        },
+        orange_leaf_icon: {
+            iconUrl: 'img/poterie.jpg',
+            shadowUrl: 'img/poterie.jpg',
+            iconSize:     [38, 95],
+            shadowSize:   [50, 64],
+            iconAnchor:   [22, 94],
+            shadowAnchor: [4, 62]
+        }
+    };
+    $scope.icons = local_icons;
 
       /**
        * show location
@@ -101,7 +110,9 @@ angular.module('casa').controller('MapController',
         $scope.map.markers[locationKey] = {
           lat:location.lat,
           lng:location.lng,
-          message: location.name,
+          message: '<img ng-click="buttonClick('+location.url+')" ng-src="'+location.vignette+'"></img>&nbsp;'+location.name,
+          icon: local_icons.default_icon,
+          markerColor: location.markerColor,
           focus: true,
           draggable: false
         };
@@ -125,8 +136,10 @@ angular.module('casa').controller('MapController',
         $scope.map.markers[locationKey] = {
           lat:location.lat,
           lng:location.lng,
-          message: location.name,
-          focus: true,
+          markerColor: location.markerColor,
+          message: '<img ng-click="buttonClick('+location.url+')" ng-src="'+location.vignette+'"></img>&nbsp;'+location.name,
+          icon: local_icons.default_icon,
+         focus: true,
           draggable: false
         };
 
@@ -148,6 +161,7 @@ angular.module('casa').controller('MapController',
               lat:position.coords.latitude,
               lng:position.coords.longitude,
               message: "Vous êtes ici",
+              icon: local_icons.ici_icon,
               focus: true,
               draggable: false
             };
