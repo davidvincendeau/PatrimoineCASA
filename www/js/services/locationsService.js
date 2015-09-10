@@ -4,12 +4,20 @@ angular.module('casa').factory('LocationsService', [ function() {
 
   locationsObj.savedLocations = [
     {
-      name : "CASA",
+       	id: 0,
+      	name : "CASA",
+       	sousTitre: 'Siège de la CASA',
+        url: 'pages/artistique/artistique-matiere-poterie.html',
+        vignette: 'img/poterie.jpg',
       lat : 43.7015074,
       lng : 7.0301
     },
     {
+       	id: 1,
       name : "Plateau de Calern",
+       	sousTitre: 'Caussols',
+        url: 'pages/artistique/artistique-matiere-poterie.html',
+        vignette: 'img/poterie.jpg',
       lat : 43.7608778,
       lng : 6.90125
     },
