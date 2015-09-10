@@ -1,5 +1,6 @@
 angular.module('casa').controller('MapController',
   [ '$scope',
+    '$location',
     '$cordovaGeolocation',
     '$stateParams',
     '$ionicModal',
@@ -8,6 +9,7 @@ angular.module('casa').controller('MapController',
     'InstructionsService',
     function(
       $scope,
+      $location,
       $cordovaGeolocation,
       $stateParams,
       $ionicModal,
@@ -24,7 +26,7 @@ angular.module('casa').controller('MapController',
         $scope.locations = LocationsService.savedLocations;
         $scope.newLocation;
 
-        if(!InstructionsService.instructions.newLocations.seen) {
+        /*if(!InstructionsService.instructions.newLocations.seen) {
 
           var instructionsPopup = $ionicPopup.alert({
             title: 'Add Locations',
@@ -34,7 +36,7 @@ angular.module('casa').controller('MapController',
             InstructionsService.instructions.newLocations.seen = true;
             });
 
-        }
+        }*/
 
         $scope.map = {
           defaults: {
@@ -66,11 +68,13 @@ angular.module('casa').controller('MapController',
         this.lng  = "";
         this.name = "";
       };
+      // legende
       $scope.legend = {
               position: 'bottomleft',
               colors: [ '#00ff00', '#28c9ff', '#0000ff', '#ecf386', '#ec0086', '#FF0000' ],
               labels: [ 'Paysages', 'Histoire', 'Religieux', 'Vernaculaire', 'Artistique', 'Contemporain' ]
           };
+      // icones markers
       var local_icons = {
         default_icon: {},
         leaf_icon: {
@@ -82,14 +86,22 @@ angular.module('casa').controller('MapController',
             shadowAnchor: [4, 62],  // the same for the shadow
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         },
-        ici_icon: {
+        text_icon: {
             type: 'div',
             iconSize: [230, 0],
             html: 'Using <strong>Bold text as an icon</strong>: Lisbon',
             popupAnchor:  [0, 0]
         },
-        orange_leaf_icon: {
-            iconUrl: 'img/poterie.jpg',
+        ici_icon: {
+            backgroundColor: 'green',
+            shadowUrl: 'img/poterie.jpg',
+            iconSize:     [138, 95],
+            shadowSize:   [50, 64],
+            iconAnchor:   [22, 94],
+            shadowAnchor: [4, 62]
+        },
+        orange_icon: {
+            backgroundColor: 'green',
             shadowUrl: 'img/poterie.jpg',
             iconSize:     [38, 95],
             shadowSize:   [50, 64],
@@ -105,42 +117,50 @@ angular.module('casa').controller('MapController',
        */
       $scope.show = function(locationKey) {
 
-        var location = LocationsService.savedLocations[locationKey];
+        var poi = LocationsService.savedLocations[locationKey];
 
         $scope.map.markers[locationKey] = {
-          lat:location.lat,
-          lng:location.lng,
-          message: '<img ng-click="buttonClick('+location.url+')" ng-src="'+location.vignette+'"></img>&nbsp;'+location.name,
+          lat:poi.lat,
+          lng:poi.lng,
           icon: local_icons.default_icon,
-          markerColor: location.markerColor,
+          markerColor: poi.markerColor,
+          message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
           focus: true,
-          draggable: false
+          draggable: false,
+                    getMessageScope: function() { return $scope; }
         };
 
       };
-
+      /**
+       * popupClick
+       * @param destinationUrl
+       */
+      $scope.popupClick = function(destinationUrl) {
+        if(destinationUrl != undefined) $location.path(destinationUrl);
+      }
       /**
        * Center map on specific saved location
        * @param locationKey
        */
       $scope.goTo = function(locationKey) {
 
-        var location = LocationsService.savedLocations[locationKey];
+        var poi = LocationsService.savedLocations[locationKey];
 
         $scope.map.center  = {
-          lat : location.lat,
-          lng : location.lng,
+          lat : poi.lat,
+          lng : poi.lng,
           zoom : 12
         };
 
         $scope.map.markers[locationKey] = {
-          lat:location.lat,
-          lng:location.lng,
-          markerColor: location.markerColor,
-          message: '<img ng-click="buttonClick('+location.url+')" ng-src="'+location.vignette+'"></img>&nbsp;'+location.name,
-          icon: local_icons.default_icon,
-         focus: true,
-          draggable: false
+          lat:poi.lat,
+          lng:poi.lng,
+          markerColor: poi.markerColor,
+          message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
+          icon: local_icons.orange_icon,
+          focus: true,
+          draggable: false,
+                    getMessageScope: function() { return $scope; }
         };
 
       };
