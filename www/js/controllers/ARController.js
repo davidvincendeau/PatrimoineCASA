@@ -15,6 +15,9 @@ angular.module('casa').controller('ARController',
       LocationsService,
       InstructionsService
       ) {
+        setTimeout(function() {
+                requestAnimationFrame($scope.tick);
+        }, 1000);
         //pause for a few milliseconds before accessing canvas
         setTimeout(function() {
             $scope.infos = angular.element(document.getElementById('infos'));
@@ -56,54 +59,46 @@ angular.module('casa').controller('ARController',
             // start animation loop
             requestAnimationFrame($scope.tick);
         }, 1000);
-
+    $scope.framecount = 0;
+    $scope.channel = {};
     $scope.onError = function (err) {console.log("webcam onError: ");};
     $scope.onStream = function (stream) {console.log("webcam onStream: ");};
     $scope.onSuccess = function () {
         console.log("webcam onSuccess: ");
         // webcam
-        $scope.canal = {
+        $scope.channel = {
           videoHeight: 800,
           videoWidth: 600,
           video: null // Will reference the video element on success
         };
-        $scope.cam = $scope.canal.video;
-        console.log("scope.canal: "+$scope.canal);
-        console.log("scope.canal.video: "+$scope.canal.video);
-        console.log("scope.cam: "+$scope.cam);
-
     };
 
 
     $scope.tick = function() {
+        $scope.framecount++;
+        $scope.framez = $scope.framecount;
+         
+        if ($scope.channel && $scope.channel.video) {
+            $scope.infos = "video frame available"; 
+            $scope.snapshot();
 
-        if ($scope.canal) {
-            $scope.infos.innerHtml = $scope.canal.videoWidth;
-            if ($scope.canal.video) {
-                console.log("scope.canal.video: "+$scope.canal.video);
-                $scope.snapshot();
-
-                $scope.markers = $scope.detector.detect($scope.imageData);
-                $scope.drawCorners($scope.markers);
-                $scope.drawId($scope.markers);
-            }
+            $scope.markers = $scope.detector.detect($scope.imageData);
+            $scope.drawCorners($scope.markers);
+            $scope.drawId($scope.markers);
         } else {
-            console.log("video frame not available: "); 
-            console.log("scope.canal: "+$scope.canal);
-            console.log("scope.cam: "+$scope.cam);
+            $scope.infos = "video frame not available"; 
         }
         requestAnimationFrame($scope.tick);
     }
 
     $scope.snapshot = function() {
-        
-        console.log("snapshot $scope.cam:" + $scope.cam);
+        $scope.infos = "snapshot";
+        if ($scope.channel && $scope.channel.video) {
+            $scope.ctx.drawImage($scope.channel.video, 0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
+            $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
 
+        }
         // $scope.ctx.drawImage($scope.imgObj, 0, 0, $scope.canvas.width, $scope.canvas.height);
-        //if ($scope.cam.readyState !== undefined) {
-            $scope.ctx.drawImage($scope.cam, 0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
-        //}
-        $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
     }
 
     $scope.drawCorners = function(markers) {
