@@ -49,11 +49,6 @@ angular.module('casa').factory('LocationsService', [ function() {
 		lng : 7.001038
     },
 	{
-		name : 'La Colle du Maçon - Caussols',
-		lat : 43.7174875,
-		lng : 6.881176
-    },
-	{
 		id: 4,
 		name : 'Le Col du Clapier',
 		sousTitre: 'Le Clapier',
@@ -61,20 +56,6 @@ angular.module('casa').factory('LocationsService', [ function() {
 		vignette: 'img/vignettes/clapier.jpg',
 		lat : 43.7134014,
 		lng : 6.89977
-    },
-	{
-		id: 5,
-		name : 'Le Haut Montet',
-		sousTitre: 'Le Montet',
-		url: 'pages/artistique/artistique-matiere-poterie.html',
-		vignette: 'img/vignettes/montet.jpg',
-		lat : 43.7162058,
-		lng : 6.930729
-    },
-    {
-		name : 'La bergerie du Montet',
-		lat : 43.7085029,
-		lng : 6.929946
     },
     {
 		id: 6,
@@ -93,11 +74,6 @@ angular.module('casa').factory('LocationsService', [ function() {
 		vignette: 'img/vignettes/donjon-bar.jpg',
 		lat : 43.701352,
 		lng : 6.989333
-    },
-    {
-		name : 'Le Serre de la Madeleine',
-		lat : 43.7601562,
-		lng : 7.002371
     },
     {
 		id: 8,
