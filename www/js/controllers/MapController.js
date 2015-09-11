@@ -24,19 +24,7 @@ angular.module('casa').controller('MapController',
       $scope.$on("$stateChangeSuccess", function() {
 
         $scope.locations = LocationsService.savedLocations;
-        $scope.newLocation;
-
-        /*if(!InstructionsService.instructions.newLocations.seen) {
-
-          var instructionsPopup = $ionicPopup.alert({
-            title: 'Add Locations',
-            template: InstructionsService.instructions.newLocations.text
-          });
-          instructionsPopup.then(function(res) {
-            InstructionsService.instructions.newLocations.seen = true;
-            });
-
-        }*/
+        //$scope.newLocation;
 
         $scope.map = {
           defaults: {
@@ -80,7 +68,7 @@ angular.module('casa').controller('MapController',
         leaf_icon: {
             iconUrl: 'img/poterie.jpg',
             shadowUrl: 'img/poterie.jpg',
-             iconSize:     [38, 95], // size of the icon
+            iconSize:     [38, 95], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             shadowAnchor: [4, 62],  // the same for the shadow
@@ -125,9 +113,9 @@ angular.module('casa').controller('MapController',
           icon: local_icons.default_icon,
           markerColor: poi.markerColor,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
-          focus: true,
+          focus: false,
           draggable: false,
-                    getMessageScope: function() { return $scope; }
+          getMessageScope: function() { return $scope; }
         };
 
       };
@@ -136,7 +124,11 @@ angular.module('casa').controller('MapController',
        * @param destinationUrl
        */
       $scope.popupClick = function(destinationUrl) {
-        if(destinationUrl != undefined) $location.path(destinationUrl);
+        if(destinationUrl === 'undefined') {
+          console.log("popupClick url undefined");
+        } else {
+          $location.path(destinationUrl);
+        }
       }
       /**
        * Center map on specific saved location
@@ -156,11 +148,11 @@ angular.module('casa').controller('MapController',
           lat:poi.lat,
           lng:poi.lng,
           markerColor: poi.markerColor,
-          message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
+          message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
           icon: local_icons.orange_icon,
           focus: true,
           draggable: false,
-                    getMessageScope: function() { return $scope; }
+          getMessageScope: function() { return $scope; }
         };
 
       };
