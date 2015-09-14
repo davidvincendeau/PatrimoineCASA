@@ -16,7 +16,7 @@ angular.module('casa').factory('LocationsService', [ function() {
 		id: 1,
 		name : 'Plateau de Calern',
 		sousTitre: 'Caussols',
-		url: 'pages/paysages/paysages-plateaux.html',
+		url: '/app/paysages/1',
 		vignette: 'img/vignettes/calerne.jpg',
 		lat : 43.7608778,
 		lng : 6.90125

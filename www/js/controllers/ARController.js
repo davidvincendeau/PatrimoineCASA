@@ -15,9 +15,7 @@ angular.module('casa').controller('ARController',
       LocationsService,
       InstructionsService
       ) {
-        setTimeout(function() {
-                requestAnimationFrame($scope.tick);
-        }, 1000);
+        
         //pause for a few milliseconds before accessing canvas
         setTimeout(function() {
             $scope.infos = angular.element(document.getElementById('infos'));

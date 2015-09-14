@@ -124,6 +124,7 @@ angular.module('casa').controller('MapController',
        * @param destinationUrl
        */
       $scope.popupClick = function(destinationUrl) {
+          console.log("popupClick url:" + destinationUrl);
         if(destinationUrl === 'undefined') {
           console.log("popupClick url undefined");
         } else {
