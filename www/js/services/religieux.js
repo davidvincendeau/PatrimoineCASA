@@ -91,6 +91,12 @@ angular.module('casa').factory('Religieux', [ function() {
         url: 'pages/religieux/religieux-vallauris.html',
         vignette: 'img/religieux-vallauris.jpg'
     }, {
+        id: 16,
+        name: 'Les édifices religieux',
+        sousTitre: 'Caussols',
+        url: 'pages/religieux/religieux-caussols.html',
+        vignette: 'img/religieux-vallauris.jpg'
+    }, {
         id: 15,
         name: 'Les édifices religieux',
         sousTitre: 'Antibes',
