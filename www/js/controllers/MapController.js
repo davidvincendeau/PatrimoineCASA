@@ -62,12 +62,24 @@ angular.module('casa').controller('MapController',
               colors: [ '#00ff00', '#28c9ff', '#0000ff', '#ecf386', '#ec0086', '#FF0000' ],
               labels: [ 'Paysages', 'Histoire', 'Religieux', 'Vernaculaire', 'Artistique', 'Contemporain' ]
           };
+      /**
+       * popupClick
+       * @param destinationUrl
+       */
+      $scope.popupClick = function(destinationUrl) {
+          console.log("popupClick url:" + destinationUrl);
+        if(destinationUrl === 'undefined') {
+          console.log("popupClick url undefined");
+        } else {
+          $location.path(destinationUrl);
+        }
+      }
       // icones markers
       var local_icons = {
         default_icon: {},
         leaf_icon: {
-            iconUrl: 'img/poterie.jpg',
-            shadowUrl: 'img/poterie.jpg',
+            iconUrl: 'img/icones/aigle.jpg',
+            shadowUrl: 'img/icones/aigle.jpg',
             iconSize:     [38, 95], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -82,7 +94,6 @@ angular.module('casa').controller('MapController',
         },
         ici_icon: {
             backgroundColor: 'green',
-            shadowUrl: 'img/poterie.jpg',
             iconSize:     [138, 95],
             shadowSize:   [50, 64],
             iconAnchor:   [22, 94],
@@ -90,7 +101,6 @@ angular.module('casa').controller('MapController',
         },
         orange_icon: {
             backgroundColor: 'green',
-            shadowUrl: 'img/poterie.jpg',
             iconSize:     [38, 95],
             shadowSize:   [50, 64],
             iconAnchor:   [22, 94],
@@ -98,39 +108,6 @@ angular.module('casa').controller('MapController',
         }
     };
     $scope.icons = local_icons;
-
-      /**
-       * show location
-       * @param locationKey
-       */
-      $scope.show = function(locationKey) {
-
-        var poi = LocationsService.savedLocations[locationKey];
-
-        $scope.map.markers[locationKey] = {
-          lat:poi.lat,
-          lng:poi.lng,
-          icon: local_icons.default_icon,
-          markerColor: poi.markerColor,
-          message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
-          focus: false,
-          draggable: false,
-          getMessageScope: function() { return $scope; }
-        };
-
-      };
-      /**
-       * popupClick
-       * @param destinationUrl
-       */
-      $scope.popupClick = function(destinationUrl) {
-          console.log("popupClick url:" + destinationUrl);
-        if(destinationUrl === 'undefined') {
-          console.log("popupClick url undefined");
-        } else {
-          $location.path(destinationUrl);
-        }
-      }
       /**
        * Center map on specific saved location
        * @param locationKey
@@ -150,13 +127,40 @@ angular.module('casa').controller('MapController',
           lng:poi.lng,
           markerColor: poi.markerColor,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
-          icon: local_icons.orange_icon,
+          icon: {
+            color: 'green',
+            backgroundColor: 'green',
+            iconSize:     [poi.couleur, 95],
+            shadowSize:   [poi.couleur, 64],
+            iconAnchor:   [poi.couleur, 94],
+            shadowAnchor: [4, 62]        },
           focus: true,
           draggable: false,
           getMessageScope: function() { return $scope; }
         };
 
       };
+      /**
+       * show location
+       * @param locationKey
+       */
+      $scope.show = function(locationKey) {
+
+        var poi = LocationsService.savedLocations[locationKey];
+
+        $scope.map.markers[locationKey] = {
+          lat:poi.lat,
+          lng:poi.lng,
+          icon: local_icons.leaf_icon,
+          markerColor: poi.markerColor,
+          message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
+          focus: false,
+          draggable: false,
+          getMessageScope: function() { return $scope; }
+        };
+
+      };
+
 
       /**
        * Center map on user's current position

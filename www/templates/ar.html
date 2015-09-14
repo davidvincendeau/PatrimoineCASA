@@ -6,8 +6,10 @@
 
   <ion-content data-tap-disabled="true">
 
-    <webcam id="cam" placeholder="'img/colline3.jpg'" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)">
+    <webcam channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
+
     <canvas id="canevas" style="width:320px; height:240px;"></canvas>
+    <canvas id="result" class="well pull-right"></canvas>
     <span id="infos" ng-bind="infos">Infos</span>
     <span id="framez" ng-bind="framez">framez</span>
   </ion-content>
