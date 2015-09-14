@@ -15,16 +15,16 @@ angular.module('casa').controller('ARController',
       LocationsService,
       InstructionsService
       ) {
-        var _video = null;
-            // this has to be done BEFORE webcam authorization
-            $scope.channel = {
-              videoHeight: 800,
-              videoWidth: 600,
-              video: null // Will reference the video element on success
-            };
-            _video = $scope.channel.video;
+        $scope.video = null;
+        // this has to be done BEFORE webcam authorization
+        $scope.channel = {
+          videoHeight: 800,
+          videoWidth: 600,
+          video: null // Will reference the video element on success
+        };
+        $scope.video = $scope.channel.video;
 
-        //pause for a few milliseconds before accessing canvas
+        // pause for a few milliseconds before accessing canvas
         setTimeout(function() {
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
@@ -56,18 +56,21 @@ angular.module('casa').controller('ARController',
         $scope.framecount++;
         $scope.framez = $scope.framecount;
 
-        _video = $scope.channel.video;
+        $scope.video = $scope.channel.video;
          
-        if (_video) {
-            //$scope.infos = "video frame available, frame:" + $scope.framecount; 
+        if ($scope.video) {
+            $scope.infos = "video frame available, frame:" + $scope.framecount; 
             //console.log("video frame available");
             
-            if (_video.width > 0) {
-                //console.log("video width" + _video.width);
-                var videoData = getVideoData(0, 0, _video.width, _video.height);
+            if ($scope.video.width > 0) {
+                //console.log("video width" + $scope.video.width);
+                var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                 $scope.ctx.putImageData(videoData, 0, 0);
                 $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
-                //$scope.snapshot();
+                $scope.ctx.moveTo(0,0);
+                $scope.ctx.lineTo(200,100);
+                $scope.ctx.stroke(); 
+
 
                 $scope.markers = $scope.detector.detect($scope.imageData);
                 $scope.drawCorners($scope.markers);
@@ -81,22 +84,12 @@ angular.module('casa').controller('ARController',
     }
     var getVideoData = function getVideoData(x, y, w, h) {
         var hiddenCanvas = document.createElement('canvas');
-        hiddenCanvas.width = _video.width;
-        hiddenCanvas.height = _video.height;
+        hiddenCanvas.width = $scope.video.width;
+        hiddenCanvas.height = $scope.video.height;
         var ctx = hiddenCanvas.getContext('2d');
-        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
+        ctx.drawImage($scope.video, 0, 0, $scope.video.width, $scope.video.height);
         return ctx.getImageData(x, y, w, h);
     };
-
-    $scope.snapshot = function() {
-        $scope.infos = "snapshot";
-        if ($scope.channel && _video) {
-            $scope.ctx.drawImage(_video, 0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
-            $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
-
-        }
-        // $scope.ctx.drawImage($scope.imgObj, 0, 0, $scope.canvas.width, $scope.canvas.height);
-    }
 
     $scope.drawCorners = function(markers) {
         var corners, corner, i, j;

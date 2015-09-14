@@ -78,8 +78,7 @@ angular.module('casa').controller('MapController',
       var local_icons = {
         default_icon: {},
         leaf_icon: {
-            iconUrl: 'img/icones/aigle.jpg',
-            shadowUrl: 'img/icones/aigle.jpg',
+            iconUrl: 'img/icones/marker.png',
             iconSize:     [38, 95], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -100,11 +99,10 @@ angular.module('casa').controller('MapController',
             shadowAnchor: [4, 62]
         },
         orange_icon: {
-            backgroundColor: 'green',
-            iconSize:     [38, 95],
-            shadowSize:   [50, 64],
-            iconAnchor:   [22, 94],
-            shadowAnchor: [4, 62]
+            icon: 'fa-coffee',
+            markerColor: 'red',
+            shape: 'square',
+            prefix: 'fa'
         }
     };
     $scope.icons = local_icons;
@@ -121,19 +119,17 @@ angular.module('casa').controller('MapController',
           lng : poi.lng,
           zoom : 12
         };
-
+        // https://github.com/coryasilva/Leaflet.ExtraMarkers
         $scope.map.markers[locationKey] = {
           lat:poi.lat,
           lng:poi.lng,
-          markerColor: poi.markerColor,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
           icon: {
-            color: 'green',
-            backgroundColor: 'green',
-            iconSize:     [poi.couleur, 95],
-            shadowSize:   [poi.couleur, 64],
-            iconAnchor:   [poi.couleur, 94],
-            shadowAnchor: [4, 62]        },
+            icon: 'fa-camera-retro',
+            markerColor: 'red',
+            shape: 'square',
+            prefix: 'fa'
+          },
           focus: true,
           draggable: false,
           getMessageScope: function() { return $scope; }
@@ -147,12 +143,17 @@ angular.module('casa').controller('MapController',
       $scope.show = function(locationKey) {
 
         var poi = LocationsService.savedLocations[locationKey];
-
+        var redMarker = L.ExtraMarkers.icon({
+            icon: 'fa-camera-retro',
+            markerColor: 'red',
+            shape: 'square',
+            prefix: 'fa'
+          });
+        //console.log("redMarker " + redMarker);
         $scope.map.markers[locationKey] = {
           lat:poi.lat,
           lng:poi.lng,
-          icon: local_icons.leaf_icon,
-          markerColor: poi.markerColor,
+          icon: redMarker,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
           focus: false,
           draggable: false,
@@ -177,7 +178,7 @@ angular.module('casa').controller('MapController',
             $scope.map.markers.now = {
               lat:position.coords.latitude,
               lng:position.coords.longitude,
-              message: "Vous êtes ici",
+              message: "Vous êtes ici<i class=\"fa fa-camera-retro fa-lg\" ></i>",
               icon: local_icons.ici_icon,
               focus: true,
               draggable: false
