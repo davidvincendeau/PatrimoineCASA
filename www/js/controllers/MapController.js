@@ -57,9 +57,15 @@ angular.module('casa').controller('MapController',
         this.name = "";
       };
       // legende
+      /* Paysages=green
+      Histoire=red
+      Religieux=grey
+      Vernaculaire=yellow
+      Artistique =purple
+      Contemporain=orange*/
       $scope.legend = {
               position: 'bottomleft',
-              colors: [ '#00ff00', '#28c9ff', '#0000ff', '#ecf386', '#ec0086', '#FF0000' ],
+              colors: [ '#40bf58', '#d0464a', '#797979', '#d4c629', '#983bb2', '#ff7904' ],
               labels: [ 'Paysages', 'Histoire', 'Religieux', 'Vernaculaire', 'Artistique', 'Contemporain' ]
           };
       /**
@@ -78,7 +84,7 @@ angular.module('casa').controller('MapController',
       var local_icons = {
         default_icon: {},
         leaf_icon: {
-            iconUrl: 'img/icones/marker.png',
+            iconUrl: 'img/icones/marker-icon-blue.png',
             iconSize:     [38, 95], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -98,11 +104,33 @@ angular.module('casa').controller('MapController',
             iconAnchor:   [22, 94],
             shadowAnchor: [4, 62]
         },
+        blue_icon: {
+            iconUrl: 'img/icones/marker-icon-blue.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
+        },
         orange_icon: {
-            icon: 'fa-coffee',
-            markerColor: 'red',
-            shape: 'square',
-            prefix: 'fa'
+            iconUrl: 'img/icones/marker-icon-orange.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
+        },
+        green_icon: {
+            iconUrl: 'img/icones/marker-icon-green.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
+        },
+        grey_icon: {
+            iconUrl: 'img/icones/marker-icon-grey.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
+        },
+        red_icon: {
+            iconUrl: 'img/icones/marker-icon-red.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
+        },
+        purple_icon: {
+            iconUrl: 'img/icones/marker-icon-purple.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
+        },
+        yellow_icon: {
+            iconUrl: 'img/icones/marker-icon-yellow.png',
+            shadowUrl: 'img/icones/markers_shadow.png'
         }
     };
     $scope.icons = local_icons;
@@ -124,12 +152,7 @@ angular.module('casa').controller('MapController',
           lat:poi.lat,
           lng:poi.lng,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
-          icon: {
-            icon: 'fa-camera-retro',
-            markerColor: 'red',
-            shape: 'square',
-            prefix: 'fa'
-          },
+          icon: local_icons.yellow_icon,
           focus: true,
           draggable: false,
           getMessageScope: function() { return $scope; }
@@ -143,17 +166,12 @@ angular.module('casa').controller('MapController',
       $scope.show = function(locationKey) {
 
         var poi = LocationsService.savedLocations[locationKey];
-        var redMarker = L.ExtraMarkers.icon({
-            icon: 'fa-camera-retro',
-            markerColor: 'red',
-            shape: 'square',
-            prefix: 'fa'
-          });
+        
         //console.log("redMarker " + redMarker);
         $scope.map.markers[locationKey] = {
           lat:poi.lat,
           lng:poi.lng,
-          icon: redMarker,
+          icon: local_icons.purple_icon,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
           focus: false,
           draggable: false,
