@@ -30,38 +30,49 @@ angular.module('casa').controller('ARController',
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
             console.log("canvas: "+$scope.canvas);
-            $scope.ctx = $scope.canvas[0].getContext("2d");
+            $scope.ctx = $scope.canvas[0].getContext("webgl");
+            /*$scope.ctx = $scope.canvas[0].getContext("2d");
             $scope.ctx.moveTo(0,0);
             $scope.ctx.lineTo(200,100);
-            $scope.ctx.stroke(); 
+            $scope.ctx.stroke(); */
             console.log("context: "+$scope.ctx);
     
             $scope.detector = new AR.Detector();
 
 
             // babylon.js
-            $scope.babyloncanvas = angular.element(document.getElementById('babyloncanvas'));
-            console.log("babyloncanvas: "+$scope.babyloncanvas);
+            //$scope.babyloncanvas = angular.element(document.getElementById('babyloncanvas'));
+            //console.log("babyloncanvas: "+$scope.babyloncanvas);
 
             if (BABYLON.Engine.isSupported()) {
-             console.log("BABYLON.Engine.isSupported");
-           
-            var engine = new BABYLON.Engine($scope.babyloncanvas, true);
-
-            BABYLON.SceneLoader.Load("", "assets/scene.babylon", engine, function (newScene) {
-                newScene.executeWhenReady(function () {
-                    // Attach camera to canvas inputs
-                    newScene.activeCamera.attachControl($scope.babyloncanvas);
-
-                    // Once the scene is loaded, just register a render loop to render it
-                    engine.runRenderLoop(function() {
-                        newScene.render();
-                    });
+                 console.log("BABYLON.Engine.isSupported");
+               
+                var engine = new BABYLON.Engine($scope.canvas[0], true);//antialias true
+                var createScene = function(){
+                    // create a basic BJS Scene object
+                    var scene = new BABYLON.Scene(engine);
+                    // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
+                    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+                    // target the camera to scene origin
+                    camera.setTarget(BABYLON.Vector3.Zero());
+                    // attach the camera to the canvas
+                    camera.attachControl($scope.canvas[0], false);
+                    // create a basic light, aiming 0,1,0 - meaning, to the sky
+                    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+                    // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
+                    var sphere = new BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+                    // move the sphere upward 1/2 of its height
+                    sphere.position.y = 1;
+                    // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
+                    var ground = new BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+                        // return the created scene
+                    return scene;
+                }
+                var scene = createScene();
+                engine.runRenderLoop(function(){
+                    scene.render();
                 });
-            }, function (progress) {
-                // To do: give progress feedback to user
-            });
-        }
+            }
             // start animation loop
             requestAnimationFrame($scope.tick);
         }, 1000);

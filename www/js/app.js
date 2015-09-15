@@ -46,6 +46,15 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
           }
         }
       })
+      .state('app.bjs', {
+        url: "/bjs",
+        views: {
+          'menuContent' :{
+            templateUrl: "templates/bjs.html",
+            controller: 'BJSController'
+          }
+        }
+      })
   .state('app.accueil', {
       url: '/accueil',
       views: {
