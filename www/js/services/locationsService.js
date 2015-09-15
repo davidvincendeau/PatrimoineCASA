@@ -10,7 +10,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: 'pages/artistique/artistique-matiere-poterie.html',
 		vignette: 'img/vignettes/casa.jpg',
 		lat : 43.7015074,
-		lng : 7.0301
+		lng : 7.0301,
+		icon :'local_icons.purple_icon'
     },
     {
 		id: 1,
@@ -19,7 +20,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/paysages/1',
 		vignette: 'img/vignettes/calerne.jpg',
 		lat : 43.7608778,
-		lng : 6.90125
+		lng : 6.90125,
+		icon : 'local_icons.purple_icon'
     },
 	{
 		id: 2,

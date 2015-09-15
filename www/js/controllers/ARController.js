@@ -29,8 +29,7 @@ angular.module('casa').controller('ARController',
             
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
-            console.log("Canvas: "+$scope.canvas);
-  
+            console.log("canvas: "+$scope.canvas);
             $scope.ctx = $scope.canvas[0].getContext("2d");
             $scope.ctx.moveTo(0,0);
             $scope.ctx.lineTo(200,100);
@@ -39,9 +38,33 @@ angular.module('casa').controller('ARController',
     
             $scope.detector = new AR.Detector();
 
+
+            // babylon.js
+            $scope.babyloncanvas = angular.element(document.getElementById('babyloncanvas'));
+            console.log("babyloncanvas: "+$scope.babyloncanvas);
+
+            if (BABYLON.Engine.isSupported()) {
+             console.log("BABYLON.Engine.isSupported");
+           
+            var engine = new BABYLON.Engine($scope.babyloncanvas, true);
+
+            BABYLON.SceneLoader.Load("", "assets/scene.babylon", engine, function (newScene) {
+                newScene.executeWhenReady(function () {
+                    // Attach camera to canvas inputs
+                    newScene.activeCamera.attachControl($scope.babyloncanvas);
+
+                    // Once the scene is loaded, just register a render loop to render it
+                    engine.runRenderLoop(function() {
+                        newScene.render();
+                    });
+                });
+            }, function (progress) {
+                // To do: give progress feedback to user
+            });
+        }
             // start animation loop
             requestAnimationFrame($scope.tick);
-        }, 500);
+        }, 1000);
 
     $scope.framecount = 0;
     $scope.channel = {};

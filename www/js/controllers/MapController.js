@@ -141,7 +141,7 @@ angular.module('casa').controller('MapController',
       $scope.goTo = function(locationKey) {
 
         var poi = LocationsService.savedLocations[locationKey];
-
+console.log(poi.icon);
         $scope.map.center  = {
           lat : poi.lat,
           lng : poi.lng,
@@ -152,7 +152,7 @@ angular.module('casa').controller('MapController',
           lat:poi.lat,
           lng:poi.lng,
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
-          icon: local_icons.yellow_icon,
+          icon: eval(poi.icon),
           focus: true,
           draggable: false,
           getMessageScope: function() { return $scope; }
@@ -166,12 +166,13 @@ angular.module('casa').controller('MapController',
       $scope.show = function(locationKey) {
 
         var poi = LocationsService.savedLocations[locationKey];
+console.log(poi.icon);
         
-        //console.log("redMarker " + redMarker);
+        //console.log("redMarker " + redMarker);icon: {iconUrl: 'img/icones/' + poi.icon}
         $scope.map.markers[locationKey] = {
           lat:poi.lat,
           lng:poi.lng,
-          icon: local_icons.purple_icon,
+          icon: eval(poi.icon),
           message: '<span><a ng-click="popupClick(\''+poi.url+'\')"><img ng-click="popupClick(\''+poi.url+'\')" ng-src="'+poi.vignette+'"></img>'+poi.name+'<br />' +poi.sousTitre + '</a></span><br />',
           focus: false,
           draggable: false,
