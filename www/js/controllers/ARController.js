@@ -26,6 +26,7 @@ angular.module('casa').controller('ARController',
 
         // pause for a few milliseconds before accessing canvas
         setTimeout(function() {
+            
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
             console.log("Canvas: "+$scope.canvas);
@@ -40,7 +41,7 @@ angular.module('casa').controller('ARController',
 
             // start animation loop
             requestAnimationFrame($scope.tick);
-        }, 2500);
+        }, 500);
 
     $scope.framecount = 0;
     $scope.channel = {};
