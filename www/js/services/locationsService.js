@@ -21,7 +21,7 @@ angular.module('casa').factory('LocationsService', [ function() {
 		vignette: 'img/vignettes/calerne.jpg',
 		lat : 43.7608778,
 		lng : 6.90125,
-		icon : 'local_icons.purple_icon'
+		icon : 'local_icons.green_icon'
     },
 	{
 		id: 2,
@@ -30,7 +30,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/paysages/1',
 		vignette: 'img/vignettes/caussols.jpg',
 		lat : 43.7252074,
-		lng : 6.904847
+		lng : 6.904847,
+		icon : 'local_icons.green_icon'
     },
 	{
 		id: 2,
@@ -39,7 +40,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/paysages/1',
 		vignette: 'img/vignettes/malle.jpg',
 		lat : 43.7017139,
-		lng : 6.918923
+		lng : 6.918923,
+		icon : 'local_icons.green_icon'
     },
   {
 		id: 3,
@@ -48,7 +50,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/1',
 		vignette: 'img/vignettes/robert.jpg',
 		lat : 43.6785604,
-		lng : 7.001038
+		lng : 7.001038,
+		icon : 'local_icons.red_icon'
     },
 	{
 		id: 4,
@@ -57,7 +60,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/20',
 		vignette: 'img/vignettes/clapier.jpg',
 		lat : 43.7134014,
-		lng : 6.89977
+		lng : 6.89977,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 6,
@@ -66,7 +70,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/7',
 		vignette: 'img/vignettes/picasso.jpg',
 		lat : 43.5807427, 
-		lng : 7.12822
+		lng : 7.12822,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 7,
@@ -75,7 +80,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/8',
 		vignette: 'img/vignettes/donjon-bar.jpg',
 		lat : 43.701352,
-		lng : 6.989333
+		lng : 6.989333,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 8,
@@ -84,7 +90,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/8',
 		vignette: 'img/vignettes/chateau-villeneuve.jpg',
 		lat : 43.6598309,
-		lng : 7.1241832
+		lng : 7.1241832,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 9,
@@ -93,7 +100,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/9',
 		vignette: 'img/vignettes/tour-madonne.jpg',
 		lat : 43.656238,
-		lng : 7.098812
+		lng : 7.098812,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 10,
@@ -102,7 +110,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/9',
 		vignette: 'img/vignettes/donjon-saintpaul.jpg',
 		lat : 43.696968,
-		lng : 7.122259
+		lng : 7.122259,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 11,
@@ -111,7 +120,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/9',
 		vignette: 'img/vignettes/chateau-tourrettes.jpg',
 		lat : 43.715830,
-		lng : 7.059306
+		lng : 7.059306,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 12,
@@ -120,7 +130,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/10',
 		vignette: 'img/vignettes/chateau-gourdon.jpg',
 		lat : 43.7201152,
-		lng : 6.9784499
+		lng : 6.9784499,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 13,
@@ -129,7 +140,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/10',
 		vignette: 'img/vignettes/chateau-bar.jpg',
 		lat : 43.6911809,
-		lng : 6.9809576
+		lng : 6.9809576,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 14,
@@ -138,7 +150,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/10',
 		vignette: 'img/vignettes/chateau-chateauneuf.jpg',
 		lat : 43.674775,
-		lng : 6.975999
+		lng : 6.975999,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 15,
@@ -147,7 +160,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/10',
 		vignette: 'img/vignettes/chateau-opio.jpg',
 		lat : 43.668726,
-		lng : 6.981965
+		lng : 6.981965,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 16,
@@ -156,7 +170,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/14',
 		vignette: 'img/vignettes/tour-tourrettes.jpg',
 		lat : 43.716161,
-		lng : 7.059036
+		lng : 7.059036,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 17,
@@ -166,7 +181,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		vignette: 'img/vignettes/maison-lartigue.jpg',
 		lat : 43.716161,
 		lat : 43.6682697,
-		lng : 6.9822241
+		lng : 6.9822241,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 18,
@@ -175,7 +191,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/22',
 		vignette: 'img/vignettes/chateau-vallauris.jpg',
 		lat : 43.57984,
-		lng : 7.053051
+		lng : 7.053051,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 19,
@@ -184,7 +201,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/21',
 		vignette: 'img/vignettes/place-arcade.jpg',
 		lat : 43.6414339,
-		lng : 7.008779
+		lng : 7.008779,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 20,
@@ -193,7 +211,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/24',
 		vignette: 'img/vignettes/porte-vence.jpg',
 		lat : 43.697988,
-		lng : 7.121944
+		lng : 7.121944,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 21,
@@ -202,7 +221,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/25',
 		vignette: 'img/vignettes/fort-carre.jpg',
 		lat : 43.590305,
-		lng : 7.127230
+		lng : 7.127230,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 22,
@@ -211,7 +231,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/25',
 		vignette: 'img/vignettes/bastion-andre.jpg',
 		lat : 43.5772412,
-		lng : 7.1260527
+		lng : 7.1260527,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 23,
@@ -220,7 +241,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/27',
 		vignette: 'img/vignettes/clos-saintpierre.jpg',
 		lat : 43.6744097,
-		lng : 7.0062755
+		lng : 7.0062755,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 24,
@@ -229,7 +251,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/histoire/29',
 		vignette: 'img/vignettes/maison-courmes.jpg',
 		lat : 43.742330,
-		lng : 7.009302
+		lng : 7.009302,
+		icon : 'local_icons.red_icon'
     },
     {
 		id: 25,
@@ -238,7 +261,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/16',
 		vignette: 'img/vignettes/eglise-saintlambert.jpg',
 		lat : 43.742240,
-		lng : 6.899948
+		lng : 6.899948,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 26,
@@ -247,7 +271,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/16',
 		vignette: 'img/vignettes/grotte-calern.jpg',
 		lat : 43.7516442,
-		lng : 6.9029889
+		lng : 6.9029889,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 27, 
@@ -256,7 +281,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/2',
 		vignette: 'img/vignettes/eglise-saintgregoire.jpg',
 		lat : 43.716708,
-		lng : 7.059366
+		lng : 7.059366,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 28,
@@ -265,7 +291,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/2',
 		vignette: 'img/vignettes/chapelle-saint-jean.jpg',
 		lat : 43.7175277,
-		lng : 7.0565838
+		lng : 7.0565838,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 29,
@@ -274,7 +301,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/3',
 		vignette: 'img/vignettes/canadel.jpg',
 		lat : 43.685581,
-		lng : 7.102900
+		lng : 7.102900,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 30,
@@ -283,7 +311,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/3',
 		vignette: 'img/vignettes/chapelle-saint-roch.jpg',
 		lat : 43.685471,
-		lng : 7.09152
+		lng : 7.09152,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 31,
@@ -292,7 +321,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/4',
 		vignette: 'img/vignettes/collegiale.jpg',
 		lat : 43.697273,
-		lng : 7.121922
+		lng : 7.121922,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 32,
@@ -301,7 +331,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/4',
 		vignette: 'img/vignettes/chapelle-sainte-claire.jpg',
 		lat : 43.699420,
-		lng : 7.121561
+		lng : 7.121561,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 33,
@@ -310,7 +341,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/5',
 		vignette: 'img/vignettes/chapelle-saint-vincent.jpg',
 		lat : 43.719634,
-		lng : 6.977940
+		lng : 6.977940,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 34,
@@ -319,7 +351,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/5',
 		vignette: 'img/vignettes/chapelle-sainte-catherine.jpg',
 		lat : 43.719712,
-		lng : 6.977710
+		lng : 6.977710,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 35,
@@ -328,7 +361,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/5',
 		vignette: 'img/vignettes/chapelle-saint-pons.jpg',
 		lat : 43.721076,
-		lng : 6.977091
+		lng : 6.977091,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 36,
@@ -337,7 +371,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/5',
 		vignette: 'img/vignettes/chapelle-pontduloup.jpg',
 		lat : 43.720750,
-		lng : 6.991213
+		lng : 6.991213,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 37,
@@ -346,7 +381,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/6',
 		vignette: 'img/vignettes/eglise-saint-jacques.jpg',
 		lat : 43.701562,
-		lng : 6.989715
+		lng : 6.989715,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 38,
@@ -355,7 +391,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/6',
 		vignette: 'img/vignettes/trinitaire.jpg',
 		lat : 43.700297,
-		lng : 6.987580
+		lng : 6.987580,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 39,
@@ -364,7 +401,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/7',
 		vignette: 'img/vignettes/eglise-saintmartin.jpg',
 		lat : 43.6746727,
-		lng : 6.975554
+		lng : 6.975554,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 40,
@@ -373,7 +411,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/8',
 		vignette: 'img/vignettes/sainte-trophime.jpg',
 		lat : 43.668507,
-		lng : 6.982157
+		lng : 6.982157,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 41,
@@ -382,7 +421,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/9',
 		vignette: 'img/vignettes/eglise-saintpons.jpg',
 		lat : 43.6745469,
-		lng : 7.0067754
+		lng : 7.0067754,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 42,
@@ -391,7 +431,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: 'p/app/religieux/11',
 		vignette: 'img/vignettes/sainte-blaise.jpg',
 		lat : 43.6404762,
-		lng : 7.0089746
+		lng : 7.0089746,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 43,
@@ -400,7 +441,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/11',
 		vignette: 'img/vignettes/paulvi.jpg',
 		lat : 43.6231425,
-		lng : 7.052152
+		lng : 7.052152,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 44,
@@ -409,7 +451,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/12',
 		vignette: 'img/vignettes/eglise-biot.jpg',
 		lat : 43.6269388,
-		lng : 7.099514
+		lng : 7.099514,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 45,
@@ -418,7 +461,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/12',
 		vignette: 'img/vignettes/chapelle-penitentsblancs.jpg',
 		lat : 43.627358,
-		lng : 7.098425
+		lng : 7.098425,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 46,
@@ -427,7 +471,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/13',
 		vignette: 'img/vignettes/eglise-saintmarc.jpg',
 		lat : 43.6775633,
-		lng : 7.2188773
+		lng : 7.2188773,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 47,
@@ -436,7 +481,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/14',
 		vignette: 'img/vignettes/eglise-saint-pierre-golfe.jpg',
 		lat : 43.568973,
-		lng : 7.074336
+		lng : 7.074336,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 48,
@@ -445,7 +491,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/15',
 		vignette: 'img/vignettes/cathedrale-antibes.jpg',
 		lat : 43.580797,
-		lng : 7.127826
+		lng : 7.127826,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 49,
@@ -454,7 +501,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/15',
 		vignette: 'img/vignettes/chapelle-saintbernardin.jpg',
 		lat : 43.581786,
-		lng : 7.124814
+		lng : 7.124814,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 50,
@@ -463,7 +511,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/15',
 		vignette: 'img/vignettes/notre-dame-garoupe.jpg',
 		lat : 43.5642732,
-		lng : 7.1318219
+		lng : 7.1318219,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 51,
@@ -472,7 +521,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/15',
 		vignette: 'img/vignettes/chapelle-saintjean.jpg',
 		lat : 43.586369,
-		lng : 7.091031
+		lng : 7.091031,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 52,
@@ -481,7 +531,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/religieux/15',
 		vignette: 'img/vignettes/eglise-saint-benoit.jpg',
 		lat : 43.554273,
-		lng : 7.128777
+		lng : 7.128777,
+		icon : 'local_icons.grey_icon'
     },
     {
 		id: 53,
@@ -490,7 +541,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/2',
 		vignette: 'img/vignettes/lycee-horticole.jpg',
 		lat : 43.5981474,
-		lng : 7.1103913
+		lng : 7.1103913,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 54,
@@ -499,7 +551,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/3',
 		vignette: 'img/vignettes/gazignaire.jpg',
 		lat : 43.569408,
-		lng : 7.074561
+		lng : 7.074561,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 55,
@@ -508,7 +561,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/5',
 		vignette: 'img/vignettes/bastide-violettes.jpg',
 		lat : 43.7181229,
-		lng : 7.0549477
+		lng : 7.0549477,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 56,
@@ -517,7 +571,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/6',
 		vignette: 'img/vignettes/bastide-roy.jpg',
 		lat : 43.613959,
-		lng : 7.106887
+		lng : 7.106887,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 57,
@@ -526,7 +581,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/6',
 		vignette: 'img/vignettes/papeterie.jpg',
 		lat : 43.699769,
-		lng : 7.000532
+		lng : 7.000532,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 58,
@@ -535,7 +591,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/6',
 		vignette: 'img/vignettes/manoire-vaugrenier.jpg',
 		lat : 43.630070,
-		lng : 7.118864
+		lng : 7.118864,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 59,
@@ -544,7 +601,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/6',
 		vignette: 'img/vignettes/mas-notre-dame.jpg',
 		lat : 43.566362,
-		lng : 7.130814
+		lng : 7.130814,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 60,
@@ -553,7 +611,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/8',
 		vignette: 'img/vignettes/moulin-opio.jpg',
 		lat : 43.6694099,
-		lng : 6.9844821
+		lng : 6.9844821,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 61,
@@ -562,7 +621,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/11',
 		vignette: 'img/vignettes/abreuvoir-courmes.jpg',
 		lat : 43.741694,
-		lng : 7.008156
+		lng : 7.008156,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 62,
@@ -571,7 +631,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/12',
 		vignette: 'img/vignettes/abreuvoir-tourrettes.jpg',
 		lat : 43.716910,
-		lng : 7.058243
+		lng : 7.058243,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 63,
@@ -580,7 +641,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/13',
 		vignette: 'img/vignettes/fontaine-colle.jpg',
 		lat : 43.687393,
-		lng : 7.103404
+		lng : 7.103404,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 64,
@@ -589,7 +651,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/14',
 		vignette: 'img/vignettes/fontaine-gourdon.jpg',
 		lat : 43.720304,
-		lng : 6.977901
+		lng : 6.977901,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 65,
@@ -598,7 +661,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/15',
 		vignette: 'img/vignettes/fontaine-saintpaul.jpg',
 		lat : 43.696546,
-		lng : 7.122053
+		lng : 7.122053,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 66,
@@ -607,7 +671,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/15',
 		vignette: 'img/vignettes/fontaine-saintpauldevence.jpg',
 		lat : 43.695610,
-		lng : 7.122791
+		lng : 7.122791,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 67,
@@ -616,7 +681,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/16',
 		vignette: 'img/vignettes/fontaine-bar.jpg',
 		lat : 43.701375,
-		lng : 6.988848
+		lng : 6.988848,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 68,
@@ -625,7 +691,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/18',
 		vignette: 'img/vignettes/source-brague.jpg',
 		lat : 43.675490,
-		lng : 6.979461
+		lng : 6.979461,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 69,
@@ -634,7 +701,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/20',
 		vignette: 'img/vignettes/fontaine-rouret.jpg',
 		lat : 43.674453,
-		lng : 7.005998
+		lng : 7.005998,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 70,
@@ -643,7 +711,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/21',
 		vignette: 'img/vignettes/fontaine-valbonne.jpg',
 		lat : 43.641828,
-		lng : 7.008828
+		lng : 7.008828,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 71,
@@ -652,7 +721,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/22',
 		vignette: 'img/vignettes/pont-brague.jpg',
 		lat : 43.623256,
-		lng : 7.098617
+		lng : 7.098617,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 72,
@@ -661,7 +731,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/23',
 		vignette: 'img/vignettes/fontaine-moussu.jpg',
 		lat : 43.658385,
-		lng : 7.122107
+		lng : 7.122107,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 73,
@@ -670,7 +741,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/25',
 		vignette: 'img/vignettes/fontaine-dauphins.jpg',
 		lat : 43.581601,
-		lng : 7.126472
+		lng : 7.126472,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 74,
@@ -679,7 +751,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/25',
 		vignette: 'img/vignettes/lavoire-antibes.jpg',
 		lat : 43.579556,
-		lng : 7.127232
+		lng : 7.127232,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 75,
@@ -688,7 +761,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/vernaculaire/25',
 		vignette: 'img/vignettes/fontaine-casernes.jpg',
 		lat : 43.582945,
-		lng : 7.127848
+		lng : 7.127848,
+		icon : 'local_icons.yellow_icon'
     },
     {
 		id: 76,
@@ -697,7 +771,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/artistique/0',
 		vignette: 'img/vignettes/massier.jpg',
 		lat : 43.5766733,
-		lng : 7.0544142
+		lng : 7.0544142,
+		icon : 'local_icons.purple_icon'
     },
     {
 		id: 77,
@@ -706,7 +781,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/artistique/0',
 		vignette: 'img/vignettes/ceramique-massier.jpg',
 		lat : 43.567756,
-		lng : 7.071142
+		lng : 7.071142,
+		icon : 'local_icons.purple_icon'
     },
     {
 		id: 78,
@@ -715,7 +791,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/artistique/1',
 		vignette: 'img/vignettes/galerie-verre.jpg',
 		lat : 43.6261973,
-		lng : 7.1025554
+		lng : 7.1025554,
+		icon : 'local_icons.purple_icon'
     },
     {
 		id: 79,
@@ -724,7 +801,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/artistique/3',
 		vignette: 'img/vignettes/musee-fernand-leger.jpg',
 		lat : 43.6224935,
-		lng : 7.1124714
+		lng : 7.1124714,
+		icon : 'local_icons.purple_icon'
     },
     {
 		id: 80,
@@ -733,7 +811,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/artistique/3',
 		vignette: 'img/vignettes/musee-magnelli.jpg',
 		lat : 43.5796852,
-		lng : 7.0528892
+		lng : 7.0528892,
+		icon : 'local_icons.purple_icon'
     },
     {
 		id: 81,
@@ -742,7 +821,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/artistique/4',
 		vignette: 'img/vignettes/maeght.jpg',
 		lat : 43.7008343,
-		lng : 7.1149451
+		lng : 7.1149451,
+		icon : 'local_icons.purple_icon'
     },
     {
 		id: 82,
@@ -751,7 +831,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/1',
 		vignette: 'img/vignettes/chateau-sale.jpg',
 		lat : 43.5844781,
-		lng : 7.1122534
+		lng : 7.1122534,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 83,
@@ -760,7 +841,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/2',
 		vignette: 'img/vignettes/eilenroc.jpg',
 		lat : 43.548408,
-		lng : 7.121718
+		lng : 7.121718,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 84,
@@ -769,7 +851,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/2',
 		vignette: 'img/vignettes/villa-eilenroc.jpg',
 		lat : 43.545575,
-		lng : 7.130325
+		lng : 7.130325,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 85,
@@ -778,7 +861,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/3',
 		vignette: 'img/vignettes/villa-eldjezair.jpg',
 		lat : 43.571217,
-		lng : 7.101017
+		lng : 7.101017,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 86,
@@ -787,7 +871,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/3',
 		vignette: 'img/vignettes/chateau-aube.jpg',
 		lat : 43.5637025,
-		lng : 7.0659878
+		lng : 7.0659878,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 87,
@@ -796,7 +881,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/3',
 		vignette: 'img/vignettes/mosquee-illette.jpg',
 		lat : 43.544555,
-		lng : 7.120281
+		lng : 7.120281,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 88,
@@ -805,7 +891,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/4',
 		vignette: 'img/vignettes/chateau-robert.jpg',
 		lat : 43.561403,
-		lng : 7.0653775
+		lng : 7.0653775,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 89,
@@ -814,7 +901,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/5',
 		vignette: 'img/vignettes/chateau-croe.jpg',
 		lat : 43.546126,
-		lng : 7.134103
+		lng : 7.134103,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 90,
@@ -823,7 +911,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/5',
 		vignette: 'img/vignettes/hotel-belles-rives.jpg',
 		lat : 43.564760,
-		lng : 7.115493
+		lng : 7.115493,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 91,
@@ -832,7 +921,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/6',
 		vignette: 'img/vignettes/villa-souslevent.jpg',
 		lat : 43.547341,
-		lng : 7.125502
+		lng : 7.125502,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 92,
@@ -841,7 +931,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/7',
 		vignette: 'img/vignettes/villa-aujourdhui.jpg',
 		lat : 43.551151,
-		lng : 7.119817
+		lng : 7.119817,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 93,
@@ -850,7 +941,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/8',
 		vignette: 'img/vignettes/marina.jpg',
 		lat : 43.636388,
-		lng : 7.135550
+		lng : 7.135550,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 94,
@@ -859,7 +951,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/8',
 		vignette: 'img/vignettes/garbejaire.jpg',
 		lat : 43.622429,
-		lng : 7.046265
+		lng : 7.046265,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 95,
@@ -868,7 +961,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/8',
 		vignette: 'img/vignettes/villa-thepalm.jpg',
 		lat : 43.569938,
-		lng : 7.132982
+		lng : 7.132982,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 96,
@@ -877,7 +971,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/10',
 		vignette: 'img/vignettes/jardin-thuret.jpg',
 		lat : 43.564165,
-		lng : 7.124755
+		lng : 7.124755,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 97,
@@ -886,7 +981,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/10',
 		vignette: 'img/vignettes/parc-exflora.jpg',
 		lat : 43.5661659,
-		lng : 7.0742861
+		lng : 7.0742861,
+		icon : 'local_icons.orange_icon'
     },
     {
 		id: 98,
@@ -895,7 +991,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		url: '/app/contemporain/13',
 		vignette: 'img/vignettes/viaduc-tourrettes.jpg',
 		lat : 43.720438,
-		lng : 6.992183
+		lng : 6.992183,
+		icon : 'local_icons.orange_icon'
     }
 	
   ];
