@@ -70,6 +70,7 @@ angular.module('casa').controller('ARController',
                 }
                 var scene = createScene();
                 engine.runRenderLoop(function(){
+                    scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
                     scene.render();
                 });
             }

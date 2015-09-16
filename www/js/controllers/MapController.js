@@ -166,7 +166,6 @@ console.log(poi.icon);
       $scope.show = function(locationKey) {
 
         var poi = LocationsService.savedLocations[locationKey];
-console.log(poi.icon);
         
         //console.log("redMarker " + redMarker);icon: {iconUrl: 'img/icones/' + poi.icon}
         $scope.map.markers[locationKey] = {
