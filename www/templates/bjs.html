@@ -7,11 +7,13 @@
   <ion-content data-tap-disabled="true">
     <!--<canvas id="canevas" style="width:100%; height:100%;"></canvas>-->
     <canvas id="renderCanvas" style="width:320px; height:240px;"></canvas>
+    <canvas id="canevas" style="width:320px; height:240px;"></canvas>
 
     <span id="infos" ng-bind="infos">Infos</span>
     <span id="framez" ng-bind="framez">framez</span>
 
-    <!--<webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">-->
+    <webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
+
 
   </ion-content>
 

@@ -30,8 +30,8 @@ angular.module('casa').controller('ARController',
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
             console.log("canvas: "+$scope.canvas);
-            $scope.ctx = $scope.canvas[0].getContext("webgl");
-            /*$scope.ctx = $scope.canvas[0].getContext("2d");
+            $scope.ctx = $scope.canvas[0].getContext("2d");
+            /*$scope.ctx = $scope.canvas[0].getContext("webgl");
             $scope.ctx.moveTo(0,0);
             $scope.ctx.lineTo(200,100);
             $scope.ctx.stroke(); */
@@ -43,7 +43,7 @@ angular.module('casa').controller('ARController',
             // babylon.js
             //$scope.babyloncanvas = angular.element(document.getElementById('babyloncanvas'));
             //console.log("babyloncanvas: "+$scope.babyloncanvas);
-
+            /*
             if (BABYLON.Engine.isSupported()) {
                  console.log("BABYLON.Engine.isSupported");
                
@@ -73,10 +73,10 @@ angular.module('casa').controller('ARController',
                     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
                     scene.render();
                 });
-            }
+            }*/
             // start animation loop
             requestAnimationFrame($scope.tick);
-        }, 1000);
+        }, 500);
 
     $scope.framecount = 0;
     $scope.channel = {};
@@ -106,7 +106,6 @@ angular.module('casa').controller('ARController',
                 $scope.ctx.moveTo(0,0);
                 $scope.ctx.lineTo(200,100);
                 $scope.ctx.stroke(); 
-
 
                 $scope.markers = $scope.detector.detect($scope.imageData);
                 $scope.drawCorners($scope.markers);

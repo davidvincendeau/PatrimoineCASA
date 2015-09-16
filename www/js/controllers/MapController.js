@@ -141,7 +141,7 @@ angular.module('casa').controller('MapController',
       $scope.goTo = function(locationKey) {
 
         var poi = LocationsService.savedLocations[locationKey];
-console.log(poi.icon);
+
         $scope.map.center  = {
           lat : poi.lat,
           lng : poi.lng,
