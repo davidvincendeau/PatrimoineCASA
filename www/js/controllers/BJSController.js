@@ -24,10 +24,10 @@ angular.module('casa').controller('BJSController',
           video: null // Will reference the video element on success
         };
         $scope.video = $scope.channel.video;
-
+        $scope.foundMarkerId = 0;
         // pause for a few milliseconds before accessing canvas
         setTimeout(function() {
-            
+            var imageData;
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.framez = angular.element(document.getElementById('framez'));
             $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
@@ -76,12 +76,12 @@ angular.module('casa').controller('BJSController',
                     var dynamicTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
                     dynamicTexture.hasAlpha = true;
                     material.diffuseTexture = dynamicTexture;
-                    var count = 0;
+
                     scene.beforeRender = function() {
                         // Dynamic
                         var textureContext = dynamicTexture.getContext();
                         var size = dynamicTexture.getSize();
-                        var text = count.toString();
+                        var text = $scope.foundMarkerId.toString();
 
                         textureContext.save();
                         textureContext.fillStyle = "red";
@@ -91,11 +91,26 @@ angular.module('casa').controller('BJSController',
                         var textSize = textureContext.measureText(text);
                         textureContext.fillStyle = "white";
                         textureContext.fillText(text, (size.width - textSize.width) / 2, (size.height - 120) / 2);
-
+//textureContext.putImageData(imageData, 0, 0);
                         textureContext.restore();
 
                         dynamicTexture.update();
-                        count++;
+                        if ($scope.corners !== undefined) {
+
+                            var corner;
+                            for (j = 0; j !== $scope.corners.length; ++j) {
+                                if (j==0) {
+                                    corner = $scope.corners[j];
+                                    sphere.position.x = corner.x/100;
+                                    sphere.position.y = corner.y/100;
+                                    //$scope.ctx.moveTo(corner.x, corner.y);
+                                    //corner = $scope.corners[(j + 1) % corners.length];
+                                    //$scope.ctx.lineTo(corner.x, corner.y);
+                                }
+                             }
+                        }
+
+                        
                     };                        
                     // return the created scene
                     return scene;
@@ -103,7 +118,7 @@ angular.module('casa').controller('BJSController',
                 var scene = createScene();
 
                 $scope.engine.runRenderLoop(function(){
-                    scene.clearColor = new BABYLON.Color4(0, 0, 0, 0.2);
+                    scene.clearColor = new BABYLON.Color4(0, 0, 0, 0.0);
                     scene.render();
                 });
                 
@@ -135,17 +150,16 @@ angular.module('casa').controller('BJSController',
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                     $scope.ctx.putImageData(videoData, 0, 0);
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
+                    imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.ctx.moveTo(0,0);
-                    $scope.ctx.lineTo(200,100);
+                    $scope.ctx.lineTo(50,50);
                     $scope.ctx.stroke(); 
 
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
                     $scope.drawId($scope.markers);
                 }
-             } else {
-                //$scope.infos = "video frame not available"; 
-            }
+            } 
             requestAnimationFrame($scope.tick);
         }
         var getVideoData = function getVideoData(x, y, w, h) {
@@ -180,6 +194,11 @@ angular.module('casa').controller('BJSController',
 
                 $scope.ctx.strokeStyle = "green";
                 $scope.ctx.strokeRect(corners[0].x - 2, corners[0].y - 2, 4, 4);
+                // selectionner les coins du 1e marker
+                if (i==0) {
+                    $scope.foundMarkerId = markers[i].id.toString();
+                    $scope.corners = markers[i].corners;
+                }            
             }
         }
 
@@ -203,6 +222,10 @@ angular.module('casa').controller('BJSController',
                 }
 
                 $scope.ctx.strokeText(markers[i].id, x, y)
+                // selectionner le 1e marker
+                if (i==0) {
+                    $scope.foundMarkerId = markers[i].id.toString();
+                }
             }
         }
 }]);

@@ -28,6 +28,7 @@ angular.module('casa').controller('ARController',
         setTimeout(function() {
             
             $scope.infos = angular.element(document.getElementById('infos'));
+            $scope.framez = angular.element(document.getElementById('framez'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
             console.log("canvas: "+$scope.canvas);
             $scope.ctx = $scope.canvas[0].getContext("2d");
