@@ -53,7 +53,7 @@ angular.module('casa').controller('BJSController',
                     // create a basic BJS Scene object
                     var scene = new BABYLON.Scene($scope.engine);
                     // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-                    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+                    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 10,-10), scene);
                     // target the camera to scene origin
                     camera.setTarget(BABYLON.Vector3.Zero());
                     // attach the camera to the canvas
@@ -81,8 +81,27 @@ angular.module('casa').controller('BJSController',
                         // Dynamic
                         var textureContext = dynamicTexture.getContext();
                         var size = dynamicTexture.getSize();
-                        var text = $scope.foundMarkerId.toString();
+                        var text = "";
 
+                        if ($scope.corners !== undefined) {
+
+                            var corner;
+                            for (j = 0; j !== $scope.corners.length; ++j) {
+                                if (j==0) {
+                                    corner = $scope.corners[j];
+                                    sphere.position.x = corner.x/100;
+                                    sphere.position.z = corner.y/100;
+                                    //$scope.ctx.moveTo(corner.x, corner.y);
+                                    //corner = $scope.corners[(j + 1) % corners.length];
+                                    //$scope.ctx.lineTo(corner.x, corner.y);
+                                    var ar = new BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+                                    ground.material = material;
+                                    text = "x:" + corner.x.toString() + ",y:" + corner.y.toString();
+                                }
+                             }
+                        } else  {
+                            text = $scope.foundMarkerId.toString();
+                        }
                         textureContext.save();
                         textureContext.fillStyle = "red";
                         textureContext.fillRect(0, 0, size.width, size.height);
@@ -91,24 +110,10 @@ angular.module('casa').controller('BJSController',
                         var textSize = textureContext.measureText(text);
                         textureContext.fillStyle = "white";
                         textureContext.fillText(text, (size.width - textSize.width) / 2, (size.height - 120) / 2);
-//textureContext.putImageData(imageData, 0, 0);
+
                         textureContext.restore();
 
                         dynamicTexture.update();
-                        if ($scope.corners !== undefined) {
-
-                            var corner;
-                            for (j = 0; j !== $scope.corners.length; ++j) {
-                                if (j==0) {
-                                    corner = $scope.corners[j];
-                                    sphere.position.x = corner.x/100;
-                                    sphere.position.y = corner.y/100;
-                                    //$scope.ctx.moveTo(corner.x, corner.y);
-                                    //corner = $scope.corners[(j + 1) % corners.length];
-                                    //$scope.ctx.lineTo(corner.x, corner.y);
-                                }
-                             }
-                        }
 
                         
                     };                        
