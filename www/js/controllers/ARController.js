@@ -115,7 +115,14 @@ angular.module('casa').controller('ARController',
                 $scope.ctx.closePath();
 
                 $scope.ctx.strokeStyle = "green";
-                $scope.ctx.strokeRect(corners[0].x - 2, corners[0].y - 2, 4, 4);
+                $scope.ctx.strokeRect(corners[0].x , corners[0].y , 4, 4);
+                $scope.ctx.strokeStyle = "yellow";
+                $scope.ctx.strokeRect(corners[1].x , corners[1].y , 4, 4);
+                $scope.ctx.strokeStyle = "purple";
+                $scope.ctx.strokeRect(corners[2].x , corners[2].y , 4, 4);
+                $scope.ctx.strokeStyle = "blue";
+                $scope.ctx.strokeRect(corners[3].x , corners[3].y , 4, 4);
+
                 // selectionner les coins du 1e marker
                 if (i==0) 
                 {
@@ -136,9 +143,11 @@ angular.module('casa').controller('ARController',
                     console.log("canvas ");
                     console.log($scope.canvas[0]);
 
-                    var zozor = document.querySelector('#image');
+                    var image  = document.querySelector('#image');
           
-                    $scope.ctx.drawImage(zozor,$scope.corners[0].x,$scope.corners[0].y,($scope.corners[1].x-$scope.corners[0].x),($scope.corners[3].y-$scope.corners[0].y));
+                    $scope.ctx.drawImage(image,$scope.corners[0].x,$scope.corners[0].y,($scope.corners[1].x-$scope.corners[0].x),($scope.corners[3].y-$scope.corners[0].y));
+                    
+
                     var distance=Math.sqrt( (Math.pow($scope.corners[1].x-$scope.corners[0].x),2) + Math.pow(($scope.corners[3].y-$scope.corners[0].y),2));
                     var widthImg=($scope.corners[1].x-$scope.corners[0].x);
                     var sinAngle=distance/widthImg;
@@ -152,6 +161,9 @@ angular.module('casa').controller('ARController',
                     console.log(sinAngle);
                     console.log("angle degrés");
                     console.log(AngleDegres);
+
+                   // if (sinAngle==0)
+                    //$scope.ctx.rotate((Math.PI / 180) * (45 + AngleDegres));
                     
                 }            
             }
