@@ -66,7 +66,8 @@ angular.module('casa').controller('ARController',
                 $scope.infos = "video frame available, frame:" + $scope.framecount; 
                 //console.log("video frame available");
                 
-                if ($scope.video.width > 0) {
+                if ($scope.video.width > 0) 
+                {
                     //console.log("video width" + $scope.video.width);
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                     $scope.ctx.putImageData(videoData, 0, 0);
@@ -146,7 +147,7 @@ angular.module('casa').controller('ARController',
                     var image  = document.querySelector('#image');
           
                     $scope.ctx.drawImage(image,$scope.corners[0].x,$scope.corners[0].y,($scope.corners[1].x-$scope.corners[0].x),($scope.corners[3].y-$scope.corners[0].y));
-                    $scope.ctx.drawImage.rotate(90);
+                    // $scope.ctx.drawImage.rotate(90);
                     var distance=Math.sqrt( (Math.pow($scope.corners[1].x-$scope.corners[0].x),2) + Math.pow(($scope.corners[3].y-$scope.corners[0].y),2));
                     var widthImg=($scope.corners[1].x-$scope.corners[0].x);
                     var sinAngle=distance/widthImg;
