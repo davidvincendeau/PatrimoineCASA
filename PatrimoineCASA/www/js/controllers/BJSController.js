@@ -16,14 +16,14 @@ angular.module('casa').controller('BJSController',
       LocationsService,
       InstructionsService
       ) {
-        $scope.video = null;
+        /*$scope.video = null;
         // this has to be done BEFORE webcam authorization
         $scope.channel = {
           videoHeight: 800,
           videoWidth: 600,
           video: null // Will reference the video element on success
         };
-        $scope.video = $scope.channel.video;
+        $scope.video = $scope.channel.video;*/
         $scope.foundMarkerId = 0;
         // pause for a few milliseconds before accessing canvas
         setTimeout(function() {
@@ -132,19 +132,19 @@ angular.module('casa').controller('BJSController',
             requestAnimationFrame($scope.tick);
         }, 500);
         $scope.framecount = 0;
-        $scope.channel = {};
+        /*$scope.channel = {};
         $scope.onError = function (err) {console.log("webcam onError");};
         $scope.onStream = function (stream) {
             console.log("webcam onStream, frame:" + $scope.framecount);
         };
         $scope.onSuccess = function () {
             console.log("webcam onSuccess, frame:" + $scope.framecount);
-        };
+        };*/
         $scope.tick = function() {
             $scope.framecount++;
             $scope.framez = $scope.framecount;
 
-            $scope.video = $scope.channel.video;
+            /*$scope.video = $scope.channel.video;
              
             if ($scope.video) {
                 $scope.infos = "video frame available, frame:" + $scope.framecount; 
@@ -164,17 +164,17 @@ angular.module('casa').controller('BJSController',
                     $scope.drawCorners($scope.markers);
                     $scope.drawId($scope.markers);
                 }
-            } 
+            } */
             requestAnimationFrame($scope.tick);
         }
-        var getVideoData = function getVideoData(x, y, w, h) {
+        /*var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
             hiddenCanvas.width = $scope.video.width;
             hiddenCanvas.height = $scope.video.height;
             var ctx = hiddenCanvas.getContext('2d');
             ctx.drawImage($scope.video, 0, 0, $scope.video.width, $scope.video.height);
             return ctx.getImageData(x, y, w, h);
-        };
+        };*/
 
         $scope.drawCorners = function(markers) {
             var corners, corner, i, j;

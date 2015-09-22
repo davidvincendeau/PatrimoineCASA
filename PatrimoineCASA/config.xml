@@ -124,4 +124,5 @@
       <vs:name>Patrimoine CASA</vs:name>
     </vs:platformSpecificWidget>
   </vs:platformSpecificValues>
+  <vs:plugin name="cordova-plugin-file" version="3.0.0" />
 </widget>

@@ -23,30 +23,33 @@ angular.module('casa').controller('MapController',
        */
       $scope.$on("$stateChangeSuccess", function() {
 
-        $scope.locations = LocationsService.savedLocations;
-        //$scope.newLocation;
+          if ($scope.locations === undefined) {
+               $scope.locations = LocationsService.savedLocations;
+                //$scope.newLocation;
 
-        $scope.map = {
-          defaults: {
-            tileLayer: 'http://tile.stamen.com/watercolor/{z}/{x}/{y}.png',
-            maxZoom: 18,
-            zoomControlPosition: 'bottomleft'
-          },
-          markers : {},
-          events: {
-            map: {
-              enable: ['context'],
-              logic: 'emit'
-            }
-          }
-        };
+                $scope.map = {
+                  defaults: {
+                    tileLayer: 'http://tile.stamen.com/watercolor/{z}/{x}/{y}.png',
+                    maxZoom: 18,
+                    zoomControlPosition: 'bottomleft'
+                  },
+                  markers : {},
+                  events: {
+                    map: {
+                      enable: ['context'],
+                      logic: 'emit'
+                    }
+                  }
+                };
 
-        for (var i = LocationsService.savedLocations.length - 1; i >= 0; i--) {
-          $scope.show(i);
-        };
+                for (var i = LocationsService.savedLocations.length - 1; i >= 0; i--) {
+                  $scope.show(i);
+                };
          
-        $scope.goTo(0);
+                $scope.goTo(0);
 
+          }
+ 
 
       });
 
@@ -147,7 +150,7 @@ angular.module('casa').controller('MapController',
           lng : poi.lng,
           zoom : 12
         };
-        // https://github.com/coryasilva/Leaflet.ExtraMarkers
+        // inutile finalement: https://github.com/coryasilva/Leaflet.ExtraMarkers
         $scope.map.markers[locationKey] = {
           lat:poi.lat,
           lng:poi.lng,
