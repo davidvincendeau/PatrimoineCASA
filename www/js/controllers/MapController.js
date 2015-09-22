@@ -22,7 +22,8 @@ angular.module('casa').controller('MapController',
        * Once state loaded, get put map on scope.
        */
       $scope.$on("$stateChangeSuccess", function() {
-
+       console.log("tu en est la ");
+       
         $scope.locations = LocationsService.savedLocations;
         //$scope.newLocation;
 
@@ -47,7 +48,7 @@ angular.module('casa').controller('MapController',
          
         $scope.goTo(0);
 
-
+       console.log("tu as fini ");
       });
 
       var Location = function() {
