@@ -5,13 +5,15 @@
   </ion-nav-buttons>
 
   <ion-content data-tap-disabled="true">
-    <canvas id="canevas" class="canevas"> </canvas>
+    <canvas id="canevas" > </canvas>
     <!--<canvas id="renderCanvas" class="canevas" > </canvas>-->
     <img ng-src="images/thumbnail.jpg" id="image" alt ="beauG" />
-    <span id="infos" ng-bind="infos">Infos</span>
-    <span id="framez" ng-bind="framez">framez</span>
 
-    <webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
+      <webcam style="position: absolute;display: block!important;top: 99px;left: 99px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
+      <!--<webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">-->
+          <span id="infos" ng-bind="infos">Infos</span>
+          <span id="erreur" ng-bind="erreur">erreur</span>
+      <span id="framez" ng-bind="framez">framez</span>
 
   </ion-content>
 

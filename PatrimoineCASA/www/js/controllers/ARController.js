@@ -29,6 +29,7 @@ angular.module('casa').controller('ARController',
         {
             var imageData;
             $scope.infos = angular.element(document.getElementById('infos'));
+            $scope.erreur = angular.element(document.getElementById('erreur'));
             $scope.framez = angular.element(document.getElementById('framez'));
             $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
             $scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
@@ -49,12 +50,18 @@ angular.module('casa').controller('ARController',
 
         $scope.framecount = 0;
         $scope.channel = {};
-        $scope.onError = function (err) {console.log("webcam onError");};
+        $scope.onError = function (err) {
+            console.log("webcam onError");
+            $scope.erreur = "webcam onError:" + err.message;
+        };
         $scope.onStream = function (stream) {
             console.log("webcam onStream, frame:" + $scope.framecount);
+            $scope.infos = "webcam onStream, frame:" + $scope.framecount;
         };
         $scope.onSuccess = function () {
             console.log("webcam onSuccess, frame:" + $scope.framecount);
+            $scope.infos = "webcam onSuccess, frame:" + $scope.framecount;
+
         };
         $scope.tick = function() {
             $scope.framecount++;
