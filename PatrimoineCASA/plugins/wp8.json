@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"Compass\"><param name=\"wp-package\" value=\"Compass\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Media\"><param name=\"wp-package\" value=\"Media\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -52,15 +56,15 @@
                         },
                         {
                             "xml": "<Capability Name=\"ID_CAP_MEDIALIB_AUDIO\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<Capability Name=\"ID_CAP_MEDIALIB_PLAYBACK\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<Capability Name=\"ID_CAP_MICROPHONE\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<Capability Name=\"ID_CAP_IDENTITY_DEVICE\" />",
@@ -99,6 +103,9 @@
             "PACKAGE_NAME": "{6dd48d20-6073-11e5-8084-210c1cbdfedb}"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{6dd48d20-6073-11e5-8084-210c1cbdfedb}"
+        },
+        "cordova-plugin-media": {
             "PACKAGE_NAME": "{6dd48d20-6073-11e5-8084-210c1cbdfedb}"
         }
     },

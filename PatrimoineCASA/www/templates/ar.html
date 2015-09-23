@@ -1,20 +1,21 @@
 <ion-view title="Réalité augmentée">
 
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
 
-  <ion-content data-tap-disabled="true">
-    <canvas id="canevas" > </canvas>
-    <!--<canvas id="renderCanvas" class="canevas" > </canvas>-->
-    <img ng-src="images/thumbnail.jpg" id="image" alt ="beauG" />
+    <ion-content data-tap-disabled="true">
+        <canvas id="canevas"> </canvas>
+        <!--<canvas id="renderCanvas" class="canevas" > </canvas>
+        <img ng-src="images/thumbnail.jpg" id="image" alt ="beauG" />-->
+        <img ng-src="{{arPopupImage}}" id="image" alt="beauG" />
+        <webcam style="position: absolute;display: block!important;top: 99px;left: 99px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
+            <!--<webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">-->
+            <span id="infos" ng-bind="infos">Infos</span>
+            <span id="erreur" ng-bind="erreur">erreur</span>
+            <span id="framez" ng-bind="framez">framez</span>
+            <span id="msg" ng-bind="msg">msg</span>
 
-      <webcam style="position: absolute;display: block!important;top: 99px;left: 99px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
-      <!--<webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">-->
-          <span id="infos" ng-bind="infos">Infos</span>
-          <span id="erreur" ng-bind="erreur">erreur</span>
-      <span id="framez" ng-bind="framez">framez</span>
-
-  </ion-content>
+    </ion-content>
 
 </ion-view>
