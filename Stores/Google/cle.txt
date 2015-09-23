@@ -1,0 +1,6 @@
+// http://developer.android.com/tools/publishing/app-signing.html
+keytool -genkey -v -keystore brucelane.keystore -alias brucelane -keyalg RSA -keysize 2048 -validity 10000
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore brucelane.keystore PatrimoineCASA-unaligned.apk brucelane
+jarsigner -verify -verbose -certs PatrimoineCASA-unaligned.apk
+// zipalign dans C:\Program Files (x86)\Android\android-sdk\build-tools\23.0.1
+zipalign -v 4 PatrimoineCASA-unaligned.apk PatrimoineCASA.apk
