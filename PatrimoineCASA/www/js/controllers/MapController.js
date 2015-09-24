@@ -49,8 +49,6 @@ angular.module('casa').controller('MapController',
                 $scope.goTo(0);
 
           }
- 
-
       });
 
       var Location = function() {

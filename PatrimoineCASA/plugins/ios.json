@@ -89,6 +89,10 @@
                         {
                             "xml": "<feature name=\"Capture\"><param name=\"ios-package\" value=\"CDVCapture\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Media\"><param name=\"ios-package\" value=\"CDVSound\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -125,6 +129,9 @@
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         },
         "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
+        },
+        "cordova-plugin-media": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         }
     },

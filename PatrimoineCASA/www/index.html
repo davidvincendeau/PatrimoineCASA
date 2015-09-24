@@ -1,81 +1,84 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
     <meta http-equiv="Content-Security-Policy" content="media-src *">
-  <title>Patrimoine CASA</title>
-  <link rel="shortcut icon" href="favicon.ico">
-  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/leaflet.css">
-  <link rel="stylesheet" href="css/style.css">
+    <title>Patrimoine CASA</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
     <!-- ionic/angularjs js -->
-  <script src="lib/winstore-jscompat.js"></script>
-  <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/winstore-jscompat.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-  <script src="lib/leaflet/leaflet.js"></script>
-  <script src="lib/leaflet/angular-leaflet-directive.min.js"></script>
+    <script src="lib/leaflet/leaflet.js"></script>
+    <script src="lib/leaflet/angular-leaflet-directive.min.js"></script>
 
-  <script src="lib/ng-cordova.min.js"></script>
-  <script src="cordova.js"></script>
-  <script type="text/javascript" src="lib/platformOverrides.js"></script>
+    <script src="lib/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+    <script type="text/javascript" src="lib/platformOverrides.js"></script>
 
-  <script type="text/javascript" src="lib/tile.stamen.js"></script>
+    <script type="text/javascript" src="lib/tile.stamen.js"></script>
 
-  <script src="js/app.js"></script>
-  <script src="js/controllers/MapController.js"></script>
-  <script src="js/controllers/ARController.js"></script>
-  <script src="js/controllers/BJSController.js"></script>
-  
-  <!-- aruco
-  <script src="js/ar.js"></script> -->
-  <script type="text/javascript" src="lib/cv.js"></script>
-  <script type="text/javascript" src="lib/aruco.js"></script>
-  <!-- babylon.js -->
-  <!-- seulement activer pour les pages babylon dans une directive? <script src="lib/babylon/hand.js"></script> -->
-  <script src="lib/babylon/babylon.js"></script>
+    <script src="js/app.js"></script>
 
-  <!--================ Services ================-->
-  <script src="js/services/paysages.js"></script>
-  <script src="js/services/histoires.js"></script>
-  <script src="js/services/artistiques.js"></script>
-  <script src="js/services/contemporains.js"></script>
-  <script src="js/services/religieux.js"></script>
-  <script src="js/services/vernaculaires.js"></script>
+    <!-- jsfeat -->
+    <script src="lib/jsfeat/jsfeat.js"></script>
+    <script src="lib/jsfeat/compatibility.js"></script>
+    <!-- aruco -->
+    <script type="text/javascript" src="lib/cv.js"></script>
+    <script type="text/javascript" src="lib/aruco.js"></script>
+    <!-- babylon.js -->
+    <!-- seulement activer pour les pages babylon dans une directive? <script src="lib/babylon/hand.js"></script> -->
+    <script src="lib/babylon/babylon.js"></script>
 
-  <!--================ DetailControllers ================-->
-  <script src="js/controllers/DetailHistoireController.js"></script>
-  <script src="js/controllers/DetailContemporainController.js"></script>
-  <script src="js/controllers/DetailVernaculaireController.js"></script>
-  <script src="js/controllers/DetailReligieuxController.js"></script>
-  <script src="js/controllers/DetailPaysageController.js"></script>
-  <script src="js/controllers/DetailArtistiqueController.js"></script>
+    <!--================ Services ================-->
+    <script src="js/services/paysages.js"></script>
+    <script src="js/services/histoires.js"></script>
+    <script src="js/services/artistiques.js"></script>
+    <script src="js/services/contemporains.js"></script>
+    <script src="js/services/religieux.js"></script>
+    <script src="js/services/vernaculaires.js"></script>
 
-  <!--=================== Controllers ===================-->
-  <script src="js/controllers/HistoireController.js"></script>
-  <script src="js/controllers/ContemporainController.js"></script>
-  <script src="js/controllers/VernaculairesController.js"></script>
-  <script src="js/controllers/ReligieuxController.js"></script>
-  <script src="js/controllers/PaysagesController.js"></script>
-  <script src="js/controllers/ArtistiquesController.js"></script>
+    <!--================ DetailControllers ================-->
+    <script src="js/controllers/DetailHistoireController.js"></script>
+    <script src="js/controllers/DetailContemporainController.js"></script>
+    <script src="js/controllers/DetailVernaculaireController.js"></script>
+    <script src="js/controllers/DetailReligieuxController.js"></script>
+    <script src="js/controllers/DetailPaysageController.js"></script>
+    <script src="js/controllers/DetailArtistiqueController.js"></script>
 
-  <script src="js/services/locationsService.js"></script>
-  <script src="js/services/instructionsService.js"></script>
-  <script src="js/directives/webcam.js"></script>
-  <script src="js/directives/igTruncate.js"></script>
-  <script src="js/directives/utils.js"></script>
+    <!--=================== Controllers ===================-->
+    <script src="js/controllers/HistoireController.js"></script>
+    <script src="js/controllers/ContemporainController.js"></script>
+    <script src="js/controllers/VernaculairesController.js"></script>
+    <script src="js/controllers/ReligieuxController.js"></script>
+    <script src="js/controllers/PaysagesController.js"></script>
+    <script src="js/controllers/ArtistiquesController.js"></script>
+    <script src="js/controllers/ARImageController.js"></script>
+    <script src="js/controllers/MapController.js"></script>
+    <script src="js/controllers/ARController.js"></script>
+    <script src="js/controllers/BJSController.js"></script>
+
+    <script src="js/services/locationsService.js"></script>
+    <script src="js/services/instructionsService.js"></script>
+    <script src="js/directives/webcam.js"></script>
+    <script src="js/directives/igTruncate.js"></script>
+    <script src="js/directives/utils.js"></script>
 
 </head>
-<!-- set body background-color transparent enables visibility of the camera view --> 
+<!-- set body background-color transparent enables visibility of the camera view -->
 <body ng-app="casa" class="platform-ios platform-cordova platform-webview" style="background-color: transparent">
 
-<ion-nav-view></ion-nav-view>
-   
+    <ion-nav-view></ion-nav-view>
+
 </body>
 </html>
