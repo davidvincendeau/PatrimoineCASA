@@ -1,13 +1,13 @@
 // lire http://blogs.msdn.com/b/eternalcoding/archive/2013/06/27/babylon-js-a-complete-javascript-framework-for-building-3d-games-with-html-5-and-webgl.aspx
 angular.module('casa').controller('BJSController',
-  [ '$scope',
+  ['$scope',
     '$cordovaGeolocation',
     '$stateParams',
     '$ionicModal',
     '$ionicPopup',
     'LocationsService',
     'InstructionsService',
-    function(
+    function (
       $scope,
       $cordovaGeolocation,
       $stateParams,
@@ -25,41 +25,67 @@ angular.module('casa').controller('BJSController',
         };
         $scope.video = $scope.channel.video;*/
         $scope.foundMarkerId = 0;
+        $scope.$on("$stateChangeSuccess", function () {
+
+            if ($scope.locations === undefined) {
+                $scope.locations = LocationsService.savedLocations;
+            }
+
+        });
         // pause for a few milliseconds before accessing canvas
-        setTimeout(function() {
-            var imageData;
+        setTimeout(function () {
+
+            $scope.erreur = angular.element(document.getElementById('erreur'));
             $scope.infos = angular.element(document.getElementById('infos'));
+            //$scope.msg = angular.element(document.getElementById('msg'));
             $scope.framez = angular.element(document.getElementById('framez'));
+
+            var imageData;
             $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
-            console.log("canvas: "+$scope.canvasElement);
+            console.log("canvas: " + $scope.canvasElement);
             $scope.infos = angular.element(document.getElementById('infos'));
             $scope.canvas = angular.element(document.getElementById('canevas'));
-            console.log("canvas: "+$scope.canvas);
+            console.log("canvas: " + $scope.canvas);
             $scope.ctx = $scope.canvas[0].getContext("2d");
-            
-            $scope.ctx.moveTo(0,0);
-            $scope.ctx.lineTo(200,100);
-            $scope.ctx.stroke(); 
-            console.log("context: "+$scope.ctx);
-    
-            $scope.detector = new AR.Detector();
 
-  
+            $scope.ctx.moveTo(0, 0);
+            $scope.ctx.lineTo(200, 100);
+            $scope.ctx.stroke();
+            console.log("context: " + $scope.ctx);
+
+            $scope.detector = new AR.Detector();
+            // boussole
+            /*function onSuccess(heading) {
+                var element = document.getElementById('infos');
+                element.innerHTML = 'Heading: ' + heading.magneticHeading;
+            };
+
+            function onError(compassError) {
+                $scope.erreur.innerHTML = 'Compass error: ' + compassError.code;
+            };*/
+
+            var options = {
+                frequency: 3000
+            }; // Update every 3 seconds
+
+
+            //var watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+
             // babylon.js
             if (BABYLON.Engine.isSupported()) {
-                 console.log("BABYLON.Engine.isSupported");              
+                console.log("BABYLON.Engine.isSupported");
                 $scope.engine = new BABYLON.Engine($scope.canvasElement[0], true);
-                var createScene = function(){
+                var createScene = function () {
                     // create a basic BJS Scene object
                     var scene = new BABYLON.Scene($scope.engine);
                     // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-                    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 10,-10), scene);
+                    var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 10, -10), scene);
                     // target the camera to scene origin
                     camera.setTarget(BABYLON.Vector3.Zero());
                     // attach the camera to the canvas
                     camera.attachControl($scope.canvasElement[0], false);
                     // create a basic light, aiming 0,1,0 - meaning, to the sky
-                    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+                    var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
                     // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
                     var sphere = new BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
                     // move the sphere upward 1/2 of its height
@@ -73,24 +99,36 @@ angular.module('casa').controller('BJSController',
                     // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
                     var ground = new BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
                     ground.material = material;
+                    ground.showBoundingBox = true;
                     var dynamicTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
                     dynamicTexture.hasAlpha = true;
                     material.diffuseTexture = dynamicTexture;
+                    // animation
+                    var step = .01;
+                    var alpha = Math.PI;
+                    var animate = function () {
 
-                    scene.beforeRender = function() {
+                        sphere.material.alpha += step;
+                        if (sphere.material.alpha > 1.5 || sphere.material.alpha < -0.5) {
+                            step *= -1;
+                        }
+                        alpha += .1;
+
+                    }
+                    scene.beforeRender = function () {
                         // Dynamic
                         var textureContext = dynamicTexture.getContext();
                         var size = dynamicTexture.getSize();
                         var text = "";
-
+                        animate();
                         if ($scope.corners !== undefined) {
 
                             var corner;
                             for (j = 0; j !== $scope.corners.length; ++j) {
-                                if (j==0) {
+                                if (j == 0) {
                                     corner = $scope.corners[j];
-                                    sphere.position.x = corner.x/100;
-                                    sphere.position.z = corner.y/100;
+                                    sphere.position.x = corner.x / 100;
+                                    sphere.position.z = corner.y / 100;
                                     //$scope.ctx.moveTo(corner.x, corner.y);
                                     //corner = $scope.corners[(j + 1) % corners.length];
                                     //$scope.ctx.lineTo(corner.x, corner.y);
@@ -98,8 +136,8 @@ angular.module('casa').controller('BJSController',
                                     ground.material = material;
                                     text = "x:" + corner.x.toString() + ",y:" + corner.y.toString();
                                 }
-                             }
-                        } else  {
+                            }
+                        } else {
                             text = $scope.foundMarkerId.toString();
                         }
                         textureContext.save();
@@ -115,18 +153,19 @@ angular.module('casa').controller('BJSController',
 
                         dynamicTexture.update();
 
-                        
-                    };                        
+
+                    };
                     // return the created scene
                     return scene;
                 }
                 var scene = createScene();
 
-                $scope.engine.runRenderLoop(function(){
+                $scope.engine.runRenderLoop(function () {
                     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0.0);
                     scene.render();
+                    console.log(navigator.compass);
                 });
-                
+
             }
             // start animation loop
             requestAnimationFrame($scope.tick);
@@ -140,9 +179,10 @@ angular.module('casa').controller('BJSController',
         $scope.onSuccess = function () {
             console.log("webcam onSuccess, frame:" + $scope.framecount);
         };*/
-        $scope.tick = function() {
+        $scope.tick = function () {
             $scope.framecount++;
-            $scope.framez = $scope.framecount;
+            $scope.framez.innerHTML = $scope.framecount;
+            navigator.accelerometer.getCurrentAcceleration(accelOnSuccess, accelOnError);
 
             /*$scope.video = $scope.channel.video;
              
@@ -176,7 +216,16 @@ angular.module('casa').controller('BJSController',
             return ctx.getImageData(x, y, w, h);
         };*/
 
-        $scope.drawCorners = function(markers) {
+        // acceleration
+        function accelOnSuccess(acceleration) {
+            $scope.msg = 'acceleration timeStamp: ' + acceleration.timeStamp.toString() + ' x:' + acceleration.x.toString() + ' y:' + acceleration.y.toString() + ' z:' + acceleration.z.toString();
+        };
+
+        function accelOnError() {
+            $scope.erreur.innerHTML = 'acceleration error ';
+        };
+
+        $scope.drawCorners = function (markers) {
             var corners, corner, i, j;
 
             $scope.ctx.lineWidth = 3;
@@ -200,14 +249,14 @@ angular.module('casa').controller('BJSController',
                 $scope.ctx.strokeStyle = "green";
                 $scope.ctx.strokeRect(corners[0].x - 2, corners[0].y - 2, 4, 4);
                 // selectionner les coins du 1e marker
-                if (i==0) {
+                if (i == 0) {
                     $scope.foundMarkerId = markers[i].id.toString();
                     $scope.corners = markers[i].corners;
-                }            
+                }
             }
         }
 
-        $scope.drawId = function(markers) {
+        $scope.drawId = function (markers) {
             var corners, corner, x, y, i, j;
 
             $scope.ctx.strokeStyle = "blue";
@@ -228,9 +277,9 @@ angular.module('casa').controller('BJSController',
 
                 $scope.ctx.strokeText(markers[i].id, x, y)
                 // selectionner le 1e marker
-                if (i==0) {
+                if (i == 0) {
                     $scope.foundMarkerId = markers[i].id.toString();
                 }
             }
         }
-}]);
+    }]);
