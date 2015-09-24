@@ -9,8 +9,8 @@ angular.module('casa').factory('LocationsService', [ function() {
 		sousTitre: 'Siège de la CASA',
 		url: 'pages/artistique/artistique-matiere-poterie.html',
 		vignette: 'img/vignettes/casa.jpg',
-		lat : 43.7015074,
-		lng : 7.0301,
+		lat : 43.6259178,
+		lng : 7.0318097,
 		icon :'local_icons.purple_icon'
     },
     {
