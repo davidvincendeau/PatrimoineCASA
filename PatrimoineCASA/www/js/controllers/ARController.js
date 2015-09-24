@@ -17,9 +17,9 @@ angular.module('casa').controller('ARController',
       LocationsService,
       InstructionsService
       ) {
-         var Distance_Variable = 0;
-                   var distance_fixe = 0;
-                   var sinAngle = 0;
+        var Distance_Variable = 0;
+        var distance_fixe = 0;
+        var sinAngle = 0;
          
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
@@ -90,14 +90,11 @@ angular.module('casa').controller('ARController',
         };
         $scope.tick = function () {
             $scope.framecount++;
-            $scope.framez = $scope.framecount;
-
+           // $scope.framez = $scope.framecount;
             $scope.video = $scope.channel.video;
-
             if ($scope.video) {
                 $scope.infos = "video frame available, frame:" + $scope.framecount;
                 //console.log("video frame available");
-
                 if ($scope.video.width > 0) {
                     //console.log("video width" + $scope.video.width);
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
@@ -120,10 +117,9 @@ angular.module('casa').controller('ARController',
             ctx.drawImage($scope.video, 0, 0, $scope.video.width, $scope.video.height);
             return ctx.getImageData(x, y, w, h);
         };
-
         $scope.drawCorners = function (markers) {
             var corners, corner, i, j;
-
+            
             $scope.ctx.lineWidth = 3;
 
             for (i = 0; i !== markers.length; ++i) {
@@ -152,57 +148,45 @@ angular.module('casa').controller('ARController',
                 $scope.ctx.strokeStyle = "blue";
                 $scope.ctx.strokeRect(corners[3].x, corners[3].y, 4, 4);
 
-                // selectionner les coins du 1e marker          
+                // selectionner les coins du 1e marker  
 
+                if(i==0)
+                {
                     $scope.foundMarkerId = markers[i].id.toString();
                     $scope.corners = markers[i].corners;
 
-                    console.log("width ");
-                    console.log($scope.canvas[0].width);
-                    console.log("height ");
-                    console.log($scope.canvas[0].height);
-                    console.log("coordonnée x vaut ");
-                    console.log($scope.corners[0].x);
-                    console.log("coordonnée y vaut ");
-                    console.log($scope.corners[0].y);
-                    console.log("on verifie ctx ");
-                    console.log($scope.ctx);
-                    console.log("canvas ");
-                    console.log($scope.canvas[0]);
+                    $scope.ctx.save(); 
+
                     $scope.ctx.lineWidth = 1;
                     var image = document.querySelector('#image');
-  
-                    $scope.ctx.drawImage(image, $scope.corners[0].x, $scope.corners[0].y, ($scope.corners[1].x - $scope.corners[0].x), ($scope.corners[3].y - $scope.corners[0].y));
-                    // on chope la tangente puis langle 
-                    var angleRad = Math.atan(($scope.corners[1].y)/(($scope.corners[1].x - $scope.corners[0].x)));
-                    //if(angleRad!==0) $scope.ctx.rotate(-angleRad);
+                    
+                    $scope.ctx.drawImage(image, $scope.corners[0].x, $scope.corners[0].y , ($scope.corners[1].x - $scope.corners[0].x), ($scope.corners[3].y - $scope.corners[0].y));
+                   //============================================CALCULS POUR TROUVER L'ANGLE DE ROTATION A CORRIGER ================================================================ 
+                    var  distance = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
                    
-
-                   
-                   /*var  distance = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
-                   var width     = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
-                  
-
                     if(distance >  distance_fixe)
                     {
                         distance_fixe = distance;
                     }
-                    else
+                     if(distance <  distance_fixe)
                     {
-                        width = Distance_Variable;
+                        Distance_Variable = distance;
                     }
                     if(Distance_Variable < distance_fixe)
                     {
                         sinAngle = Distance_Variable / distance_fixe;
                     }
-                   /* else 
+                    if(Distance_Variable === distance_fixe)
                     {
-                         sinAngle=0;
+                         sinAngle=1;
+                        $scope.ctx.rotate(0 * Math.PI/180);   
                     }
 
                     var AngleRad = Math.asin(sinAngle);
                     var AngleDegres = AngleRad / 0.017453292519943;
                     
+                    $scope.ctx.rotate(0 * Math.PI/180);    
+
                     $scope.ctx.strokeStyle = "green";
                     $scope.ctx.strokeText($scope.corners[1].x,$scope.corners[1].x+10,$scope.corners[1].y+10);
                     $scope.ctx.strokeStyle = "red";
@@ -212,27 +196,43 @@ angular.module('casa').controller('ARController',
                     $scope.ctx.strokeStyle = "blue";
                     $scope.ctx.strokeText($scope.corners[0].x,$scope.corners[0].x,$scope.corners[0].y);
                     $scope.ctx.strokeStyle = "black";
-                    $scope.ctx.strokeText(distance,  ($scope.corners[1].x- $scope.corners[0].x)/2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25);
-                    */
-                    $scope.ctx.strokeStyle = "blue";
-                    $scope.ctx.strokeText(angleRad,  ($scope.corners[1].x- $scope.corners[0].x)*2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25); 
-                    
-
-                   
-                    //$scope.ctx.strokeStyle = "blue";
-                    //$scope.ctx.strokeText($scope.corners[0].y,);
-
-                    /*console.log("coordonnée Ddu point B");
-                    console.log(distance);
-                    console.log("width");
-                    console.log(($scope.corners[1].x - $scope.corners[0].x));
-                    console.log("sinus angle");
-                    console.log(sinAngle);
-                    console.log("angle degrés");
-                    console.log(AngleDegres);
-                    //$scope.ctx.rotate((Math.PI / 180) * (45 + AngleDegres));*/
-
+                    $scope.ctx.strokeText(Distance_Variable,  ($scope.corners[1].x- $scope.corners[0].x)/2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25);
                 
+                    $scope.ctx.strokeStyle = "blue";
+                    $scope.ctx.strokeText(AngleDegres,  ($scope.corners[1].x- $scope.corners[0].x)*2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25);
+                     $scope.ctx.restore(); 
+                    $scope.framez= ""+AngleDegres+"",""+Distance_Variable+"";
+                    //==================================calcul de langle de rotation plus fonction de rotation===================================================================================================================
+
+                    // on chope la tangente puis langle 
+
+                    /* var angleRad = Math.atan(($scope.corners[1].y)/(($scope.corners[1].x - $scope.corners[0].x)));
+                   
+                    var TO_RADIANS = Math.PI/180; 
+                    function drawRotatedImage(image, x, y, angle)
+                    { 
+ 
+                        // save the current co-ordinate system 
+                        // before we screw with it
+                        $scope.ctx.save(); 
+                     
+                        // move to the middle of where we want to draw our image
+                        $scope.ctx.translate(x, y);
+                     
+                        // rotate around that point, converting our 
+                        // angle from degrees to radians 
+                        $scope.ctx.rotate(angle * TO_RADIANS);
+                     
+                        // draw it up and to the left by half the width
+                        // and height of the image 
+                        $scope.ctx.drawImage(image, -(image.width/2), -(image.height/2));
+                     
+                        // and restore the co-ords to how they were when we began
+                        $scope.ctx.restore(); 
+                    }  
+                        */ 
+               }  
+                //============================================================================================================================================================================        
             }
         }
 
