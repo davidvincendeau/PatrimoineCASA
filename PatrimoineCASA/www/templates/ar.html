@@ -5,16 +5,16 @@
     </ion-nav-buttons>
 
     <ion-content data-tap-disabled="true">
-        <canvas id="canevas" style="width:600px; height:740px;"> </canvas>
+        <canvas id="canevas" style="position: absolute;top: 0px;left: 0px;width:320px; height:240px;"> </canvas>
         <!--<canvas id="renderCanvas" class="canevas" > </canvas>
         <img ng-src="images/thumbnail.jpg" id="image" alt ="beauG" />-->
-        <img ng-src="{{arPopupImage}}" id="image" alt="beauG" />
-        <webcam style="position: absolute;display: block!important;top: 99px;left: 99px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">
+        <img ng-src="{{arPopupImage}}" id="image" alt="beauG" style="position: absolute;top: 0px;left: 350px;width:320px; height:240px;" />
+        <webcam style="position: absolute;display: block!important;top: 690px;left: 99px;width:320px; height:240px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" width="320px" height="240px"></webcam>
             <!--<webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" style="width:320px; height:240px;" width="320px" height="240px">-->
-            <span id="infos" ng-bind="infos">Infos</span>
-            <span id="erreur" ng-bind="erreur">erreur</span>
-            <span id="framez" ng-bind="framez">framez</span>
-            <span id="msg" ng-bind="msg">msg</span>
+            <span id="infos" style="position: absolute;top: 250px;left: 0px;width:320px; height:40px;" ng-bind="infos">Infos</span>
+            <span id="erreur" style="position: absolute;top: 280px;left: 0px;width:320px; height:40px;" ng-bind="erreur">erreur</span>
+            <span id="framez" style="position: absolute;top: 310px;left: 0px;width:320px; height:40px;" ng-bind="framez">framez</span>
+            <span id="msg" style="position: absolute;top: 340px;left: 0px;width:320px; height:40px;" ng-bind="msg">msg</span>
 
     </ion-content>
 
