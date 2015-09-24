@@ -17,6 +17,10 @@ angular.module('casa').controller('ARController',
       LocationsService,
       InstructionsService
       ) {
+         var Distance_Variable = 0;
+                   var distance_fixe = 0;
+                   var sinAngle = 0;
+         
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
         $scope.channel = {
@@ -128,7 +132,8 @@ angular.module('casa').controller('ARController',
                 $scope.ctx.strokeStyle = "red";
                 $scope.ctx.beginPath();
 
-                for (j = 0; j !== corners.length; ++j) {
+                for (j = 0; j !== corners.length; ++j) 
+                {
                     corner = corners[j];
                     $scope.ctx.moveTo(corner.x, corner.y);
                     corner = corners[(j + 1) % corners.length];
@@ -147,8 +152,7 @@ angular.module('casa').controller('ARController',
                 $scope.ctx.strokeStyle = "blue";
                 $scope.ctx.strokeRect(corners[3].x, corners[3].y, 4, 4);
 
-                // selectionner les coins du 1e marker
-                if (i == 0) {
+                // selectionner les coins du 1e marker          
 
                     $scope.foundMarkerId = markers[i].id.toString();
                     $scope.corners = markers[i].corners;
@@ -165,17 +169,60 @@ angular.module('casa').controller('ARController',
                     console.log($scope.ctx);
                     console.log("canvas ");
                     console.log($scope.canvas[0]);
-
+                    $scope.ctx.lineWidth = 1;
                     var image = document.querySelector('#image');
-
+  
                     $scope.ctx.drawImage(image, $scope.corners[0].x, $scope.corners[0].y, ($scope.corners[1].x - $scope.corners[0].x), ($scope.corners[3].y - $scope.corners[0].y));
-                    // $scope.ctx.drawImage.rotate(90);
-                    var distance = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
-                    var widthImg = ($scope.corners[1].x - $scope.corners[0].x);
-                    var sinAngle = distance / widthImg;
+                    // on chope la tangente puis langle 
+                    var angleRad = Math.atan(($scope.corners[1].y)/(($scope.corners[1].x - $scope.corners[0].x)));
+                    //if(angleRad!==0) $scope.ctx.rotate(-angleRad);
+                   
+
+                   
+                   /*var  distance = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
+                   var width     = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
+                  
+
+                    if(distance >  distance_fixe)
+                    {
+                        distance_fixe = distance;
+                    }
+                    else
+                    {
+                        width = Distance_Variable;
+                    }
+                    if(Distance_Variable < distance_fixe)
+                    {
+                        sinAngle = Distance_Variable / distance_fixe;
+                    }
+                   /* else 
+                    {
+                         sinAngle=0;
+                    }
+
                     var AngleRad = Math.asin(sinAngle);
                     var AngleDegres = AngleRad / 0.017453292519943;
-                    console.log("distance");
+                    
+                    $scope.ctx.strokeStyle = "green";
+                    $scope.ctx.strokeText($scope.corners[1].x,$scope.corners[1].x+10,$scope.corners[1].y+10);
+                    $scope.ctx.strokeStyle = "red";
+                    $scope.ctx.strokeText($scope.corners[1].y,$scope.corners[1].x,$scope.corners[1].y);
+                    $scope.ctx.strokeStyle = "purple";
+                    $scope.ctx.strokeText($scope.corners[0].y,$scope.corners[0].x-10,$scope.corners[0].y-10);
+                    $scope.ctx.strokeStyle = "blue";
+                    $scope.ctx.strokeText($scope.corners[0].x,$scope.corners[0].x,$scope.corners[0].y);
+                    $scope.ctx.strokeStyle = "black";
+                    $scope.ctx.strokeText(distance,  ($scope.corners[1].x- $scope.corners[0].x)/2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25);
+                    */
+                    $scope.ctx.strokeStyle = "blue";
+                    $scope.ctx.strokeText(angleRad,  ($scope.corners[1].x- $scope.corners[0].x)*2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25); 
+                    
+
+                   
+                    //$scope.ctx.strokeStyle = "blue";
+                    //$scope.ctx.strokeText($scope.corners[0].y,);
+
+                    /*console.log("coordonnée Ddu point B");
                     console.log(distance);
                     console.log("width");
                     console.log(($scope.corners[1].x - $scope.corners[0].x));
@@ -183,9 +230,9 @@ angular.module('casa').controller('ARController',
                     console.log(sinAngle);
                     console.log("angle degrés");
                     console.log(AngleDegres);
-                    //$scope.ctx.rotate((Math.PI / 180) * (45 + AngleDegres));
+                    //$scope.ctx.rotate((Math.PI / 180) * (45 + AngleDegres));*/
 
-                }
+                
             }
         }
 
