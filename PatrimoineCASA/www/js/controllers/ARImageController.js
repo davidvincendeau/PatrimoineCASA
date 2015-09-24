@@ -56,12 +56,14 @@ angular.module('casa').controller('ARImageController',
                     compatibility.requestAnimationFrame(tick);
                 }, 500);
             }, function (error) {
+                console.log("error gum");
                 //$('#canvas').hide();
                 //$('#log').hide();
                 //$('#no_rtc').html('<h4>WebRTC not available.</h4>');
                 //$('#no_rtc').show();
             });
         } catch (error) {
+                console.log("error a");
             //$('#canvas').hide();
             //$('#log').hide();
             //$('#no_rtc').html('<h4>Something goes wrong...</h4>');
@@ -115,6 +117,7 @@ angular.module('casa').controller('ARImageController',
         //$(window).unload(function () {
         //    video.pause();
         //    video.src = null;
-        //});
+        //});
+
 
     }]);
