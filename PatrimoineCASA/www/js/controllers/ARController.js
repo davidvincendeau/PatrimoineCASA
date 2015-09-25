@@ -54,10 +54,21 @@ angular.module('casa').controller('ARController',
         // pause for a few milliseconds before accessing canvas
         setTimeout(function () {
             var imageData;
+            // rendercanvas
             $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
+            console.log("canvasElement: " + $scope.canvasElement);
+            $scope.ctxgl = $scope.canvasElement[0].getContext("webgl");
+            // image
+            var image = new Image();
+            image.src = 'images/thumbnail.jpg';
+            image.onload = function() {
+                initGlfx(image);
+            };
+            // img
             $scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
             console.log("canvas: " + $scope.canvasElement);
             $scope.infos = angular.element(document.getElementById('infos'));
+            // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
             console.log("canvas: " + $scope.canvas);
             $scope.ctx = $scope.canvas[0].getContext("2d");
@@ -107,8 +118,30 @@ angular.module('casa').controller('ARController',
                     $scope.showMarker($scope.foundMarkerId);
                 }
             }
+            // glfx
+
+            if ($scope.canvasGlfx !== undefined) {
+                $scope.canvasGlfx.draw($scope.img).perspective([175,156,496,55,161,279,504,330], [167,158,627,32,159,287,611,417]).update();
+            }
             requestAnimationFrame($scope.tick);
         }
+        var initGlfx = function initGlfx(image) {
+            var placeholder = document.getElementById('placeholder');
+
+            // Try to get a WebGL canvas
+            try {
+                $scope.canvasGlfx = fx.canvas();
+            } catch (e) {
+                placeholder.innerHTML = e;
+                return;
+            }
+
+            // Create a texture from the image and draw it to the canvas
+            var texture = $scope.canvasGlfx.texture(image);
+            $scope.canvasGlfx.draw(texture).update().replace(placeholder);
+            //$scope.canvasGlfx.draw(texture).swirl(x, y, 200, 4).update();
+           
+        };
         var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
             hiddenCanvas.width = $scope.video.width;
@@ -153,13 +186,14 @@ angular.module('casa').controller('ARController',
                 if(i==0)
                 {
                     $scope.foundMarkerId = markers[i].id.toString();
-                    $scope.corners = markers[i].corners;
-
-                    $scope.ctx.save(); 
+                    $scope.corners = markers[i].corners;                
 
                     $scope.ctx.lineWidth = 1;
                     var image = document.querySelector('#image');
-                    
+
+
+                    /*
+                    $scope.ctx.save(); 
                     $scope.ctx.drawImage(image, $scope.corners[0].x, $scope.corners[0].y , ($scope.corners[1].x - $scope.corners[0].x), ($scope.corners[3].y - $scope.corners[0].y));
                    //============================================CALCULS POUR TROUVER L'ANGLE DE ROTATION A CORRIGER ================================================================ 
                     var  distance = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
@@ -206,7 +240,7 @@ angular.module('casa').controller('ARController',
 
                     // on chope la tangente puis langle 
 
-                    /* var angleRad = Math.atan(($scope.corners[1].y)/(($scope.corners[1].x - $scope.corners[0].x)));
+                     var angleRad = Math.atan(($scope.corners[1].y)/(($scope.corners[1].x - $scope.corners[0].x)));
                    
                     var TO_RADIANS = Math.PI/180; 
                     function drawRotatedImage(image, x, y, angle)
