@@ -59,10 +59,10 @@ angular.module('casa').controller('ARController',
             console.log("canvasElement: " + $scope.canvasElement);
             $scope.ctxgl = $scope.canvasElement[0].getContext("webgl");
             // image
-            var image = new Image();
-            image.src = 'images/thumbnail.jpg';
-            image.onload = function() {
-                initGlfx(image);
+            $scope.glfxImage = new Image();
+            $scope.glfxImage.src = 'img/abreuvoir_caussols.jpg';
+            $scope.glfxImage.onload = function() {
+                initGlfx($scope.glfxImage);
             };
             // img
             $scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
@@ -119,9 +119,10 @@ angular.module('casa').controller('ARController',
                 }
             }
             // glfx
-
             if ($scope.canvasGlfx !== undefined) {
-                $scope.canvasGlfx.draw($scope.img).perspective([175,156,496,55,161,279,504,330], [167,158,627,32,159,287,611,417]).update();
+                if ($scope.glfxImage) {
+                    $scope.canvasGlfx.draw($scope.glfxImage).perspective([175,156,496,55,161,279,504,330], [167,158,627,32,159,287,611,417]).update();
+                }
             }
             requestAnimationFrame($scope.tick);
         }
