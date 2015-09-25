@@ -41,16 +41,7 @@ angular.module('casa').controller('ARController',
             $scope.erreur = angular.element(document.getElementById('erreur'));
             $scope.framez = angular.element(document.getElementById('framez'));
         });
-        $scope.showMarker = function (locationKey) {
 
-            $scope.poi = LocationsService.savedLocations[locationKey];
-            if ($scope.poi === undefined) {
-                $scope.erreur = "identifiant marqueur non reconnu";
-            } else {
-                $scope.msg = "identifiant marqueur:" + locationKey + " image:" + $scope.poi.vignette;
-                $scope.arPopupImage = $scope.poi.vignette;
-            }
-        };
         // pause for a few milliseconds before accessing canvas
         setTimeout(function () {
             var imageData;
@@ -99,6 +90,31 @@ angular.module('casa').controller('ARController',
             $scope.infos = "webcam onSuccess, frame:" + $scope.framecount;
 
         };
+        var initGlfx = function initGlfx(image) {
+            var placeholder = document.getElementById('placeholder');
+
+            // Try to get a WebGL canvas
+            try {
+                $scope.canvasGlfx = fx.canvas();
+            } catch (e) {
+                placeholder.innerHTML = e;
+                return;
+            }
+            $scope.canvasGlfx.replace(placeholder);
+            // Create a texture from the image and draw it to the canvas
+            $scope.texture = $scope.canvasGlfx.texture(image);
+        };
+        $scope.showMarker = function (locationKey) {
+
+            $scope.poi = LocationsService.savedLocations[locationKey];
+            if ($scope.poi === undefined) {
+                $scope.erreur = "identifiant marqueur non reconnu";
+            } else {
+                $scope.msg = "identifiant marqueur:" + locationKey + " image:" + $scope.poi.vignette;
+                $scope.arPopupImage = $scope.poi.vignette;
+                //$scope.glfxImage.src = $scope.poi.vignette;
+            }
+        };
         $scope.tick = function () {
             $scope.framecount++;
             // $scope.framez = $scope.framecount;
@@ -118,9 +134,9 @@ angular.module('casa').controller('ARController',
                     $scope.showMarker($scope.foundMarkerId);
                     // glfx
                     if ($scope.canvasGlfx !== undefined) {
-                        if ($scope.glfxImage) {
+                        if ($scope.glfxImage) { 
                             if ($scope.corners !== undefined) {
-                                $scope.canvasGlfx.draw($scope.texture).perspective([175, 156, 496, 55, 161, 279, 504, 330], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
+                                $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, 186, 0, 186, 124, 0, 124], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
                             }
                         }
                     }
@@ -128,23 +144,7 @@ angular.module('casa').controller('ARController',
             }
             requestAnimationFrame($scope.tick);
         }
-        var initGlfx = function initGlfx(image) {
-            var placeholder = document.getElementById('placeholder');
 
-            // Try to get a WebGL canvas
-            try {
-                $scope.canvasGlfx = fx.canvas();
-            } catch (e) {
-                placeholder.innerHTML = e;
-                return;
-            }
-            $scope.canvasGlfx.replace(placeholder);
-            // Create a texture from the image and draw it to the canvas
-            $scope.texture = $scope.canvasGlfx.texture(image);
-            //$scope.canvasGlfx.draw(texture).update().replace(placeholder);
-            //$scope.canvasGlfx.draw(texture).swirl(x, y, 200, 4).update();
-
-        };
         var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
             hiddenCanvas.width = $scope.video.width;
@@ -192,83 +192,9 @@ angular.module('casa').controller('ARController',
                     $scope.ctx.lineWidth = 1;
                     var image = document.querySelector('#image');
 
-
-                    /*
-                    $scope.ctx.save(); 
-                    $scope.ctx.drawImage(image, $scope.corners[0].x, $scope.corners[0].y , ($scope.corners[1].x - $scope.corners[0].x), ($scope.corners[3].y - $scope.corners[0].y));
-                   //============================================CALCULS POUR TROUVER L'ANGLE DE ROTATION A CORRIGER ================================================================ 
-                    var  distance = Math.sqrt((Math.pow($scope.corners[1].x - $scope.corners[0].x), 2) + Math.pow(($scope.corners[3].y - $scope.corners[0].y), 2));
-                   
-                    if(distance >  distance_fixe)
-                    {
-                        distance_fixe = distance;
-                    }
-                     if(distance <  distance_fixe)
-                    {
-                        Distance_Variable = distance;
-                    }
-                    if(Distance_Variable < distance_fixe)
-                    {
-                        sinAngle = Distance_Variable / distance_fixe;
-                    }
-                    if(Distance_Variable === distance_fixe)
-                    {
-                         sinAngle=1;
-                        $scope.ctx.rotate(0 * Math.PI/180);   
-                    }
-
-                    var AngleRad = Math.asin(sinAngle);
-                    var AngleDegres = AngleRad / 0.017453292519943;
-                    
-                    $scope.ctx.rotate(0 * Math.PI/180);    
-
-                    $scope.ctx.strokeStyle = "green";
-                    $scope.ctx.strokeText($scope.corners[1].x,$scope.corners[1].x+10,$scope.corners[1].y+10);
-                    $scope.ctx.strokeStyle = "red";
-                    $scope.ctx.strokeText($scope.corners[1].y,$scope.corners[1].x,$scope.corners[1].y);
-                    $scope.ctx.strokeStyle = "purple";
-                    $scope.ctx.strokeText($scope.corners[0].y,$scope.corners[0].x-10,$scope.corners[0].y-10);
-                    $scope.ctx.strokeStyle = "blue";
-                    $scope.ctx.strokeText($scope.corners[0].x,$scope.corners[0].x,$scope.corners[0].y);
-                    $scope.ctx.strokeStyle = "black";
-                    $scope.ctx.strokeText(Distance_Variable,  ($scope.corners[1].x- $scope.corners[0].x)/2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25);
-                
-                    $scope.ctx.strokeStyle = "blue";
-                    $scope.ctx.strokeText(AngleDegres,  ($scope.corners[1].x- $scope.corners[0].x)*2  ,(($scope.corners[1].y-$scope.corners[0].y)/2)+25);
-                     $scope.ctx.restore(); 
-                    $scope.framez= ""+AngleDegres+"",""+Distance_Variable+"";
-                    //==================================calcul de langle de rotation plus fonction de rotation===================================================================================================================
-
-                    // on chope la tangente puis langle 
-
-                     var angleRad = Math.atan(($scope.corners[1].y)/(($scope.corners[1].x - $scope.corners[0].x)));
-                   
-                    var TO_RADIANS = Math.PI/180; 
-                    function drawRotatedImage(image, x, y, angle)
-                    { 
- 
-                        // save the current co-ordinate system 
-                        // before we screw with it
-                        $scope.ctx.save(); 
-                     
-                        // move to the middle of where we want to draw our image
-                        $scope.ctx.translate(x, y);
-                     
-                        // rotate around that point, converting our 
-                        // angle from degrees to radians 
-                        $scope.ctx.rotate(angle * TO_RADIANS);
-                     
-                        // draw it up and to the left by half the width
-                        // and height of the image 
-                        $scope.ctx.drawImage(image, -(image.width/2), -(image.height/2));
-                     
-                        // and restore the co-ords to how they were when we began
-                        $scope.ctx.restore(); 
-                    }  
-                        */
                 }
-                //============================================================================================================================================================================        
             }
+            //===== glfx ===============        
         }
 
         $scope.drawId = function (markers) {
