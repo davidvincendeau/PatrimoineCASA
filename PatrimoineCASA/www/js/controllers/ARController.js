@@ -45,10 +45,7 @@ angular.module('casa').controller('ARController',
         // pause for a few milliseconds before accessing canvas
         setTimeout(function () {
             var imageData;
-            // rendercanvas
-            $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
-            console.log("canvasElement: " + $scope.canvasElement);
-            $scope.ctxgl = $scope.canvasElement[0].getContext("webgl");
+
             // image
             $scope.glfxImage = new Image();
             $scope.glfxImage.src = 'img/abreuvoir_caussols.jpg';
@@ -56,8 +53,8 @@ angular.module('casa').controller('ARController',
                 initGlfx($scope.glfxImage);
             };
             // img
-            $scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
-            console.log("canvas: " + $scope.canvasElement);
+            //$scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
+            //console.log("canvas: " + $scope.canvasElement);
             $scope.infos = angular.element(document.getElementById('infos'));
             // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
@@ -65,7 +62,7 @@ angular.module('casa').controller('ARController',
             $scope.ctx = $scope.canvas[0].getContext("2d");
 
             $scope.ctx.moveTo(0, 0);
-            $scope.ctx.lineTo(200, 100);
+            $scope.ctx.lineTo(20, 10);
             $scope.ctx.stroke();
             console.log("context: " + $scope.ctx);
 
@@ -112,7 +109,11 @@ angular.module('casa').controller('ARController',
             } else {
                 $scope.msg = "identifiant marqueur:" + locationKey + " image:" + $scope.poi.vignette;
                 $scope.arPopupImage = $scope.poi.vignette;
-                //$scope.glfxImage.src = $scope.poi.vignette;
+                $scope.img = new Image();
+                $scope.img.src = $scope.poi.vignette;
+                $scope.img.onload = function () {
+                    $scope.glfxImage = $scope.img;
+                };
             }
         };
         $scope.tick = function () {
