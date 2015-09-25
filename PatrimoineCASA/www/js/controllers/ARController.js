@@ -58,14 +58,13 @@ angular.module('casa').controller('ARController',
             $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
             console.log("canvasElement: " + $scope.canvasElement);
             $scope.ctxgl = $scope.canvasElement[0].getContext("webgl");
-            // image
-            $scope.glfxImage = new Image();
-            $scope.glfxImage.src = 'img/abreuvoir_caussols.jpg';
-            $scope.glfxImage.onload = function() {
-                initGlfx($scope.glfxImage);
-            };
             // img
             $scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
+            // image
+           // $scope.glfxImage.src = 'img/abreuvoir_caussols.jpg';
+            //$scope.glfxImage.onload = function() {
+            initGlfx($scope.img);
+            //};
             console.log("canvas: " + $scope.canvasElement);
             $scope.infos = angular.element(document.getElementById('infos'));
             // canevas
@@ -105,8 +104,8 @@ angular.module('casa').controller('ARController',
             $scope.video = $scope.channel.video;
             if ($scope.video) {
                 $scope.infos = "video frame available, frame:" + $scope.framecount;
-                //console.log("video frame available");
-                if ($scope.video.width > 0) {
+
+                /* A REMETTRE if ($scope.video.width > 0) {
                     //console.log("video width" + $scope.video.width);
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                     $scope.ctx.putImageData(videoData, 0, 0);
@@ -116,19 +115,20 @@ angular.module('casa').controller('ARController',
                     $scope.drawCorners($scope.markers);
                     $scope.drawId($scope.markers);
                     $scope.showMarker($scope.foundMarkerId);
-                }
+                }*/
             }
             // glfx
             if ($scope.canvasGlfx !== undefined) {
-                if ($scope.glfxImage) {
-                    $scope.canvasGlfx.draw($scope.glfxImage).perspective([175,156,496,55,161,279,504,330], [167,158,627,32,159,287,611,417]).update();
+                //$scope.glfxImage.src = 'img/abreuvoir_caussols.jpg';
+                if ($scope.img) {
+                    //$scope.canvasGlfx.draw($scope.glfxImage).perspective([75, 56, 296, 75, 161, 179, 304, 330], [67, 158, 627, 32, 59, 287, 611, 417]).update();
+                    $scope.canvasGlfx.draw($scope.img).update();
                 }
             }
             requestAnimationFrame($scope.tick);
         }
         var initGlfx = function initGlfx(image) {
             var placeholder = document.getElementById('placeholder');
-
             // Try to get a WebGL canvas
             try {
                 $scope.canvasGlfx = fx.canvas();
@@ -136,12 +136,9 @@ angular.module('casa').controller('ARController',
                 placeholder.innerHTML = e;
                 return;
             }
-
             // Create a texture from the image and draw it to the canvas
             var texture = $scope.canvasGlfx.texture(image);
-            $scope.canvasGlfx.draw(texture).update().replace(placeholder);
-            //$scope.canvasGlfx.draw(texture).swirl(x, y, 200, 4).update();
-           
+            $scope.canvasGlfx.draw(texture).swirl(x, y, 200, 4).update().replace(placeholder);         
         };
         var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
