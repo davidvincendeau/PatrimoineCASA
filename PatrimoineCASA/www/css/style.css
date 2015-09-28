@@ -1,11 +1,8 @@
 body {
   height: auto;
   min-height: 100%;
+}
 
-}
-div {
-  max-width: 95%;	
-}
 .scroll, .angular-leaflet-map {
   height: 100%;
 }
@@ -16,6 +13,7 @@ div {
 
 .item.item-body p {
   margin-top: 0;
+  max-width: 95%;
 }
 
 .tabs.border-top {
@@ -128,6 +126,7 @@ div {
 	font-size: 12px;
 	font-style: normal;
 	text-align: justify;
+	width: 95%;
 }
 .list.card .item.item-body div div {
 
