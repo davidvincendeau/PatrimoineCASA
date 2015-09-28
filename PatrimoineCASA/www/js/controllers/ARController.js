@@ -53,8 +53,6 @@ angular.module('casa').controller('ARController',
                 initGlfx($scope.glfxImage);
             };
             // img
-            //$scope.img = angular.element(document.getElementById('image')); // Définit le chemin vers sa source
-            //console.log("canvas: " + $scope.canvasElement);
             $scope.infos = angular.element(document.getElementById('infos'));
             // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
@@ -88,7 +86,7 @@ angular.module('casa').controller('ARController',
 
         };
         var initGlfx = function initGlfx(image) {
-            
+
             var placeholder = document.getElementById('placeholder');
             // Try to get a WebGL canvas
             try {
@@ -99,7 +97,7 @@ angular.module('casa').controller('ARController',
             }
             $scope.canvasGlfx.replace(placeholder);
             // Create a texture from the image and draw it to the canvas
-            $scope.texture = $scope.canvasGlfx.texture(image);
+            //$scope.texture = $scope.canvasGlfx.texture(image);
         };
         $scope.showMarker = function (locationKey) {
 
@@ -109,14 +107,19 @@ angular.module('casa').controller('ARController',
             } else {
                 $scope.msg = "identifiant marqueur:" + locationKey + " image:" + $scope.poi.vignette;
                 $scope.arPopupImage = $scope.poi.vignette;
-                $scope.img = new Image();
-                $scope.img.src = $scope.poi.vignette;
-                $scope.img.onload = function () {
-                    $scope.glfxImage = $scope.img;
+                $scope.glfxImage = new Image();
+                $scope.glfxImage.src = $scope.poi.vignette;
+                $scope.glfxImage.onload = function () {
+                    if ($scope.canvasGlfx !== undefined) {
+                        $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
+                    }
                 };
+
             }
         };
+        // animation loop
         $scope.tick = function () {
+
             $scope.framecount++;
             // $scope.framez = $scope.framecount;
             $scope.video = $scope.channel.video;
