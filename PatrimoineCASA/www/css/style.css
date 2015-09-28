@@ -37,7 +37,6 @@ body {
 	margin-bottom: 10px;
 }
 
-
 .position_gauche {
 	float: left;
 	width: 33.33%;
@@ -250,4 +249,12 @@ body {
 	//display: block!important;
 	top: 0px;
 	left: 0px;
+}
+canvas {
+	width:100%; 
+	height:100%;
+	position: absolute;
+	//display: block!important;
+	top: 0px;
+	left: 0px;	
 }

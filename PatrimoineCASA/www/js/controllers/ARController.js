@@ -88,8 +88,8 @@ angular.module('casa').controller('ARController',
 
         };
         var initGlfx = function initGlfx(image) {
+            
             var placeholder = document.getElementById('placeholder');
-
             // Try to get a WebGL canvas
             try {
                 $scope.canvasGlfx = fx.canvas();
