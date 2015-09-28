@@ -30,62 +30,40 @@ angular.module('casa').controller('ARController',
         };
         $scope.video = $scope.channel.video;
         $scope.foundMarkerId = 0;
-        $scope.arPopupImage = "images/thumbnail.jpg";
+
         $scope.$on("$stateChangeSuccess", function () {
 
             if ($scope.locations === undefined) {
                 $scope.locations = LocationsService.savedLocations;
             }
-            $scope.infos = angular.element(document.getElementById('infos'));
-            $scope.msg = angular.element(document.getElementById('msg'));
-            $scope.erreur = angular.element(document.getElementById('erreur'));
-            $scope.framez = angular.element(document.getElementById('framez'));
         });
 
-        // pause for a few milliseconds before accessing canvas
+        // pause for 500 milliseconds before accessing canvas
         setTimeout(function () {
-            var imageData;
 
-            // image
-            $scope.glfxImage = new Image();
-            $scope.glfxImage.src = 'img/abreuvoir_caussols.jpg';
-            $scope.glfxImage.onload = function () {
-                initGlfx($scope.glfxImage);
-            };
-            // img
-            $scope.infos = angular.element(document.getElementById('infos'));
+            //var imageData;
+            initGlfx();
             // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
-            console.log("canvas: " + $scope.canvas);
             $scope.ctx = $scope.canvas[0].getContext("2d");
-
-            $scope.ctx.moveTo(0, 0);
-            $scope.ctx.lineTo(20, 10);
-            $scope.ctx.stroke();
-            console.log("context: " + $scope.ctx);
-
             $scope.detector = new AR.Detector();
-            $scope.showMarker(1);
-            $scope.msg = "";
+            //$scope.showMarker(1);
+            // init ok, animation loop
             requestAnimationFrame($scope.tick);
         }, 500);
 
-        $scope.framecount = 0;
         $scope.channel = {};
         $scope.onError = function (err) {
-            console.log("webcam onError");
-            $scope.erreur = "webcam onError:" + err.message;
+            //console.log("webcam onError");
         };
         $scope.onStream = function (stream) {
-            console.log("webcam onStream, frame:" + $scope.framecount);
-            $scope.infos = "webcam onStream, frame:" + $scope.framecount;
+            //console.log("webcam onStream, frame:" + $scope.framecount);
         };
         $scope.onSuccess = function () {
-            console.log("webcam onSuccess, frame:" + $scope.framecount);
-            $scope.infos = "webcam onSuccess, frame:" + $scope.framecount;
-
+            //console.log("webcam onSuccess, frame:" + $scope.framecount);
         };
-        var initGlfx = function initGlfx(image) {
+        // remplace le placeholder par un canvas créé par glfx
+        var initGlfx = function initGlfx() {
 
             var placeholder = document.getElementById('placeholder');
             // Try to get a WebGL canvas
@@ -96,53 +74,42 @@ angular.module('casa').controller('ARController',
                 return;
             }
             $scope.canvasGlfx.replace(placeholder);
-            // Create a texture from the image and draw it to the canvas
-            //$scope.texture = $scope.canvasGlfx.texture(image);
         };
+        // affiche l'image du marker id correspondant
         $scope.showMarker = function (locationKey) {
 
             $scope.poi = LocationsService.savedLocations[locationKey];
-            if ($scope.poi === undefined) {
-                $scope.erreur = "identifiant marqueur non reconnu";
-            } else {
-                $scope.msg = "identifiant marqueur:" + locationKey + " image:" + $scope.poi.vignette;
-                $scope.arPopupImage = $scope.poi.vignette;
+            if ($scope.poi !== undefined) {
+                //$scope.arPopupImage = $scope.poi.vignette;
                 $scope.glfxImage = new Image();
                 $scope.glfxImage.src = $scope.poi.vignette;
                 $scope.glfxImage.onload = function () {
                     if ($scope.canvasGlfx !== undefined) {
                         $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
                     }
-                };
-
+                }
             }
         };
         // animation loop
         $scope.tick = function () {
 
-            $scope.framecount++;
-            // $scope.framez = $scope.framecount;
             $scope.video = $scope.channel.video;
             if ($scope.video) {
-                $scope.infos = "video frame available, frame:" + $scope.framecount;
-                //console.log("video frame available");
                 if ($scope.video.width > 0) {
                     //console.log("video width" + $scope.video.width);
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                     $scope.ctx.putImageData(videoData, 0, 0);
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
-                    imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
                     $scope.drawId($scope.markers);
                     $scope.showMarker($scope.foundMarkerId);
                     // glfx
-                    if ($scope.canvasGlfx !== undefined) {
-                        if ($scope.glfxImage) { 
-                            if ($scope.corners !== undefined) {
-                                $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, 186, 0, 186, 124, 0, 124], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
-                            }
-                        }
+                    if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined) {
+                        $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
+                        // afficher le texte correspondant
+                        $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x ;
+                        console.log($scope.infos);
                     }
                 }
             }
@@ -188,18 +155,13 @@ angular.module('casa').controller('ARController',
                 $scope.ctx.strokeRect(corners[3].x, corners[3].y, 4, 4);
 
                 // selectionner les coins du 1e marker  
-
                 if (i == 0) {
                     $scope.foundMarkerId = markers[i].id.toString();
                     $scope.corners = markers[i].corners;
-
                     $scope.ctx.lineWidth = 1;
-                    var image = document.querySelector('#image');
-
                 }
-            }
-            //===== glfx ===============        
-        }
+            }    
+        }         
 
         $scope.drawId = function (markers) {
             var corners, corner, x, y, i, j;
