@@ -93,7 +93,7 @@ angular.module('casa').factory('Vernaculaires', [ function() {
     }, {
         id: 14,
         name:  'L\'eau',
-        sousTitre: 'Les Gourdon',
+        sousTitre: 'Gourdon',
         url: 'pages/vernaculaire/vernaculaire-eau-gourdon.html',
         vignette: 'img/eau-gourdon.jpg'
     }, {
