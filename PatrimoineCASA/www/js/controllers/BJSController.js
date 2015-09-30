@@ -16,14 +16,14 @@ angular.module('casa').controller('BJSController',
       LocationsService,
       InstructionsService
       ) {
-        /*$scope.video = null;
+        $scope.video = null;
         // this has to be done BEFORE webcam authorization
         $scope.channel = {
           videoHeight: 800,
           videoWidth: 600,
           video: null // Will reference the video element on success
         };
-        $scope.video = $scope.channel.video;*/
+        $scope.video = $scope.channel.video;
         $scope.foundMarkerId = 0;
         $scope.$on("$stateChangeSuccess", function () {
 
@@ -49,7 +49,7 @@ angular.module('casa').controller('BJSController',
             $scope.ctx = $scope.canvas[0].getContext("2d");
 
             $scope.ctx.moveTo(0, 0);
-            $scope.ctx.lineTo(200, 100);
+            $scope.ctx.lineTo(20, 10);
             $scope.ctx.stroke();
             console.log("context: " + $scope.ctx);
 
@@ -171,24 +171,24 @@ angular.module('casa').controller('BJSController',
             requestAnimationFrame($scope.tick);
         }, 500);
         $scope.framecount = 0;
-        /*$scope.channel = {};
+        $scope.channel = {};
         $scope.onError = function (err) {console.log("webcam onError");};
         $scope.onStream = function (stream) {
             console.log("webcam onStream, frame:" + $scope.framecount);
         };
         $scope.onSuccess = function () {
             console.log("webcam onSuccess, frame:" + $scope.framecount);
-        };*/
+        };
         $scope.tick = function () {
             $scope.framecount++;
             $scope.framez.innerHTML = $scope.framecount;
             navigator.accelerometer.getCurrentAcceleration(accelOnSuccess, accelOnError);
 
-            /*$scope.video = $scope.channel.video;
+            $scope.video = $scope.channel.video;
              
             if ($scope.video) {
-                $scope.infos = "video frame available, frame:" + $scope.framecount; 
-                //console.log("video frame available");
+                //$scope.infos = "video frame available, frame:" + $scope.framecount; 
+             
                 
                 if ($scope.video.width > 0) {
                     //console.log("video width" + $scope.video.width);
@@ -197,24 +197,24 @@ angular.module('casa').controller('BJSController',
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.ctx.moveTo(0,0);
-                    $scope.ctx.lineTo(50,50);
+                    $scope.ctx.lineTo(5,5);
                     $scope.ctx.stroke(); 
 
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
                     $scope.drawId($scope.markers);
                 }
-            } */
+            } 
             requestAnimationFrame($scope.tick);
         }
-        /*var getVideoData = function getVideoData(x, y, w, h) {
+        var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
             hiddenCanvas.width = $scope.video.width;
             hiddenCanvas.height = $scope.video.height;
             var ctx = hiddenCanvas.getContext('2d');
             ctx.drawImage($scope.video, 0, 0, $scope.video.width, $scope.video.height);
             return ctx.getImageData(x, y, w, h);
-        };*/
+        };
 
         // acceleration
         function accelOnSuccess(acceleration) {

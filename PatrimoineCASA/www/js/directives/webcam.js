@@ -37,6 +37,7 @@ angular.module('webcam', [])
         onStream: '&',
         onStreaming: '&',
         placeholder: '=',
+        cameraid: '=',
         config: '=channel'
       },
       link: function postLink($scope, element) {
@@ -103,7 +104,7 @@ angular.module('webcam', [])
         var startWebcam = function startWebcam() {
           videoElem = document.createElement('video');
           videoElem.setAttribute('class', 'webcam-live');
-          videoElem.setAttribute('id', 'video');
+          videoElem.setAttribute('id', 'video');// not in sysart fork
           videoElem.setAttribute('autoplay', '');
           element.append(videoElem);
 
@@ -121,15 +122,42 @@ angular.module('webcam', [])
 
           // Check the availability of getUserMedia across supported browsers
           if (!window.hasUserMedia()) {
-              $scope.erreur = "Browser does not support getUserMedia." ;
-
+            $scope.erreur = "Browser does not support getUserMedia." ;
             onFailure({code:-1, msg: 'Browser does not support getUserMedia.'});
             return;
           }
 
-          var mediaConstraint = { video: true, audio: false };
-          navigator.getMedia(mediaConstraint, onSuccess, onFailure);
+          var videoSources = [];
 
+          function gotSources(sourceInfos) {
+              for (var i = 0; i !== sourceInfos.length; ++i) {
+                  var sourceInfo = sourceInfos[i];
+                  if (sourceInfo.kind === 'video') {
+                      $scope.infos = "sourceInfo:" + sourceInfo.id;
+                      console.log( "sourceInfo:" + sourceInfo.id);
+                      videoSources.push(sourceInfo);
+                  }
+              }
+              // force cameraid within videoSources bounds
+              if (videoSources.length > 0 && $scope.cameraid >= videoSources.length) $scope.cameraid = videoSources.length - 1;
+              var mediaConstraint;
+
+              if ($scope.cameraid !== undefined) {
+                  mediaConstraint = { video: { optional: [{ sourceId: videoSources[$scope.cameraid].id }] }, audio: false };
+              } else {
+                  mediaConstraint = { video: true, audio: false };
+              }
+              navigator.getMedia(mediaConstraint, onSuccess, onFailure);
+          }
+
+          if (typeof MediaStreamTrack !== 'undefined') {
+              if (typeof MediaStreamTrack.getSources !== 'undefined') {
+                  MediaStreamTrack.getSources(gotSources);
+              } else {
+                  var mediaConstraint = { video: true, audio: false };
+                  navigator.getMedia(mediaConstraint, onSuccess, onFailure);
+              }
+          }
           /* Start streaming the webcam data when the video element can play
            * It will do it only once
            */

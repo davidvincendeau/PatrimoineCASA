@@ -56,14 +56,14 @@ angular.module('casa').controller('ARImageController',
                     compatibility.requestAnimationFrame(tick);
                 }, 500);
             }, function (error) {
-                console.log("error gum");
+                console.log("error: WebRTC not available.");
                 //$('#canvas').hide();
                 //$('#log').hide();
                 //$('#no_rtc').html('<h4>WebRTC not available.</h4>');
                 //$('#no_rtc').show();
             });
         } catch (error) {
-                console.log("error a");
+                console.log("error:Something goes wrong...");
             //$('#canvas').hide();
             //$('#log').hide();
             //$('#no_rtc').html('<h4>Something goes wrong...</h4>');
