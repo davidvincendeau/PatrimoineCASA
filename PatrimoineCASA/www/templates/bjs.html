@@ -9,10 +9,10 @@
         <canvas id="canevas" class="canevas"></canvas>
         <canvas id="renderCanvas" class="canevas"></canvas>
 
-        <span id="infos" style="position: absolute;top: 0px;left: 0px;width:320px; height:20px;" ng-bind="infos" texr="">Infos</span>
-        <span id="msg" style="position: absolute;top: 20px;left: 0px;width:320px; height:20px;" >{{msg}}</span>
-        <span id="erreur" style="position: absolute;top: 40px;left: 0px;width:320px; height:20px;" ng-bind="erreur">erreur</span>
-        <span id="framez" style="position: absolute;top: 60px;left: 0px;width:320px; height:20px;" ng-bind="framez">framez</span>
+        <span id="infos" style="position: absolute;top: 0px;left: 0px;width:320px; height:40px;" ng-bind="infos" texr="">Infos</span>
+        <span id="msg" style="position: absolute;top: 40px;left: 0px;width:320px; height:40px;" >{{msg}}</span>
+        <span id="erreur" style="position: absolute;top: 80px;left: 0px;width:320px; height:40px;" ng-bind="erreur">erreur</span>
+        <span id="framez" style="position: absolute;top: 120px;left: 0px;width:320px; height:40px;" ng-bind="framez">framez</span>
 
         <webcam style="position: absolute;display: block!important;top: -9999px;left: -9999px;" cameraid="0" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)" width="320px" height="240px"></webcam>
 

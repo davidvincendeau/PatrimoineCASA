@@ -18,6 +18,15 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
           window.cordova.plugins.Keyboard.disableScroll(true);
         }*/
+            //filesystem
+              /*alert('cordova.file.dataDirectory: ' + cordova); //I get [object Object]
+              alert('cordova.file.dataDirectory: ' + cordova.file.dataDirectory); // I get file is undefined
+              $cordovaFile.writeFile(cordova.file.dataDirectory, 'surveys.json', $scope.surveys, true).then(function (result) {
+                  alert('Success! Survey created!');
+              }, function (err) {
+                  console.log("ERROR");
+              })*/
+          
           if (window.StatusBar) {
               StatusBar.styleDefault();
           }

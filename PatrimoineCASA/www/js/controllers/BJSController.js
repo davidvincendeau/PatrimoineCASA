@@ -2,6 +2,7 @@
 angular.module('casa').controller('BJSController',
   ['$scope',
     '$cordovaGeolocation',
+    '$cordovaFile',
     '$stateParams',
     '$ionicModal',
     '$ionicPopup',
@@ -10,6 +11,7 @@ angular.module('casa').controller('BJSController',
     function (
       $scope,
       $cordovaGeolocation,
+      $cordovaFile, 
       $stateParams,
       $ionicModal,
       $ionicPopup,
@@ -35,15 +37,36 @@ angular.module('casa').controller('BJSController',
         // pause for a few milliseconds before accessing canvas
         setTimeout(function () {
 
-            $scope.erreur = angular.element(document.getElementById('erreur'));
-            $scope.infos = angular.element(document.getElementById('infos'));
-            //$scope.msg = angular.element(document.getElementById('msg'));
-            $scope.framez = angular.element(document.getElementById('framez'));
-
+            $scope.infos = 'cordova.file.dataDirectory: ' + cordova.file.dataDirectory; 
+            $scope.msg = 'cordova.file.dataDirectory: ' + $cordovaFile;
+ 
+            $cordovaFile.listDir(cordova.file.dataDirectory).then(function (entries) {
+                $scope.erreur = 'list dataDirectory: ' + entries;
+                console.log('list dataDirectory: ', entries);
+            });
+            /*$cordovaFile.listDir(cordova.file.applicationDirectory).then(function (entries) {
+                $scope.infos = 'list applicationDirectory: ' + entries;
+                console.log('list applicationDirectory: ', entries);
+            });
+            $cordovaFile.listDir(cordova.file.applicationStorageDirectory).then(function (entries) {
+                $scope.msg = 'list applicationStorageDirectory: ' + entries;
+                console.log('list applicationStorageDirectory: ', entries);
+            });
+            $cordovaFile.listDir(cordova.file.cacheDirectory).then(function (entries) {
+                $scope.erreur = 'list cacheDirectory: ' + entries;
+                console.log('list cacheDirectory: ', entries); 
+            });*/
+            $cordovaFile.writeFile(cordova.file.dataDirectory, 'surveys.json', $scope.infos, true).then(function (result) {
+                $scope.erreur = 'Success! Survey created!';
+                console.log('Success! Survey created!');
+            }, function (err) {
+                $scope.erreur = '"ERROR Survey not created';
+                console.log("ERROR Survey not created");
+            });
             var imageData;
             $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
             console.log("canvas: " + $scope.canvasElement);
-            $scope.infos = angular.element(document.getElementById('infos'));
+
             $scope.canvas = angular.element(document.getElementById('canevas'));
             console.log("canvas: " + $scope.canvas);
             $scope.ctx = $scope.canvas[0].getContext("2d");
@@ -163,7 +186,7 @@ angular.module('casa').controller('BJSController',
                 $scope.engine.runRenderLoop(function () {
                     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0.0);
                     scene.render();
-                    console.log(navigator.compass);
+                    //console.log(navigator.compass);
                 });
 
             }
@@ -181,7 +204,7 @@ angular.module('casa').controller('BJSController',
         };
         $scope.tick = function () {
             $scope.framecount++;
-            $scope.framez.innerHTML = $scope.framecount;
+            $scope.framez = $scope.framecount;
             navigator.accelerometer.getCurrentAcceleration(accelOnSuccess, accelOnError);
 
             $scope.video = $scope.channel.video;
@@ -218,7 +241,7 @@ angular.module('casa').controller('BJSController',
 
         // acceleration
         function accelOnSuccess(acceleration) {
-            $scope.msg = 'acceleration timeStamp: ' + acceleration.timeStamp.toString() + ' x:' + acceleration.x.toString() + ' y:' + acceleration.y.toString() + ' z:' + acceleration.z.toString();
+            $scope.msg = 'acceleration timeStamp: ' + acceleration.timestamp.toString() + ' x:' + acceleration.x.toString() + ' y:' + acceleration.y.toString() + ' z:' + acceleration.z.toString();
         };
 
         function accelOnError() {
