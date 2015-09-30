@@ -5,6 +5,7 @@
  * License: MIT
  *
  * @version: 3.0.0
+ * Rear camera fix: https://github.com/sysart/webcam-directive
  */
 'use strict';
 
@@ -18,6 +19,7 @@
 
   // Checks if getUserMedia is available on the client browser
   window.hasUserMedia = function hasUserMedia() {
+      if (navigator.getMedia === false ) $scope.erreur="window.hasUserMedia false";
     return navigator.getMedia ? true : false;
   };
 })();
@@ -83,7 +85,9 @@ angular.module('webcam', [])
 
         // called when any error happens
         var onFailure = function onFailure(err) {
-          _removeDOMElement(placeholder);
+            _removeDOMElement(placeholder);
+            $scope.erreur = "The following error occured: " + err;
+
           if (console && console.log) {
             console.log('The following error occured: ', err);
           }
@@ -117,6 +121,8 @@ angular.module('webcam', [])
 
           // Check the availability of getUserMedia across supported browsers
           if (!window.hasUserMedia()) {
+              $scope.erreur = "Browser does not support getUserMedia." ;
+
             onFailure({code:-1, msg: 'Browser does not support getUserMedia.'});
             return;
           }
@@ -148,14 +154,16 @@ angular.module('webcam', [])
           }, false);
         };
 
-        var stopWebcam = function stopWebcam() {
+        $scope.stopWebcam = function stopWebcam() {
+            $scope.infos = "stopWebcam";
+
           onDestroy();
           videoElem.remove();
         };
 
         $scope.$on('$destroy', onDestroy);
         $scope.$on('START_WEBCAM', startWebcam);
-        $scope.$on('STOP_WEBCAM', stopWebcam);
+        $scope.$on('STOP_WEBCAM', $scope.stopWebcam);
 
         startWebcam();
 

@@ -54,12 +54,16 @@ angular.module('casa').controller('ARController',
 
         $scope.channel = {};
         $scope.onError = function (err) {
+            $scope.erreur = "webcam onError";
+
             //console.log("webcam onError");
         };
         $scope.onStream = function (stream) {
+            $scope.infos = "webcam onStream";
             //console.log("webcam onStream, frame:" + $scope.framecount);
         };
         $scope.onSuccess = function () {
+            $scope.infos = "webcam onSuccess";
             //console.log("webcam onSuccess, frame:" + $scope.framecount);
         };
         // remplace le placeholder par un canvas créé par glfx
