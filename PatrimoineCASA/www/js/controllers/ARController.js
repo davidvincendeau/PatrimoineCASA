@@ -6,7 +6,7 @@ angular.module('casa').controller('ARController',
     '$stateParams',
     '$ionicModal',
     '$ionicPopup',
-    'LocationsService',
+    'ARService',
     'InstructionsService',
     function (
       $scope,
@@ -14,7 +14,7 @@ angular.module('casa').controller('ARController',
       $stateParams,
       $ionicModal,
       $ionicPopup,
-      LocationsService,
+      ARService,
       InstructionsService
       ) {
         //var Distance_Variable = 0;
@@ -34,7 +34,7 @@ angular.module('casa').controller('ARController',
         $scope.$on("$stateChangeSuccess", function () {
 
             if ($scope.locations === undefined) {
-                $scope.locations = LocationsService.savedLocations;
+                $scope.locations = ARService.savedLocations;
             }
         });
 
@@ -82,7 +82,7 @@ angular.module('casa').controller('ARController',
         // affiche l'image du marker id correspondant
         $scope.showMarker = function (locationKey) {
 
-            $scope.poi = LocationsService.savedLocations[locationKey];
+            $scope.poi = ARService.savedLocations[locationKey];
             if ($scope.poi !== undefined) {
                 //$scope.arPopupImage = $scope.poi.vignette;
                 $scope.glfxImage = new Image();
