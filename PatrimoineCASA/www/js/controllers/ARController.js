@@ -34,11 +34,9 @@ angular.module('casa').controller('ARController',
         // To listen for when this page is active (for example, to refresh data),
         // listen for the $ionicView.enter event:
         $scope.$on('$ionicView.enter', function (e) {
-            $scope.infos = "$ionicView.enter";
-            if ($scope.locations === undefined) {
-                $scope.locations = ARService.savedLocations;
-            }
-            // called twice?
+            //$scope.infos = "$ionicView.enter";
+
+            // start webcam when back on the page, not the first time
             if ($scope.initialized) {
                 $scope.$broadcast('START_WEBCAM');
             }
@@ -57,14 +55,14 @@ angular.module('casa').controller('ARController',
             // init ok, animation loop
             //$scope.requestId = requestAnimationFrame($scope.tick);
             //}, 500);
-            $scope.infos = "$ionicView.loaded";
+            //$scope.infos = "$ionicView.loaded";
         });
 
         $scope.$on("$ionicView.beforeLeave", function (e) {
             stopAnimation();
             $scope.$broadcast('STOP_WEBCAM');
             //stopWebcam();
-            $scope.infos = "$ionicView.beforeLeave";
+            //$scope.infos = "$ionicView.beforeLeave";
         });
 
         $scope.channel = {};
@@ -94,9 +92,9 @@ angular.module('casa').controller('ARController',
             $scope.canvasGlfx.replace(placeholder);
         };
         // affiche l'image du marker id correspondant
-        $scope.showMarker = function (locationKey) {
+        $scope.showMarker = function (markerId) {
 
-            $scope.poi = ARService.savedLocations[locationKey];
+            $scope.poi = ARService.marqueurs[markerId];
             if ($scope.poi !== undefined) {
                 //$scope.arPopupImage = $scope.poi.vignette;
                 $scope.glfxImage = new Image();
@@ -108,7 +106,7 @@ angular.module('casa').controller('ARController',
                     }
                     if ($scope.canvasGlfx !== undefined) {
                         $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
-                        $scope.canvasGlfx.width = 1200;
+                        //$scope.canvasGlfx.width = 1200;
                         $scope.canvasGlfx.height = 1201;
                     }
                 }
@@ -206,7 +204,6 @@ angular.module('casa').controller('ARController',
 
         $scope.drawId = function (markers) {
             var corners, corner, x, y, i, j;
-            $scope.ctx.strokeStyle = "blue";
             $scope.ctx.lineWidth = 1;
 
             for (i = 0; i !== markers.length; ++i) {
@@ -216,17 +213,16 @@ angular.module('casa').controller('ARController',
                 y = Infinity;
 
                 for (j = 0; j !== corners.length; ++j) {
+                    $scope.ctx.strokeStyle = "green";
                     corner = corners[j];
 
                     x = Math.min(x, corner.x);
                     y = Math.min(y, corner.y);
+                    $scope.ctx.strokeText(corner.x + "," + corner.y, corner.x, corner.y)
                 }
 
+                $scope.ctx.strokeStyle = "blue";
                 $scope.ctx.strokeText(markers[i].id, x, y)
-                // selectionner le 1e marker
-                /*if (i == 0) {
-                    $scope.foundMarkerId = markers[i].id.toString();
-                }*/
             }
         }
     }]);

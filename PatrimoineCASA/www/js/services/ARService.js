@@ -1,10 +1,10 @@
 ﻿angular.module('casa').factory('ARService', [function () {
 
-    var locationsObj = {};
+    var marqueursObj = {};
 
-    locationsObj.savedLocations = [
+    marqueursObj.marqueurs = [
       {
-          id: 100,
+          id: 0,
           name: 'Antibes',
           sousTitre: 'Antibes',
           url: '/app/paysages/3',
@@ -14,7 +14,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 101,
+          id: 1,
           name: 'Bézaudun-les-Alpes',
           sousTitre: 'Bézaudun-les-Alpes',
           url: '/app/paysages/1',
@@ -24,7 +24,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 102,
+          id: 2,
           name: 'Biot',
           sousTitre: 'Biot',
           url: '/app/paysages/2',
@@ -34,7 +34,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 103,
+          id: 3,
           name: 'Bouyon',
           sousTitre: 'Bouyon',
           url: '/app/paysages/1',
@@ -44,7 +44,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 104,
+          id: 4,
           name: 'Caussols',
           sousTitre: 'Caussols',
           url: '/app/paysages/1',
@@ -54,7 +54,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 105,
+          id: 5,
           name: 'Châteauneuf',
           sousTitre: 'Châteauneuf',
           url: '/app/histoire/15',
@@ -64,7 +64,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 106,
+          id: 6,
           name: 'Cipières',
           sousTitre: 'Cipières',
           url: '/app/histoire/30',
@@ -74,7 +74,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 107,
+          id: 7,
           name: 'Conségudes',
           sousTitre: 'Conségudes',
           url: '/app/paysages/1',
@@ -84,7 +84,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 108,
+          id: 8,
           name: 'Courmes',
           sousTitre: 'Courmes',
           url: '/app/histoire/29',
@@ -94,7 +94,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 109,
+          id: 9,
           name: 'Coursegoules',
           sousTitre: 'Coursegoules',
           url: '/app/vernaculaire/8',
@@ -104,7 +104,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 110,
+          id: 10,
           name: 'Gourdon',
           sousTitre: 'Gourdon',
           url: '/app/vernaculaire/14',
@@ -114,7 +114,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 111,
+          id: 11,
           name: 'Gréolières',
           sousTitre: 'Gréolières',
           url: '/app/histoire/30',
@@ -124,7 +124,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 112,
+          id: 12,
           name: 'La Colle sur Loup',
           sousTitre: 'La Colle sur Loup',
           url: '/app/histoire/26',
@@ -134,7 +134,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 113,
+          id: 13,
           name: 'Le Bar sur Loup',
           sousTitre: 'Le Bar sur Loup',
           url: '/app/histoire/13',
@@ -144,7 +144,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 114,
+          id: 14,
           name: 'Le Rouret',
           sousTitre: 'Le Rouret',
           url: '/app/histoire/27',
@@ -154,7 +154,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 115,
+          id: 15,
           name: 'Les Ferres',
           sousTitre: 'Les Ferres',
           url: '/app/paysages/0',
@@ -164,7 +164,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 116,
+          id: 16,
           name: 'Opio',
           sousTitre: 'Opio',
           url: '/app/histoire/16',
@@ -174,7 +174,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 117,
+          id: 17,
           name: 'Roquefort les Pins',
           sousTitre: 'Roquefort les Pins',
           url: '/app/histoire/28',
@@ -184,7 +184,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 118,
+          id: 18,
           name: 'Roquestéron Grasse',
           sousTitre: 'Roquestéron Grasse',
           url: '/app/paysage/0',
@@ -194,7 +194,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 119,
+          id: 19,
           name: 'Saint Paul de Vence',
           sousTitre: 'Saint Paul de Vence',
           url: '/app/histoire/24',
@@ -204,7 +204,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 120,
+          id: 20,
           name: 'Tourrettes sur Loup',
           sousTitre: 'Tourrettes sur Loup',
           url: '/app/histoire/14',
@@ -214,7 +214,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 121,
+          id: 21,
           name: 'Valbonne Sophia Antipolis',
           sousTitre: 'Valbonne Sophia Antipolis',
           url: '/app/histoire/23',
@@ -224,7 +224,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 122,
+          id: 22,
           name: 'Vallauris Golfe Juan',
           sousTitre: 'Vallauris Golfe Juan',
           url: '/app/histoire/23',
@@ -234,7 +234,7 @@
           icon: 'local_icons.orange_icon'
       },
       {
-          id: 123,
+          id: 23,
           name: 'Villeneuve-Loubet',
           sousTitre: 'Villeneuve-Loubet',
           url: '/app/histoire/17',
@@ -242,20 +242,10 @@
           lat: 43.657882,
           lng: 7.121773,
           icon: 'local_icons.orange_icon'
-      },
-      {
-          id: 98,
-          name: 'Viaduc du Loup',
-          sousTitre: 'Tourrettes-sur-Loup',
-          url: '/app/contemporain/13',
-          vignette: 'img/vignettes/viaduc-tourrettes.jpg',
-          lat: 43.720438,
-          lng: 6.992183,
-          icon: 'local_icons.orange_icon'
       }
 
     ];
 
-    return locationsObj;
+    return marqueursObj;
 
 }]);
