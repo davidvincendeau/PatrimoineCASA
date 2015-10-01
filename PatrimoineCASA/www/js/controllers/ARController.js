@@ -106,8 +106,6 @@ angular.module('casa').controller('ARController',
                     }
                     if ($scope.canvasGlfx !== undefined) {
                         $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
-                        //$scope.canvasGlfx.width = 1200;
-                        $scope.canvasGlfx.height = 1201;
                     }
                 }
             }
@@ -142,7 +140,9 @@ angular.module('casa').controller('ARController',
                         $scope.showMarker($scope.foundMarkerId);
                         // glfx
                         if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined) {
-                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
+                            var scaleW = $scope.glfxImage.width / $scope.canvas[0].width;
+                            var scaleH = $scope.glfxImage.height / $scope.canvas[0].height;
+                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x * scaleW, $scope.corners[0].y * scaleH, $scope.corners[1].x * scaleW, $scope.corners[1].y * scaleH, $scope.corners[2].x * scaleW, $scope.corners[2].y * scaleH, $scope.corners[3].x * scaleW, $scope.corners[3].y * scaleH]).update();
                             // afficher le texte correspondant
                             $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
                             console.log($scope.infos);
