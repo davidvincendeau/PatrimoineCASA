@@ -39,6 +39,10 @@ angular.module('casa').controller('ARController',
             if ($scope.locations === undefined) {
                 $scope.locations = ARService.savedLocations;
             }
+            var vid = document.getElementById('video');
+            if (vid === undefined) {
+                $scope.$broadcast('START_WEBCAM');
+            }
             startAnimation();
         });
         $scope.$on("$ionicView.loaded", function (e) {
@@ -59,13 +63,14 @@ angular.module('casa').controller('ARController',
 
         $scope.$on("$ionicView.beforeLeave", function (e) {
             stopAnimation();
+            $scope.$broadcast('STOP_WEBCAM');
+            //stopWebcam();
             $scope.infos = "$ionicView.beforeLeave";
         });
 
         $scope.channel = {};
         $scope.onError = function (err) {
             $scope.infos = "webcam onError";
-
             //console.log("webcam onError");
         };
         $scope.onStream = function (stream) {

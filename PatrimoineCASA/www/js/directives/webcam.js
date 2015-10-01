@@ -182,7 +182,7 @@ angular.module('webcam', [])
           }, false);
         };
 
-        $scope.stopWebcam = function stopWebcam() {
+        var stopWebcam = function stopWebcam() {
             $scope.infos = "stopWebcam";
 
           onDestroy();
@@ -191,7 +191,7 @@ angular.module('webcam', [])
 
         $scope.$on('$destroy', onDestroy);
         $scope.$on('START_WEBCAM', startWebcam);
-        $scope.$on('STOP_WEBCAM', $scope.stopWebcam);
+        $scope.$on('STOP_WEBCAM', stopWebcam);
 
         startWebcam();
 
