@@ -1,5 +1,6 @@
 // générer les marqueurs avec http://terpconnect.umd.edu/~jwelsh12/enes100/markergen.html
 // explications http://iplimage.com/blog/create-markers-aruco/
+// TODO MediaStream.stop()' is deprecated and will be removed in M47, around November 2015. Please use 'MediaStream.active' instead.
 angular.module('casa').controller('ARController',
   ['$scope',
     '$cordovaGeolocation',
@@ -15,9 +16,7 @@ angular.module('casa').controller('ARController',
       $ionicPopup,
       ARService
       ) {
-        //var Distance_Variable = 0;
-        //var distance_fixe = 0;
-        //var sinAngle = 0;
+        $scope.initialized = false;
         $scope.requestId = undefined;
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
@@ -39,10 +38,11 @@ angular.module('casa').controller('ARController',
             if ($scope.locations === undefined) {
                 $scope.locations = ARService.savedLocations;
             }
-            var vid = document.getElementById('video');
-            if (vid === undefined) {
+            // called twice?
+            if ($scope.initialized) {
                 $scope.$broadcast('START_WEBCAM');
             }
+            $scope.initialized = true;
             startAnimation();
         });
         $scope.$on("$ionicView.loaded", function (e) {
@@ -139,7 +139,7 @@ angular.module('casa').controller('ARController',
                     if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined) {
                         $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
                         // afficher le texte correspondant
-                        $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x ;
+                        $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
                         console.log($scope.infos);
                     }
                 }
@@ -191,8 +191,8 @@ angular.module('casa').controller('ARController',
                     $scope.corners = markers[i].corners;
                     $scope.ctx.lineWidth = 1;
                 }
-            }    
-        }         
+            }
+        }
 
         $scope.drawId = function (markers) {
             var corners, corner, x, y, i, j;
