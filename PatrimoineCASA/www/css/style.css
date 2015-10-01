@@ -63,6 +63,7 @@ body {
 	height: auto;
 	margin-bottom: 10px;
 	margin-top: 10px;
+
 }
 .position_droite_50 {
 	text-align: center;
@@ -255,4 +256,12 @@ canvas {
 	position: absolute;
 	top: 0px;
 	left: 0px;	
+}
+
+centpourcent {
+	max-width: 100%%;
+	height: auto;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
