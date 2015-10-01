@@ -3026,8 +3026,8 @@ var Texture = (function() {
 
     function getCanvas(texture) {
         if (canvas == null) canvas = document.createElement('canvas');
-        canvas.width = texture.width;
-        canvas.height = texture.height;
+        canvas.width = 2400;//BL texture.width;
+        canvas.height = 2400;//BL texture.height;
         var c = canvas.getContext('2d');
         c.clearRect(0, 0, canvas.width, canvas.height);
         return c;

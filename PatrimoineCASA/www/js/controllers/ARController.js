@@ -26,7 +26,7 @@ angular.module('casa').controller('ARController',
             video: null // Will reference the video element on success
         };
         $scope.video = $scope.channel.video;
-        $scope.foundMarkerId = 0;
+        $scope.foundMarkerId = -1;
 
         // http://ionicframework.com/docs/api/directive/ionView/
         // With the new view caching in Ionic, Controllers are only called
@@ -49,8 +49,7 @@ angular.module('casa').controller('ARController',
             // pause for 500 milliseconds before accessing canvas
             //setTimeout(function () {
 
-            //var imageData;
-            initGlfx();
+            //initGlfx();
             // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
             $scope.ctx = $scope.canvas[0].getContext("2d");
@@ -103,8 +102,14 @@ angular.module('casa').controller('ARController',
                 $scope.glfxImage = new Image();
                 $scope.glfxImage.src = $scope.poi.vignette;
                 $scope.glfxImage.onload = function () {
+
+                    if ($scope.canvasGlfx === undefined) {
+                        initGlfx();
+                    }
                     if ($scope.canvasGlfx !== undefined) {
                         $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
+                        $scope.canvasGlfx.width = 1200;
+                        $scope.canvasGlfx.height = 1201;
                     }
                 }
             }
@@ -133,14 +138,17 @@ angular.module('casa').controller('ARController',
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
-                    $scope.drawId($scope.markers);
-                    $scope.showMarker($scope.foundMarkerId);
-                    // glfx
-                    if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined) {
-                        $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
-                        // afficher le texte correspondant
-                        $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
-                        console.log($scope.infos);
+                    // only draw if marker found
+                    if ($scope.foundMarkerId > -1) {
+                        $scope.drawId($scope.markers);
+                        $scope.showMarker($scope.foundMarkerId);
+                        // glfx
+                        if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined) {
+                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x, $scope.corners[0].y, $scope.corners[1].x, $scope.corners[1].y, $scope.corners[2].x, $scope.corners[2].y, $scope.corners[3].x, $scope.corners[3].y]).update();
+                            // afficher le texte correspondant
+                            $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
+                            console.log($scope.infos);
+                        }
                     }
                 }
             }
@@ -157,6 +165,8 @@ angular.module('casa').controller('ARController',
         };
         $scope.drawCorners = function (markers) {
             var corners, corner, i, j;
+            // init $scope.foundMarkerId to -1 to avoid redraw
+            $scope.foundMarkerId = -1;
 
             $scope.ctx.lineWidth = 3;
 
@@ -196,7 +206,6 @@ angular.module('casa').controller('ARController',
 
         $scope.drawId = function (markers) {
             var corners, corner, x, y, i, j;
-
             $scope.ctx.strokeStyle = "blue";
             $scope.ctx.lineWidth = 1;
 
@@ -215,9 +224,9 @@ angular.module('casa').controller('ARController',
 
                 $scope.ctx.strokeText(markers[i].id, x, y)
                 // selectionner le 1e marker
-                if (i == 0) {
+                /*if (i == 0) {
                     $scope.foundMarkerId = markers[i].id.toString();
-                }
+                }*/
             }
         }
     }]);

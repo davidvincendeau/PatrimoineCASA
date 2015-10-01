@@ -78,6 +78,15 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
                 }
             }
         })
+         .state('app.apropos', {
+             url: "/apropos",
+             views: {
+                 'menuContent': {
+                     templateUrl: "templates/apropos.html",
+                     controller: 'AProposController'
+                 }
+             }
+         })
     .state('app.accueil', {
         url: '/accueil',
         views: {
