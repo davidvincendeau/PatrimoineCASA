@@ -7,20 +7,18 @@ angular.module('casa').controller('ARController',
     '$ionicModal',
     '$ionicPopup',
     'ARService',
-    'InstructionsService',
     function (
       $scope,
       $cordovaGeolocation,
       $stateParams,
       $ionicModal,
       $ionicPopup,
-      ARService,
-      InstructionsService
+      ARService
       ) {
         //var Distance_Variable = 0;
         //var distance_fixe = 0;
         //var sinAngle = 0;
-
+        $scope.requestId = undefined;
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
         $scope.channel = {
@@ -31,15 +29,21 @@ angular.module('casa').controller('ARController',
         $scope.video = $scope.channel.video;
         $scope.foundMarkerId = 0;
 
-        $scope.$on("$stateChangeSuccess", function () {
-
+        // http://ionicframework.com/docs/api/directive/ionView/
+        // With the new view caching in Ionic, Controllers are only called
+        // when they are recreated or on app start, instead of every page change.
+        // To listen for when this page is active (for example, to refresh data),
+        // listen for the $ionicView.enter event:
+        $scope.$on('$ionicView.enter', function (e) {
+            $scope.infos = "$ionicView.enter";
             if ($scope.locations === undefined) {
                 $scope.locations = ARService.savedLocations;
             }
+            startAnimation();
         });
-
-        // pause for 500 milliseconds before accessing canvas
-        setTimeout(function () {
+        $scope.$on("$ionicView.loaded", function (e) {
+            // pause for 500 milliseconds before accessing canvas
+            //setTimeout(function () {
 
             //var imageData;
             initGlfx();
@@ -47,10 +51,16 @@ angular.module('casa').controller('ARController',
             $scope.canvas = angular.element(document.getElementById('canevas'));
             $scope.ctx = $scope.canvas[0].getContext("2d");
             $scope.detector = new AR.Detector();
-            //$scope.showMarker(1);
             // init ok, animation loop
-            requestAnimationFrame($scope.tick);
-        }, 500);
+            //$scope.requestId = requestAnimationFrame($scope.tick);
+            //}, 500);
+            $scope.infos = "$ionicView.loaded";
+        });
+
+        $scope.$on("$ionicView.beforeLeave", function (e) {
+            stopAnimation();
+            $scope.infos = "$ionicView.beforeLeave";
+        });
 
         $scope.channel = {};
         $scope.onError = function (err) {
@@ -94,6 +104,18 @@ angular.module('casa').controller('ARController',
                 }
             }
         };
+        function startAnimation() {
+            if (!$scope.requestId) {
+                $scope.tick();
+            }
+        }
+
+        function stopAnimation() {
+            if ($scope.requestId) {
+                window.cancelAnimationFrame($scope.requestId);
+                $scope.requestId = undefined;
+            }
+        }
         // animation loop
         $scope.tick = function () {
 
@@ -117,7 +139,7 @@ angular.module('casa').controller('ARController',
                     }
                 }
             }
-            requestAnimationFrame($scope.tick);
+            $scope.requestId = requestAnimationFrame($scope.tick);
         }
 
         var getVideoData = function getVideoData(x, y, w, h) {
