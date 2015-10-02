@@ -4,6 +4,8 @@
  *
  * Copyright 2011 Evan Wallace
  * Released under the MIT license
+ *
+ * https://github.com/dronus/glfx.js
  */
 var fx = (function() {
 var exports = {};
@@ -230,7 +232,25 @@ function tile(size,center) {
     return this;
 }
 
+/**
+* @filter           Alpha
+* @description      For Fade in and out
+* @param alpha      0 to 1 transparency
+*/
+function alpha(alpha) {
+    gl.alpha = gl.alpha || new Shader(null, '\
+        uniform sampler2D texture;\
+        uniform float a;\
+        varying vec2 texCoord;\
+        void main() {\
+            vec4 color = texture2D(texture, texCoord);\
+            gl_FragColor = color*a;\
+        }\
+    ');
+    simpleShader.call(this, gl.alpha, { a: alpha });
 
+    return this;
+}
 // src/filters/video/colorDisplacement.js
 function colorDisplacement(angle,amplitude) {
     gl.colorDisplacement = gl.colorDisplacement || new Shader(null,'\
@@ -2895,7 +2915,9 @@ exports.canvas = function() {
     canvas.colorkey=wrap(colorkey);
     canvas.displacement=wrap(displacement);
     canvas.posterize=wrap(posterize);
-//    canvas.=wrap();
+    //    canvas.=wrap();
+    // BL
+    canvas.alpha = wrap(alpha);
     canvas.feedbackIn = wrap(feedbackIn);
     canvas.feedbackOut = wrap(feedbackOut);
     canvas.grid = wrap(grid);

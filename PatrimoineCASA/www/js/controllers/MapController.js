@@ -17,7 +17,19 @@ angular.module('casa').controller('MapController',
       LocationsService,
       InstructionsService
       ) {
+        /* TODO
+        http://forum.ionicframework.com/t/ionic-app-caching-images/3488/15
+      <img ng-cache ng-src="{{data.image}}" />
+      ImgCache.isCached(src, function(path, success) {
 
+                if (success) {
+                    ImgCache.useCachedFile(el);
+                } else {
+                    ImgCache.cacheFile(src, function() {
+                        ImgCache.useCachedFile(el);
+                    });
+                }
+            });
       /**
        * Once state loaded, get put map on scope.
        */
