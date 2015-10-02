@@ -143,9 +143,19 @@ angular.module('casa').controller('ARController',
                             var scaleW = $scope.glfxImage.width / $scope.canvas[0].width;
                             var scaleH = $scope.glfxImage.height / $scope.canvas[0].height;
                             $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x * scaleW, $scope.corners[0].y * scaleH, $scope.corners[1].x * scaleW, $scope.corners[1].y * scaleH, $scope.corners[2].x * scaleW, $scope.corners[2].y * scaleH, $scope.corners[3].x * scaleW, $scope.corners[3].y * scaleH]).update();
+                            $scope.alpha = 1.0;
                             // afficher le texte correspondant
-                            $scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
-                            console.log($scope.infos);
+                            //$scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
+                            //console.log($scope.infos);
+                        }
+                    }
+                    else {
+                        $scope.alpha -= 0.05;
+                        // glfx
+                        if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined ) {
+                            var scaleW = $scope.glfxImage.width / $scope.canvas[0].width;
+                            var scaleH = $scope.glfxImage.height / $scope.canvas[0].height;
+                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x * scaleW, $scope.corners[0].y * scaleH, $scope.corners[1].x * scaleW, $scope.corners[1].y * scaleH, $scope.corners[2].x * scaleW, $scope.corners[2].y * scaleH, $scope.corners[3].x * scaleW, $scope.corners[3].y * scaleH]).alpha($scope.alpha).update();
                         }
                     }
                 }
