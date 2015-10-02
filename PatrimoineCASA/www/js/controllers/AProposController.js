@@ -160,7 +160,6 @@
         });
 
         $scope.$on("$ionicView.beforeLeave", function (e) {
-            stopAnimation();
             $scope.$broadcast('STOP_WEBCAM');
 
         });
