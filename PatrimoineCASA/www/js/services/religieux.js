@@ -45,7 +45,7 @@ angular.module('casa').factory('Religieux', [ function() {
     }, {
         id: 7,
         name: 'Les édifices religieux',
-        sousTitre: 'Châteuneuf',
+        sousTitre: 'Châteauneuf',
         url: 'pages/religieux/religieux-chateauneuf.html',
         vignette: 'img/religieux-chateauneuf.jpg'
     }, {
