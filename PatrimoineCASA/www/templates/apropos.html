@@ -1,15 +1,15 @@
-﻿<ion-view view-title="Accueil">
+﻿<ion-view view-title="A propos">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-content class="padding">
-        <!-- <div class="list card"> -->
-        <div class="item item-divider">Le <b>patrimoine remarquable</b> de la communauté d'agglomération<br />version 0.1.151002</div>
+        <!--  style="position: absolute;display: block!important;top: 0px;left: 0px;"-->
+        <div class="item item-divider">Le <b>patrimoine remarquable</b> <br />de la communauté d'agglomération<br />version 0.1.151002</div>
         <div class="item item-body">
-            <div>
+            
                 Développé par la <b>Direction de l'Informatique et du Numérique</b> de la Communauté d’Agglomération Sophia Antipolis.
                 <br />
-                Ont participé au développement:
+                <!--Ont participé au développement:
                 <ul>
                     <li>
                         &#149; <b>Bruce LANE</b>, chef de projet/développeur
@@ -22,13 +22,14 @@
                     </li>
 
                 </ul>
-                <br />
+                <br />-->
                 Informations techniques:
                 <br />
                 <span id="infos" ng-bind="infos">Chargement</span>
 
 
-            </div>
+            
+            <webcam id="cam"  cameraid="1" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)"></webcam>
         </div>
     </ion-content>
 </ion-view>

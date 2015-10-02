@@ -1,0 +1,3 @@
+App ID Description: Patrimoine CASA Identifier: YL5X9JWAGB.fr.agglo-casa.patrimoine
+https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/ra/ng/app/1044986644/activity/ios/builds
+https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action

@@ -62,8 +62,6 @@ angular.module('casa').controller('ARController',
         $scope.$on("$ionicView.beforeLeave", function (e) {
             stopAnimation();
             $scope.$broadcast('STOP_WEBCAM');
-            //stopWebcam();
-            //$scope.infos = "$ionicView.beforeLeave";
         });
 
         $scope.channel = {};
