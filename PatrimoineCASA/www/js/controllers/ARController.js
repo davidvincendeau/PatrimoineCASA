@@ -165,15 +165,15 @@ angular.module('casa').controller('ARController',
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
-                    // only draw if marker found
-                    if ($scope.foundMarkerId > -1 && $scope.alpha > 0.0) {
-                        if ($scope.foundMarkerId > -1) {
-                            if ($scope.alpha < 1.0) $scope.alpha += 0.1;
-                        } else {
-                            if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
-                        }
-                        //$scope.drawId($scope.markers);
+                    // adapt alpha depending on marker found
+                    if ($scope.foundMarkerId > -1) {
                         $scope.showMarker($scope.foundMarkerId);
+                        if ($scope.alpha < 1.0) $scope.alpha += 0.1;
+                    } else {
+                        if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
+                    }
+                    if ( $scope.alpha > 0.0) {
+                        //$scope.drawId($scope.markers);
                         // glfx
                         var scaleW = 1.0;
                         var scaleH = 1.0;
@@ -205,7 +205,9 @@ angular.module('casa').controller('ARController',
 
                         }
                     }
+                    else {
 
+                    }
                 }
             }
             $scope.requestId = requestAnimationFrame($scope.tick);

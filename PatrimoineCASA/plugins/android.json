@@ -148,10 +148,10 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         },
-        "cordova-plugin-chrome-apps-audiocapture": {
+        "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         },
-        "cordova-plugin-crosswalk-webview": {
+        "cordova-plugin-chrome-apps-audiocapture": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         }
     },
