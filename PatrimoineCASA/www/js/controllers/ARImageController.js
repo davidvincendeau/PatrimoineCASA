@@ -17,7 +17,7 @@ angular.module('casa').controller('ARImageController',
       ) {
         $scope.isVideo = false;
         $scope.initialized = false;
-        $scope.ARInitialized = false;
+        //$scope.ARInitialized = false;
         $scope.requestId = undefined;
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
@@ -262,7 +262,21 @@ angular.module('casa').controller('ARImageController',
             stat.add("keypoints");
             stat.add("orb descriptors");
             stat.add("matching");
+            //if (!$scope.ARInitialized) {
+            img_u8 = new jsfeat.matrix_t($scope.canvas[0].width, $scope.canvas[0].height, jsfeat.U8_t | jsfeat.C1_t);
+                // after blur
+            img_u8_smooth = new jsfeat.matrix_t($scope.canvas[0].width, $scope.canvas[0].height, jsfeat.U8_t | jsfeat.C1_t);
+            var i = $scope.canvas[0].width * $scope.canvas[0].height;
+                while (--i >= 0) {
+                    screen_corners[i] = new jsfeat.keypoint_t(0, 0, 0, 0, -1);
+                    matches[i] = new match_t();
+                }
+                //load_trained_patterns2("http://localhost:4400/img/trained/vsd1.jpg");
+                //load_trained_patterns2("http://localhost:4400/img/trained/3Dtricart.jpg");
+                load_trained_patterns("trained1");
 
+                //$scope.ARInitialized = true;
+            //}
         }
         var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
@@ -280,21 +294,7 @@ angular.module('casa').controller('ARImageController',
 
             if ($scope.video) {
                 if ($scope.video.width > 0) {
-                    if (!$scope.ARInitialized) {
-                        img_u8 = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
-                        // after blur
-                        img_u8_smooth = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
-                        var i = $scope.video.width * $scope.video.height;
-                        while (--i >= 0) {
-                            screen_corners[i] = new jsfeat.keypoint_t(0, 0, 0, 0, -1);
-                            matches[i] = new match_t();
-                        }
-                        //load_trained_patterns2("http://localhost:4400/img/trained/vsd1.jpg");
-                        //load_trained_patterns2("http://localhost:4400/img/trained/3Dtricart.jpg");
-                        load_trained_patterns("trained1");
-
-                        $scope.ARInitialized = true;
-                    }
+                    
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                     $scope.ctx.putImageData(videoData, 0, 0);
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
