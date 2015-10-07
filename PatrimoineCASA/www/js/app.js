@@ -60,7 +60,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
                 }
             }
         })
-        /*.state('app.arimage', {
+        .state('app.arimage', {
             url: "/arimage",
             views: {
                 'menuContent': {
@@ -69,7 +69,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
                 }
             }
         })
-        .state('app.bjs', {
+        /*.state('app.bjs', {
             url: "/bjs",
             views: {
                 'menuContent': {

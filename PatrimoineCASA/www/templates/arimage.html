@@ -4,14 +4,23 @@
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content data-tap-disabled="true">
-      <video id="webcam" width="640" height="480" style="display:none;"></video>
-      <div style=" width:640px;height:480px;margin: 10px auto;">
-          <canvas id="canvas" width="640" height="480"></canvas>
-          <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
-          <div id="log" class="alert alert-info"></div>
-      </div>
+    <ion-content data-tap-disabled="true">
+        <video id="webcam" width="640" height="480" style="display:none;"></video>
+        <div style=" width:640px;height:480px;margin: 10px auto;">
+            <canvas id="canvas" width="640" height="480"></canvas>
+            <canvas id="container" width="640" height="480" style=" float: left; border: solid 1px black; background: green;"></canvas>
+            <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
+            <div id="log" class="alert alert-info"></div>
+        </div>
+        The time is : <span id="timeproc"></span><br>
+        <div>
+            Reference name:<input type="text" ng-model="refname" required>
+            <button class="button" ng-click="train_pattern();">Train</button>
+        </div>
+        <img id="trained0" ng-src="img/batiments/palais1.jpg">
+        <img hidden id="trained1" ng-src="img/batiments/palais2.jpg">
+        <img hidden id="trained2" ng-src="img/batiments/palais3.jpg">
 
-  </ion-content>
+    </ion-content>
 
 </ion-view>
