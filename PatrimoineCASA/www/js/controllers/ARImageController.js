@@ -17,6 +17,7 @@ angular.module('casa').controller('ARImageController',
       ) {
         $scope.isVideo = false;
         $scope.initialized = false;
+        $scope.ARInitialized = false;
         $scope.requestId = undefined;
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
@@ -39,6 +40,8 @@ angular.module('casa').controller('ARImageController',
             // start webcam when back on the page, not the first time
             if ($scope.initialized) {
                 $scope.$broadcast('START_WEBCAM');
+            } else {
+
             }
             $scope.initialized = true;
             main_app();
@@ -233,9 +236,6 @@ angular.module('casa').controller('ARImageController',
             $scope.ctx.fillStyle = "rgb(0,255,0)";
             $scope.ctx.strokeStyle = "rgb(0,255,0)";
 
-            img_u8 = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
-            // after blur
-            img_u8_smooth = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
             // we wll limit to 500 strongest points
             screen_descriptors = new jsfeat.matrix_t(32, 500, jsfeat.U8_t | jsfeat.C1_t);
             pattern_descriptors = [];
@@ -243,12 +243,6 @@ angular.module('casa').controller('ARImageController',
             screen_corners = [];
             pattern_corners = [];
             matches = [];
-
-            var i = $scope.video.width * $scope.video.height;
-            while (--i >= 0) {
-                screen_corners[i] = new jsfeat.keypoint_t(0, 0, 0, 0, -1);
-                matches[i] = new match_t();
-            }
 
             // transform matrix
             homo3x3 = new jsfeat.matrix_t(3, 3, jsfeat.F32C1_t);
@@ -269,9 +263,6 @@ angular.module('casa').controller('ARImageController',
             stat.add("orb descriptors");
             stat.add("matching");
 
-            //load_trained_patterns2("http://localhost:4400/img/trained/vsd1.jpg");
-            //load_trained_patterns2("http://localhost:4400/img/trained/3Dtricart.jpg");
-            load_trained_patterns("trained1");
         }
         var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
@@ -283,9 +274,27 @@ angular.module('casa').controller('ARImageController',
         };
         // animation loop
         function tick() {
+
             stat.new_frame();
+            $scope.video = $scope.channel.video;
+
             if ($scope.video) {
                 if ($scope.video.width > 0) {
+                    if (!$scope.ARInitialized) {
+                        img_u8 = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
+                        // after blur
+                        img_u8_smooth = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
+                        var i = $scope.video.width * $scope.video.height;
+                        while (--i >= 0) {
+                            screen_corners[i] = new jsfeat.keypoint_t(0, 0, 0, 0, -1);
+                            matches[i] = new match_t();
+                        }
+                        //load_trained_patterns2("http://localhost:4400/img/trained/vsd1.jpg");
+                        //load_trained_patterns2("http://localhost:4400/img/trained/3Dtricart.jpg");
+                        load_trained_patterns("trained1");
+
+                        $scope.ARInitialized = true;
+                    }
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
                     $scope.ctx.putImageData(videoData, 0, 0);
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
