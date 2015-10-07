@@ -9,6 +9,7 @@
           sousTitre: 'Antibes',
           url: '/app/paysages/3',
           vignette: 'img/villes/antibes.jpg',
+          video: 'video/timelapse-antibes.mp4',
           lat: 43.586198,
           lng: 7.105620,
           icon: 'local_icons.orange_icon'
@@ -109,6 +110,7 @@
           sousTitre: 'Gourdon',
           url: '/app/vernaculaire/14',
           vignette: 'img/villes/gourdon.jpg',
+          video: 'video/timelapse-gourdon.mp4',
           lat: 43.720023,
           lng: 6.978164,
           icon: 'local_icons.orange_icon'

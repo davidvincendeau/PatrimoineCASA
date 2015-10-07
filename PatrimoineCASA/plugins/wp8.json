@@ -114,6 +114,12 @@
         },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "{6dd48d20-6073-11e5-8084-210c1cbdfedb}"
+        },
+        "cordova-plugin-chrome-apps-audiocapture": {
+            "PACKAGE_NAME": "{6dd48d20-6073-11e5-8084-210c1cbdfedb}"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "{6dd48d20-6073-11e5-8084-210c1cbdfedb}"
         }
     },
     "dependent_plugins": {

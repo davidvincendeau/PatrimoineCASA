@@ -16,6 +16,7 @@ angular.module('casa').controller('ARController',
       $ionicPopup,
       ARService
       ) {
+        $scope.isVideo = false;
         $scope.initialized = false;
         $scope.requestId = undefined;
         $scope.video = null;
@@ -95,16 +96,48 @@ angular.module('casa').controller('ARController',
 
             $scope.poi = ARService.marqueurs[markerId];
             if ($scope.poi !== undefined) {
-                //$scope.arPopupImage = $scope.poi.vignette;
-                $scope.glfxImage = new Image();
-                $scope.glfxImage.src = $scope.poi.vignette;
-                $scope.glfxImage.onload = function () {
+                // init glfx if needed
+                if ($scope.canvasGlfx === undefined) {
+                    initGlfx();
+                }
+                if ($scope.canvasGlfx !== undefined) {
+                    // check if a video url exists
+                    if ($scope.poi.video === undefined) {
+                        // it's an image src only
+                        $scope.isVideo = false;
+                        $scope.glfxImage = new Image();
+                        $scope.glfxImage.src = $scope.poi.vignette;
+                        $scope.glfxImage.onload = function () {
+                            $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
+                        }
+                    } else {
+                        // it's a video
+                        if ($scope.glfxVideo === undefined) {
+                            // load image fallback
+                            $scope.glfxImage = new Image();
+                            $scope.glfxImage.src = $scope.poi.vignette;
+                            $scope.glfxImage.onload = function () {
+                                $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
+                            }
+                            try {
+                                $scope.glfxVideo = new Video();
+                            } catch (e) {
+                                $scope.glfxVideo = document.createElement('video');
+                            }
+                            $scope.glfxVideo.src = $scope.poi.video;
+                            $scope.glfxVideo.load();
+                            $scope.glfxVideo.play();
+                        }
+                        //$scope.infos = $scope.poi.video;
+                        if ($scope.glfxVideo !== undefined) {
+                            if ($scope.glfxVideo.videoWidth > 0) {
+                                $scope.glfxVideo.loop = true;
+                                $scope.texture = $scope.canvasGlfx.texture($scope.glfxVideo);
+                                $scope.isVideo = true;
 
-                    if ($scope.canvasGlfx === undefined) {
-                        initGlfx();
-                    }
-                    if ($scope.canvasGlfx !== undefined) {
-                        $scope.texture = $scope.canvasGlfx.texture($scope.glfxImage);
+                            }
+                        }
+
                     }
                 }
             }
@@ -123,7 +156,6 @@ angular.module('casa').controller('ARController',
         }
         // animation loop
         $scope.tick = function () {
-
             $scope.video = $scope.channel.video;
             if ($scope.video) {
                 if ($scope.video.width > 0) {
@@ -134,30 +166,46 @@ angular.module('casa').controller('ARController',
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
                     // only draw if marker found
-                    if ($scope.foundMarkerId > -1) {
+                    if ($scope.foundMarkerId > -1 && $scope.alpha > 0.0) {
+                        if ($scope.foundMarkerId > -1) {
+                            if ($scope.alpha < 1.0) $scope.alpha += 0.1;
+                        } else {
+                            if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
+                        }
                         //$scope.drawId($scope.markers);
                         $scope.showMarker($scope.foundMarkerId);
                         // glfx
-                        if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined) {
-                            var scaleW = $scope.glfxImage.width / $scope.canvas[0].width;
-                            var scaleH = $scope.glfxImage.height / $scope.canvas[0].height;
-                            if ($scope.alpha < 1.0) $scope.alpha += 0.1;
-                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x * scaleW, $scope.corners[0].y * scaleH, $scope.corners[1].x * scaleW, $scope.corners[1].y * scaleH, $scope.corners[2].x * scaleW, $scope.corners[2].y * scaleH, $scope.corners[3].x * scaleW, $scope.corners[3].y * scaleH]).alpha($scope.alpha).update();
-                            
-                            // afficher le texte correspondant
-                            //$scope.infos = "img, w:" + $scope.glfxImage.width + " mark, x:" + $scope.corners[0].x;
-                            //console.log($scope.infos);
+                        var scaleW = 1.0;
+                        var scaleH = 1.0;
+                        var tw = 1.0;
+                        var th = 1.0;
+                        var validTexture = false;
+
+                        if ($scope.isVideo) {
+                            // video
+                            if ($scope.canvasGlfx !== undefined && $scope.glfxVideo !== undefined && $scope.glfxVideo.videoWidth > 0 && $scope.corners !== undefined) {
+                                tw = $scope.glfxVideo.videoWidth;
+                                th = $scope.glfxVideo.videoHeight;
+                                scaleW = tw / $scope.canvas[0].width;
+                                scaleH = th / $scope.canvas[0].height;
+                                validTexture = true;
+                            }
+                        } else {
+                            // image
+                            if ($scope.canvasGlfx !== undefined && $scope.glfxImage !== undefined && $scope.glfxImage.width > 0 && $scope.corners !== undefined) {
+                                tw = $scope.glfxImage.width;
+                                th = $scope.glfxImage.height;
+                                scaleW = tw / $scope.canvas[0].width;
+                                scaleH = th / $scope.canvas[0].height;
+                                validTexture = true;
+                            }
+                        }
+                        if (validTexture) {
+                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0,tw, 0, tw, th, 0, th], [$scope.corners[0].x * scaleW, $scope.corners[0].y * scaleH, $scope.corners[1].x * scaleW, $scope.corners[1].y * scaleH, $scope.corners[2].x * scaleW, $scope.corners[2].y * scaleH, $scope.corners[3].x * scaleW, $scope.corners[3].y * scaleH]).alpha($scope.alpha).update();
+
                         }
                     }
-                    else {
-                        // glfx
-                        if ($scope.canvasGlfx !== undefined && $scope.glfxImage && $scope.corners !== undefined ) {
-                            var scaleW = $scope.glfxImage.width / $scope.canvas[0].width;
-                            var scaleH = $scope.glfxImage.height / $scope.canvas[0].height;
-                            if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
-                            $scope.canvasGlfx.draw($scope.texture).perspective([0, 0, $scope.glfxImage.width, 0, $scope.glfxImage.width, $scope.glfxImage.height, 0, $scope.glfxImage.height], [$scope.corners[0].x * scaleW, $scope.corners[0].y * scaleH, $scope.corners[1].x * scaleW, $scope.corners[1].y * scaleH, $scope.corners[2].x * scaleW, $scope.corners[2].y * scaleH, $scope.corners[3].x * scaleW, $scope.corners[3].y * scaleH]).alpha($scope.alpha).update();
-                        }
-                    }
+
                 }
             }
             $scope.requestId = requestAnimationFrame($scope.tick);
@@ -177,8 +225,7 @@ angular.module('casa').controller('ARController',
             $scope.foundMarkerId = -1;
 
             $scope.ctx.lineWidth = 3;
-            if (markers.length > 0)
-            {
+            if (markers.length > 0) {
                 $scope.corners = markers[0].corners;
                 $scope.foundMarkerId = markers[0].id.toString();
                 $scope.infos = "id: " + $scope.foundMarkerId;
