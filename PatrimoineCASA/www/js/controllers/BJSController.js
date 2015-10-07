@@ -169,10 +169,21 @@ angular.module('casa').controller('BJSController',
 
         $scope.channel = {};
 
+        function startAnimation() {
+            if (!$scope.requestId) {
+                tick();
+            }
+        }
 
+        function stopAnimation() {
+            if ($scope.requestId) {
+                window.cancelAnimationFrame($scope.requestId);
+                $scope.requestId = undefined;
+            }
+        }
 
         $scope.framecount = 0;
-        $scope.channel = {};
+
         $scope.onError = function (err) {console.log("webcam onError");};
         $scope.onStream = function (stream) {
             console.log("webcam onStream, frame:" + $scope.framecount);
@@ -180,17 +191,14 @@ angular.module('casa').controller('BJSController',
         $scope.onSuccess = function () {
             console.log("webcam onSuccess, frame:" + $scope.framecount);
         };
-        $scope.tick = function () {
+        function tick() {
             $scope.framecount++;
             $scope.framez = $scope.framecount;
-            navigator.accelerometer.getCurrentAcceleration(accelOnSuccess, accelOnError);
+            //navigator.accelerometer.getCurrentAcceleration(accelOnSuccess, accelOnError);
 
             $scope.video = $scope.channel.video;
              
             if ($scope.video) {
-                //$scope.infos = "video frame available, frame:" + $scope.framecount; 
-             
-                
                 if ($scope.video.width > 0) {
                     //console.log("video width" + $scope.video.width);
                     var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
@@ -206,7 +214,7 @@ angular.module('casa').controller('BJSController',
                     $scope.drawId($scope.markers);
                 }
             } 
-            requestAnimationFrame($scope.tick);
+            requestAnimationFrame(tick);
         }
         var getVideoData = function getVideoData(x, y, w, h) {
             var hiddenCanvas = document.createElement('canvas');
