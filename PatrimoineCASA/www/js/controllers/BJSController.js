@@ -18,82 +18,32 @@ angular.module('casa').controller('BJSController',
       LocationsService,
       InstructionsService
       ) {
+        $scope.isVideo = false;
+        $scope.initialized = false;
+        $scope.requestId = undefined;
         $scope.video = null;
         // this has to be done BEFORE webcam authorization
         $scope.channel = {
-          videoHeight: 800,
-          videoWidth: 600,
-          video: null // Will reference the video element on success
+            videoHeight: 800,
+            videoWidth: 600,
+            video: null // Will reference the video element on success
         };
         $scope.video = $scope.channel.video;
-        $scope.foundMarkerId = 0;
-        $scope.$on("$stateChangeSuccess", function () {
+        $scope.foundMarkerId = -1;
+        $scope.alpha = 0.3;
 
-            if ($scope.locations === undefined) {
-                $scope.locations = LocationsService.savedLocations;
+        // http://ionicframework.com/docs/api/directive/ionView/
+        // With the new view caching in Ionic, Controllers are only called
+        // when they are recreated or on app start, instead of every page change.
+        // To listen for when this page is active (for example, to refresh data),
+        // listen for the $ionicView.enter event:
+        $scope.$on('$ionicView.enter', function (e) {
+
+            // start webcam when back on the page, not the first time
+            if ($scope.initialized) {
+                $scope.$broadcast('START_WEBCAM');
             }
-
-        });
-        // pause for a few milliseconds before accessing canvas
-        setTimeout(function () {
-
-            $scope.infos = 'cordova.file.dataDirectory: ' + cordova.file.dataDirectory; 
-            $scope.msg = 'cordova.file.dataDirectory: ' + $cordovaFile;
- 
-            $cordovaFile.listDir(cordova.file.dataDirectory).then(function (entries) {
-                $scope.erreur = 'list dataDirectory: ' + entries;
-                console.log('list dataDirectory: ', entries);
-            });
-            /*$cordovaFile.listDir(cordova.file.applicationDirectory).then(function (entries) {
-                $scope.infos = 'list applicationDirectory: ' + entries;
-                console.log('list applicationDirectory: ', entries);
-            });
-            $cordovaFile.listDir(cordova.file.applicationStorageDirectory).then(function (entries) {
-                $scope.msg = 'list applicationStorageDirectory: ' + entries;
-                console.log('list applicationStorageDirectory: ', entries);
-            });
-            $cordovaFile.listDir(cordova.file.cacheDirectory).then(function (entries) {
-                $scope.erreur = 'list cacheDirectory: ' + entries;
-                console.log('list cacheDirectory: ', entries); 
-            });*/
-            $cordovaFile.writeFile(cordova.file.dataDirectory, 'surveys.json', $scope.infos, true).then(function (result) {
-                $scope.erreur = 'Success! Survey created!';
-                console.log('Success! Survey created!');
-            }, function (err) {
-                $scope.erreur = '"ERROR Survey not created';
-                console.log("ERROR Survey not created");
-            });
-            var imageData;
-            $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
-            console.log("canvas: " + $scope.canvasElement);
-
-            $scope.canvas = angular.element(document.getElementById('canevas'));
-            console.log("canvas: " + $scope.canvas);
-            $scope.ctx = $scope.canvas[0].getContext("2d");
-
-            $scope.ctx.moveTo(0, 0);
-            $scope.ctx.lineTo(20, 10);
-            $scope.ctx.stroke();
-            console.log("context: " + $scope.ctx);
-
-            $scope.detector = new AR.Detector();
-            // boussole
-            /*function onSuccess(heading) {
-                var element = document.getElementById('infos');
-                element.innerHTML = 'Heading: ' + heading.magneticHeading;
-            };
-
-            function onError(compassError) {
-                $scope.erreur.innerHTML = 'Compass error: ' + compassError.code;
-            };*/
-
-            var options = {
-                frequency: 3000
-            }; // Update every 3 seconds
-
-
-            //var watchID = navigator.compass.watchHeading(onSuccess, onError, options);
-
+            $scope.initialized = true;
             // babylon.js
             if (BABYLON.Engine.isSupported()) {
                 console.log("BABYLON.Engine.isSupported");
@@ -190,9 +140,37 @@ angular.module('casa').controller('BJSController',
                 });
 
             }
-            // start animation loop
-            requestAnimationFrame($scope.tick);
-        }, 500);
+
+            startAnimation();
+        });
+        $scope.$on("$ionicView.loaded", function (e) {
+
+            var imageData;
+            // canevas
+            $scope.canvasElement = angular.element(document.getElementById('renderCanvas'));
+            console.log("canvas: " + $scope.canvasElement);
+
+            $scope.canvas = angular.element(document.getElementById('canevas'));
+            console.log("canvas: " + $scope.canvas);
+            $scope.ctx = $scope.canvas[0].getContext("2d");
+
+            $scope.ctx.moveTo(0, 0);
+            $scope.ctx.lineTo(20, 10);
+            $scope.ctx.stroke();
+            console.log("context: " + $scope.ctx);
+            $scope.detector = new AR.Detector();
+
+        });
+
+        $scope.$on("$ionicView.beforeLeave", function (e) {
+            stopAnimation();
+            $scope.$broadcast('STOP_WEBCAM');
+        });
+
+        $scope.channel = {};
+
+
+
         $scope.framecount = 0;
         $scope.channel = {};
         $scope.onError = function (err) {console.log("webcam onError");};
@@ -299,10 +277,48 @@ angular.module('casa').controller('BJSController',
                 }
 
                 $scope.ctx.strokeText(markers[i].id, x, y)
-                // selectionner le 1e marker
-                if (i == 0) {
-                    $scope.foundMarkerId = markers[i].id.toString();
-                }
+
             }
         }
     }]);
+
+// pause for a few milliseconds before accessing canvas
+/*setTimeout(function () {
+
+    $scope.infos = 'cordova.file.dataDirectory: ' + cordova.file.dataDirectory; 
+    $scope.msg = 'cordova.file.dataDirectory: ' + $cordovaFile;
+
+    $cordovaFile.listDir(cordova.file.dataDirectory).then(function (entries) {
+        $scope.erreur = 'list dataDirectory: ' + entries;
+        console.log('list dataDirectory: ', entries);
+    });
+    
+    $cordovaFile.writeFile(cordova.file.dataDirectory, 'surveys.json', $scope.infos, true).then(function (result) {
+        $scope.erreur = 'Success! Survey created!';
+        console.log('Success! Survey created!');
+    }, function (err) {
+        $scope.erreur = '"ERROR Survey not created';
+        console.log("ERROR Survey not created");
+    });
+
+
+    $scope.detector = new AR.Detector();*/
+// boussole
+/*function onSuccess(heading) {
+    var element = document.getElementById('infos');
+    element.innerHTML = 'Heading: ' + heading.magneticHeading;
+};
+
+function onError(compassError) {
+    $scope.erreur.innerHTML = 'Compass error: ' + compassError.code;
+};
+
+var options = {
+    frequency: 3000
+}; // Update every 3 seconds
+
+
+//var watchID = navigator.compass.watchHeading(onSuccess, onError, options);
+
+
+}, 500);*/

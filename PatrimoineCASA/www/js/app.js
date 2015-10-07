@@ -69,7 +69,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
                 }
             }
         })
-        /*.state('app.bjs', {
+        .state('app.bjs', {
             url: "/bjs",
             views: {
                 'menuContent': {
@@ -77,7 +77,7 @@ angular.module('casa', ['ionic', 'leaflet-directive', 'ngCordova', 'igTruncate',
                     controller: 'BJSController'
                 }
             }
-        })*/
+        })
          .state('app.apropos', {
              url: "/apropos",
              views: {
