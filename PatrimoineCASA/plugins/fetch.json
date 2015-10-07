@@ -94,13 +94,5 @@
         },
         "is_top_level": true,
         "variables": {}
-    },
-    "cordova-plugin-chrome-apps-audiocapture": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-chrome-apps-audiocapture@~1.0.5"
-        },
-        "is_top_level": true,
-        "variables": {}
     }
 }

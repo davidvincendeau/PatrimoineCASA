@@ -96,6 +96,7 @@ angular.module('casa').controller('ARController',
 
             $scope.poi = ARService.marqueurs[markerId];
             if ($scope.poi !== undefined) {
+                $scope.infos = $scope.poi.name;
                 // init glfx if needed
                 if ($scope.canvasGlfx === undefined) {
                     initGlfx();
@@ -173,7 +174,7 @@ angular.module('casa').controller('ARController',
                         if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
                     }
                     if ( $scope.alpha > 0.0) {
-                        //$scope.drawId($scope.markers);
+                        // $scope.drawId($scope.markers);
                         // glfx
                         var scaleW = 1.0;
                         var scaleH = 1.0;

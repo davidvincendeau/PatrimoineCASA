@@ -89,10 +89,6 @@ angular.module('webcam', [])
             _removeDOMElement(placeholder);
             $scope.erreur = "The following error occured: " + err;
 
-          if (console && console.log) {
-            console.log('The following error occured: ', err);
-          }
-
           /* Call custom callback */
           if ($scope.onError) {
             $scope.onError({err:err});
