@@ -15,62 +15,76 @@ angular.module('casa').controller('ARImageController',
       LocationsService,
       InstructionsService
       ) {
+        $scope.isVideo = false;
+        $scope.initialized = false;
+        $scope.requestId = undefined;
+        $scope.video = null;
+        // this has to be done BEFORE webcam authorization
+        $scope.channel = {
+            videoHeight: 800,
+            videoWidth: 600,
+            video: null // Will reference the video element on success
+        };
+        $scope.video = $scope.channel.video;
+        $scope.foundMarkerId = -1;
+        $scope.alpha = 0.3;
+        // http://ionicframework.com/docs/api/directive/ionView/
+        // With the new view caching in Ionic, Controllers are only called
+        // when they are recreated or on app start, instead of every page change.
+        // To listen for when this page is active (for example, to refresh data),
+        // listen for the $ionicView.enter event:
+        $scope.$on('$ionicView.enter', function (e) {
+            //$scope.infos = "$ionicView.enter";
+
+            // start webcam when back on the page, not the first time
+            if ($scope.initialized) {
+                $scope.$broadcast('START_WEBCAM');
+            }
+            $scope.initialized = true;
+            main_app();
+            startAnimation();
+        });
+        $scope.$on("$ionicView.loaded", function (e) {
+            
+            // canevas
+            $scope.canvas = angular.element(document.getElementById('canevas'));
+            $scope.ctx = $scope.canvas[0].getContext("2d");
+ 
+        });
+
+        $scope.$on("$ionicView.beforeLeave", function (e) {
+            stopAnimation();
+            $scope.$broadcast('STOP_WEBCAM');
+        });
+
+        $scope.channel = {};
+        $scope.onError = function (err) {
+            $scope.infos = "webcam onError";
+            //console.log("webcam onError");
+        };
+        $scope.onStream = function (stream) {
+            //$scope.infos = "webcam onStream";
+            //console.log("webcam onStream, frame:" + $scope.framecount);
+        };
+        $scope.onSuccess = function () {
+            //$scope.infos = "webcam onSuccess";
+            //console.log("webcam onSuccess, frame:" + $scope.framecount);
+        };
+        function startAnimation() {
+            if (!$scope.requestId) {
+                tick();
+            }
+        }
+
+        function stopAnimation() {
+            if ($scope.requestId) {
+                window.cancelAnimationFrame($scope.requestId);
+                $scope.requestId = undefined;
+            }
+        }
         // lets do some fun
-        var video = document.getElementById('webcam');
-        var canvas = document.getElementById('canvas');
         var container = document.getElementById('container');
         var timeproc = document.getElementById('timeproc');
-        try {
-            var attempts = 0;
-            var readyListener = function (event) {
-                findVideoSize();
-            };
-            var findVideoSize = function () {
-                if (video.videoWidth > 0 && video.videoHeight > 0) {
-                    video.removeEventListener('loadeddata', readyListener);
-                    onDimensionsReady(video.videoWidth, video.videoHeight);
-                } else {
-                    if (attempts < 10) {
-                        attempts++;
-                        setTimeout(findVideoSize, 200);
-                    } else {
-                        onDimensionsReady(640, 480);
-                    }
-                }
-            };
-            var onDimensionsReady = function (width, height) {
-                demo_app(width, height);
-                compatibility.requestAnimationFrame(tick);
-            };
-
-            video.addEventListener('loadeddata', readyListener);
-
-            compatibility.getUserMedia({ video: true }, function (stream) {
-                try {
-                    video.src = compatibility.URL.createObjectURL(stream);
-                } catch (error) {
-                    video.src = stream;
-                }
-                setTimeout(function () {
-                    video.play();
-                    //demo_app();
-
-                    compatibility.requestAnimationFrame(tick);
-                }, 500);
-            }, function (error) {
-                console.log("error: WebRTC not available.");
-                //$('#canvas').hide();
-                //$('#log').hide();
-                //$('#no_rtc').html('<h4>WebRTC not available.</h4>');
-                //$('#no_rtc').show();
-            });
-        } catch (error) {
-                console.log("error:Something goes wrong...");
-            //$('#canvas').hide();
-            //$('#log').hide();
-            //$('#no_rtc').html('<h4>Something goes wrong...</h4>');
-            //$('#no_rtc').show();
-        }
 
         var stat = new profiler();
         // our point match structure
@@ -88,7 +102,7 @@ angular.module('casa').controller('ARImageController',
             }
             return match_t;
         })();
-        var gui, options, ctx, canvasWidth, canvasHeight;
+        var gui, options;
         var img_u8, img_u8_smooth, screen_corners, num_corners, screen_descriptors;
         var pattern_corners, pattern_descriptors, pattern_preview;
         var matches, homo3x3, match_mask;
@@ -214,17 +228,14 @@ angular.module('casa').controller('ARImageController',
         };
 
 
-        function demo_app(videoWidth, videoHeight) {
-            canvasWidth = canvas.width;
-            canvasHeight = canvas.height;
-            ctx = canvas.getContext('2d');
+        function main_app() {
 
-            ctx.fillStyle = "rgb(0,255,0)";
-            ctx.strokeStyle = "rgb(0,255,0)";
+            $scope.ctx.fillStyle = "rgb(0,255,0)";
+            $scope.ctx.strokeStyle = "rgb(0,255,0)";
 
-            img_u8 = new jsfeat.matrix_t(640, 480, jsfeat.U8_t | jsfeat.C1_t);
+            img_u8 = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
             // after blur
-            img_u8_smooth = new jsfeat.matrix_t(640, 480, jsfeat.U8_t | jsfeat.C1_t);
+            img_u8_smooth = new jsfeat.matrix_t($scope.video.width, $scope.video.height, jsfeat.U8_t | jsfeat.C1_t);
             // we wll limit to 500 strongest points
             screen_descriptors = new jsfeat.matrix_t(32, 500, jsfeat.U8_t | jsfeat.C1_t);
             pattern_descriptors = [];
@@ -233,7 +244,7 @@ angular.module('casa').controller('ARImageController',
             pattern_corners = [];
             matches = [];
 
-            var i = 640 * 480;
+            var i = $scope.video.width * $scope.video.height;
             while (--i >= 0) {
                 screen_corners[i] = new jsfeat.keypoint_t(0, 0, 0, 0, -1);
                 matches[i] = new match_t();
@@ -262,59 +273,71 @@ angular.module('casa').controller('ARImageController',
             //load_trained_patterns2("http://localhost:4400/img/trained/3Dtricart.jpg");
             load_trained_patterns("trained1");
         }
-
+        var getVideoData = function getVideoData(x, y, w, h) {
+            var hiddenCanvas = document.createElement('canvas');
+            hiddenCanvas.width = $scope.video.width;
+            hiddenCanvas.height = $scope.video.height;
+            var ctx = hiddenCanvas.getContext('2d');
+            ctx.drawImage($scope.video, 0, 0, $scope.video.width, $scope.video.height);
+            return ctx.getImageData(x, y, w, h);
+        };
+        // animation loop
         function tick() {
-            compatibility.requestAnimationFrame(tick);
             stat.new_frame();
-            if (video.readyState === video.HAVE_ENOUGH_DATA) {
-                ctx.drawImage(video, 0, 0, 640, 480);
-                var imageData = ctx.getImageData(0, 0, 640, 480);
+            if ($scope.video) {
+                if ($scope.video.width > 0) {
+                    var videoData = getVideoData(0, 0, $scope.video.width, $scope.video.height);
+                    $scope.ctx.putImageData(videoData, 0, 0);
+                    $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
 
-                stat.start("grayscale");
-                jsfeat.imgproc.grayscale(imageData.data, 640, 480, img_u8);
-                stat.stop("grayscale");
+                    stat.start("grayscale");
+                    jsfeat.imgproc.grayscale($scope.imageData.data, $scope.canvas[0].width, $scope.canvas[0].height, img_u8);
+                    stat.stop("grayscale");
 
-                stat.start("gauss blur");
-                jsfeat.imgproc.gaussian_blur(img_u8, img_u8_smooth, options.blur_size | 0);
-                stat.stop("gauss blur");
+                    stat.start("gauss blur");
+                    jsfeat.imgproc.gaussian_blur(img_u8, img_u8_smooth, options.blur_size | 0);
+                    stat.stop("gauss blur");
 
-                jsfeat.yape06.laplacian_threshold = options.lap_thres | 0;
-                jsfeat.yape06.min_eigen_value_threshold = options.eigen_thres | 0;
+                    jsfeat.yape06.laplacian_threshold = options.lap_thres | 0;
+                    jsfeat.yape06.min_eigen_value_threshold = options.eigen_thres | 0;
 
-                stat.start("keypoints");
-                num_corners = detect_keypoints(img_u8_smooth, screen_corners, 500);
-                stat.stop("keypoints");
+                    stat.start("keypoints");
+                    num_corners = detect_keypoints(img_u8_smooth, screen_corners, 500);
+                    stat.stop("keypoints");
 
-                stat.start("orb descriptors");
-                jsfeat.orb.describe(img_u8_smooth, screen_corners, num_corners, screen_descriptors);
-                stat.stop("orb descriptors");
+                    stat.start("orb descriptors");
+                    jsfeat.orb.describe(img_u8_smooth, screen_corners, num_corners, screen_descriptors);
+                    stat.stop("orb descriptors");
 
-                // render result back to canvas
-                var data_u32 = new Uint32Array(imageData.data.buffer);
-                render_corners(screen_corners, num_corners, data_u32, 640);
+                    // render result back to canvas
+                    var data_u32 = new Uint32Array($scope.imageData.data.buffer);
+                    render_corners(screen_corners, num_corners, data_u32, $scope.canvas[0].width);
 
-                // render pattern and matches
-                var num_matches = 0;
-                var good_matches = 0;
-                if (pattern_preview) {
-                    render_mono_image(pattern_preview.data, data_u32, pattern_preview.cols, pattern_preview.rows, 640);
-                    stat.start("matching");
-                    num_matches = match_pattern();
-                    good_matches = find_transform(matches, num_matches);
-                    stat.stop("matching");
+                    // render pattern and matches
+                    var num_matches = 0;
+                    var good_matches = 0;
+                    if (pattern_preview) {
+                        render_mono_image(pattern_preview.data, data_u32, pattern_preview.cols, pattern_preview.rows, $scope.video.width);
+                        stat.start("matching");
+                        num_matches = match_pattern();
+                        good_matches = find_transform(matches, num_matches);
+                        stat.stop("matching");
+                    }
+
+                    $scope.ctx.putImageData($scope.imageData, 0, 0);
+
+                    if (num_matches) {
+                        render_matches($scope.ctx, matches, num_matches);
+                        if (good_matches > 8)
+                            render_pattern_shape($scope.ctx);
+                    }
+
+                    // $('#log').html(stat.log());
+                    timeproc.innerHTML = stat.log();
                 }
-
-                ctx.putImageData(imageData, 0, 0);
-
-                if (num_matches) {
-                    render_matches(ctx, matches, num_matches);
-                    if (good_matches > 8)
-                        render_pattern_shape(ctx);
-                }
-
-                // $('#log').html(stat.log());
-                timeproc.innerHTML = stat.log();
             }
+            $scope.requestId = requestAnimationFrame(tick);
+
         }
 
         // UTILITIES
