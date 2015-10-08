@@ -36,6 +36,7 @@ angular.module('casa').controller('ARController',
         // To listen for when this page is active (for example, to refresh data),
         // listen for the $ionicView.enter event:
         $scope.$on('$ionicView.enter', function (e) {
+            //$scope.infos = "$ionicView.enter";
 
             // start webcam when back on the page, not the first time
             if ($scope.initialized) {
@@ -45,12 +46,18 @@ angular.module('casa').controller('ARController',
             startAnimation();
         });
         $scope.$on("$ionicView.loaded", function (e) {
+            // pause for 500 milliseconds before accessing canvas
+            //setTimeout(function () {
 
+            //initGlfx();
             // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
             $scope.ctx = $scope.canvas[0].getContext("2d");
             $scope.detector = new AR.Detector();
-
+            // init ok, animation loop
+            //$scope.requestId = requestAnimationFrame($scope.tick);
+            //}, 500);
+            //$scope.infos = "$ionicView.loaded";
         });
 
         $scope.$on("$ionicView.beforeLeave", function (e) {
@@ -89,7 +96,6 @@ angular.module('casa').controller('ARController',
 
             $scope.poi = ARService.marqueurs[markerId];
             if ($scope.poi !== undefined) {
-                $scope.infos = $scope.poi.name;
                 // init glfx if needed
                 if ($scope.canvasGlfx === undefined) {
                     initGlfx();
@@ -138,7 +144,7 @@ angular.module('casa').controller('ARController',
         };
         function startAnimation() {
             if (!$scope.requestId) {
-                tick();
+                $scope.tick();
             }
         }
 
@@ -149,7 +155,7 @@ angular.module('casa').controller('ARController',
             }
         }
         // animation loop
-       function tick() {
+        $scope.tick = function () {
             $scope.video = $scope.channel.video;
             if ($scope.video) {
                 if ($scope.video.width > 0) {
@@ -159,15 +165,15 @@ angular.module('casa').controller('ARController',
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
-                    // adapt alpha depending on marker found
-                    if ($scope.foundMarkerId > -1) {
+                    // only draw if marker found
+                    if ($scope.foundMarkerId > -1 && $scope.alpha > 0.0) {
+                        if ($scope.foundMarkerId > -1) {
+                            if ($scope.alpha < 1.0) $scope.alpha += 0.1;
+                        } else {
+                            if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
+                        }
+                        //$scope.drawId($scope.markers);
                         $scope.showMarker($scope.foundMarkerId);
-                        if ($scope.alpha < 1.0) $scope.alpha += 0.1;
-                    } else {
-                        if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
-                    }
-                    if ( $scope.alpha > 0.0) {
-                        // $scope.drawId($scope.markers);
                         // glfx
                         var scaleW = 1.0;
                         var scaleH = 1.0;
@@ -199,12 +205,10 @@ angular.module('casa').controller('ARController',
 
                         }
                     }
-                    else {
 
-                    }
                 }
             }
-            $scope.requestId = requestAnimationFrame(tick);
+            $scope.requestId = requestAnimationFrame($scope.tick);
         }
 
         var getVideoData = function getVideoData(x, y, w, h) {
