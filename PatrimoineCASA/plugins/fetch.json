@@ -87,6 +87,14 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-chrome-apps-audiocapture": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-chrome-apps-audiocapture"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-crosswalk-webview": {
         "source": {
             "type": "registry",

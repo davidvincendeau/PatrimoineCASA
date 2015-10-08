@@ -1,6 +1,6 @@
 {
   "name": "patrimoinecasa",
-  "version": "0.1.151007",
+  "version": "0.1.150922",
   "description": "Patrimoine CASA",
   "dependencies": {
     "gulp": "^3.5.6",

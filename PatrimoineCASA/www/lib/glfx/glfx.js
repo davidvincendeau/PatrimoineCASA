@@ -2806,21 +2806,17 @@ function draw(texture, width, height) {
 }
 
 function update() {
-    if (this._.texture !== null) {
-        this._.texture.use();
-        this._.flippedShader.drawRect();
-    }
+    this._.texture.use();
+    this._.flippedShader.drawRect();
     return this;
 }
 
 function simpleShader(shader, uniforms, textureIn, textureOut) {
-    if (textureIn !== undefined || this._.texture !== null) {
-        (textureIn || this._.texture).use();
-        this._.spareTexture.drawTo(function() {
-            shader.uniforms(uniforms).drawRect();
-        });
-        this._.spareTexture.swapWith(textureOut || this._.texture); 
-    }
+    (textureIn || this._.texture).use();
+    this._.spareTexture.drawTo(function() {
+        shader.uniforms(uniforms).drawRect();
+    });
+    this._.spareTexture.swapWith(textureOut || this._.texture);
 }
 
 function replace(node) {
