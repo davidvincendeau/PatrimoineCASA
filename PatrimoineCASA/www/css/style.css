@@ -259,9 +259,17 @@ canvas {
 }
 
 centpourcent {
-	max-width: 100%%;
+	max-width: 100%;
 	height: auto;
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+.overlapcanvas{
+	width:640; 
+	height:480;
+	position: absolute;
+    float: left;
+	top: 0px;
+	left: 0px;
 }
