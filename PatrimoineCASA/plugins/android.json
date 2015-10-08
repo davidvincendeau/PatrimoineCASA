@@ -79,16 +79,8 @@
                             "count": 2
                         },
                         {
-                            "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
-                            "count": 3
-                        },
-                        {
                             "xml": "<uses-permission android:name=\"android.permission.RECORD_VIDEO\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />",
-                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
@@ -100,6 +92,14 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\" />",
                             "count": 1
                         }
                     ]
@@ -148,10 +148,10 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         },
-        "cordova-plugin-chrome-apps-audiocapture": {
+        "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         },
-        "cordova-plugin-crosswalk-webview": {
+        "cordova-plugin-chrome-apps-audiocapture": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         }
     },

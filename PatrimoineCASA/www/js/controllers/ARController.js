@@ -36,8 +36,6 @@ angular.module('casa').controller('ARController',
         // To listen for when this page is active (for example, to refresh data),
         // listen for the $ionicView.enter event:
         $scope.$on('$ionicView.enter', function (e) {
-            //$scope.infos = "$ionicView.enter";
-
             // start webcam when back on the page, not the first time
             if ($scope.initialized) {
                 $scope.$broadcast('START_WEBCAM');
@@ -46,18 +44,12 @@ angular.module('casa').controller('ARController',
             startAnimation();
         });
         $scope.$on("$ionicView.loaded", function (e) {
-            // pause for 500 milliseconds before accessing canvas
-            //setTimeout(function () {
-
-            //initGlfx();
+ 
             // canevas
             $scope.canvas = angular.element(document.getElementById('canevas'));
             $scope.ctx = $scope.canvas[0].getContext("2d");
             $scope.detector = new AR.Detector();
-            // init ok, animation loop
-            //$scope.requestId = requestAnimationFrame($scope.tick);
-            //}, 500);
-            //$scope.infos = "$ionicView.loaded";
+            
         });
 
         $scope.$on("$ionicView.beforeLeave", function (e) {
@@ -144,7 +136,7 @@ angular.module('casa').controller('ARController',
         };
         function startAnimation() {
             if (!$scope.requestId) {
-                $scope.tick();
+                tick();
             }
         }
 
@@ -155,7 +147,7 @@ angular.module('casa').controller('ARController',
             }
         }
         // animation loop
-        $scope.tick = function () {
+        function tick() {
             $scope.video = $scope.channel.video;
             if ($scope.video) {
                 if ($scope.video.width > 0) {
@@ -165,15 +157,15 @@ angular.module('casa').controller('ARController',
                     $scope.imageData = $scope.ctx.getImageData(0, 0, $scope.canvas[0].width, $scope.canvas[0].height);
                     $scope.markers = $scope.detector.detect($scope.imageData);
                     $scope.drawCorners($scope.markers);
-                    // only draw if marker found
-                    if ($scope.foundMarkerId > -1 && $scope.alpha > 0.0) {
-                        if ($scope.foundMarkerId > -1) {
-                            if ($scope.alpha < 1.0) $scope.alpha += 0.1;
-                        } else {
-                            if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
-                        }
-                        //$scope.drawId($scope.markers);
+                    // adapt alpha depending on marker found
+                    if ($scope.foundMarkerId > -1) {
                         $scope.showMarker($scope.foundMarkerId);
+                        if ($scope.alpha < 1.0) $scope.alpha += 0.1;
+                    } else {
+                        if ($scope.alpha > 0.0) $scope.alpha -= 0.05;
+                    }
+                    if ($scope.alpha > 0.0) {
+                        // $scope.drawId($scope.markers);
                         // glfx
                         var scaleW = 1.0;
                         var scaleH = 1.0;
@@ -208,7 +200,7 @@ angular.module('casa').controller('ARController',
 
                 }
             }
-            $scope.requestId = requestAnimationFrame($scope.tick);
+            $scope.requestId = requestAnimationFrame(tick);
         }
 
         var getVideoData = function getVideoData(x, y, w, h) {
