@@ -383,6 +383,7 @@ angular.module('casa').controller('ARImageController',
                         }
                     }
                     $scope.infos = str;
+                    console.log(str);
                     stat.stop("matching");
 
                     // display last detected pattern
@@ -390,7 +391,7 @@ angular.module('casa').controller('ARImageController',
                         render_mono_image(pattern_preview[current_pattern].data, data_u32, pattern_preview[current_pattern].cols, pattern_preview[current_pattern].rows, 640);
                     }
 
-                    $scope.ctx.putImageData(imageData, 0, 0);
+                    $scope.ctx.putImageData($scope.imageData, 0, 0);
 
                     if (num_matches[current_pattern]) { // last detected
                         render_matches($scope.ctx, matches[current_pattern], num_matches[current_pattern]);
@@ -402,8 +403,6 @@ angular.module('casa').controller('ARImageController',
                         else
                             renderer3d.clear();
                     }
-
-                    // $('#log').html(stat.log());
                     timeproc.innerHTML = stat.log();
                 }
             }
@@ -646,7 +645,7 @@ angular.module('casa').controller('ARImageController',
         }
 
         // estimate homography transform between matched points
-        function find_transform(matches, count) {
+        function find_transform(matches, count, id) {
             // motion kernel
             var mm_kernel = new jsfeat.motion_model.homography2d();
             // ransac params
@@ -662,7 +661,7 @@ angular.module('casa').controller('ARImageController',
             for (var i = 0; i < count; ++i) {
                 var m = matches[i];
                 var s_kp = screen_corners[m.screen_idx];
-                var p_kp = pattern_corners[m.pattern_lev][m.pattern_idx];
+                var p_kp = pattern_corners[id][m.pattern_lev][m.pattern_idx];
                 pattern_xy[i] = { "x": p_kp.x, "y": p_kp.y };
                 screen_xy[i] = { "x": s_kp.x, "y": s_kp.y };
             }
@@ -670,13 +669,13 @@ angular.module('casa').controller('ARImageController',
             // estimate motion
             var ok = false;
             ok = jsfeat.motion_estimator.ransac(ransac_param, mm_kernel,
-                                                pattern_xy, screen_xy, count, homo3x3, match_mask, 1000);
+                                                pattern_xy, screen_xy, count, homo3x3[id], match_mask[id], 1000);
 
             // extract good matches and re-estimate
             var good_cnt = 0;
             if (ok) {
                 for (var i = 0; i < count; ++i) {
-                    if (match_mask.data[i]) {
+                    if (match_mask[id].data[i]) {
                         pattern_xy[good_cnt].x = pattern_xy[i].x;
                         pattern_xy[good_cnt].y = pattern_xy[i].y;
                         screen_xy[good_cnt].x = screen_xy[i].x;
@@ -685,13 +684,14 @@ angular.module('casa').controller('ARImageController',
                     }
                 }
                 // run kernel directly with inliers only
-                mm_kernel.run(pattern_xy, screen_xy, homo3x3, good_cnt);
+                mm_kernel.run(pattern_xy, screen_xy, homo3x3[id], good_cnt);
             } else {
-                jsfeat.matmath.identity_3x3(homo3x3, 1.0);
+                jsfeat.matmath.identity_3x3(homo3x3[id], 1.0);
             }
 
             return good_cnt;
         }
+
 
         // non zero bits count
         function popcnt32(n) {
@@ -703,7 +703,7 @@ angular.module('casa').controller('ARImageController',
         // naive brute-force matching.
         // each on screen point is compared to all pattern points
         // to find the closest match
-        function match_pattern() {
+        function match_pattern(id) {
             var q_cnt = screen_descriptors.rows;
             var query_du8 = screen_descriptors.data;
             var query_u32 = screen_descriptors.buffer.i32; // cast to integer buffer
@@ -718,7 +718,7 @@ angular.module('casa').controller('ARImageController',
                 var best_lev = -1;
 
                 for (lev = 0; lev < num_train_levels; ++lev) {
-                    var lev_descr = pattern_descriptors[lev];
+                    var lev_descr = pattern_descriptors[id][lev];
                     var ld_cnt = lev_descr.rows;
                     var ld_i32 = lev_descr.buffer.i32; // cast to integer buffer
                     var ld_off = 0;
@@ -746,18 +746,18 @@ angular.module('casa').controller('ARImageController',
 
                 // filter out by some threshold
                 if (best_dist < options.match_threshold) {
-                    matches[num_matches].screen_idx = qidx;
-                    matches[num_matches].pattern_lev = best_lev;
-                    matches[num_matches].pattern_idx = best_idx;
+                    matches[id][num_matches].screen_idx = qidx;
+                    matches[id][num_matches].pattern_lev = best_lev;
+                    matches[id][num_matches].pattern_idx = best_idx;
                     num_matches++;
                 }
                 //
 
                 /* filter using the ratio between 2 closest matches
                 if(best_dist < 0.8*best_dist2) {
-                    matches[num_matches].screen_idx = qidx;
-                    matches[num_matches].pattern_lev = best_lev;
-                    matches[num_matches].pattern_idx = best_idx;
+                    matches[id][num_matches].screen_idx = qidx;
+                    matches[id][num_matches].pattern_lev = best_lev;
+                    matches[id][num_matches].pattern_idx = best_idx;
                     num_matches++;
                 }
                 */
@@ -784,13 +784,18 @@ angular.module('casa').controller('ARImageController',
             return pt;
         }
 
+        /////////////////////
+        // Drawers
+        /////////////////////
+
         function render_matches(ctx, matches, count) {
+            if (current_pattern == -1) return;
 
             for (var i = 0; i < count; ++i) {
                 var m = matches[i];
                 var s_kp = screen_corners[m.screen_idx];
-                var p_kp = pattern_corners[m.pattern_lev][m.pattern_idx];
-                if (match_mask.data[i]) {
+                var p_kp = pattern_corners[current_pattern][m.pattern_lev][m.pattern_idx];
+                if (match_mask[current_pattern].data[i]) {
                     ctx.strokeStyle = "rgb(0,255,0)";
                 } else {
                     ctx.strokeStyle = "rgb(255,0,0)";
@@ -805,7 +810,7 @@ angular.module('casa').controller('ARImageController',
 
         function render_pattern_shape(ctx) {
             // get the projected pattern corners
-            var shape_pts = tCorners(homo3x3.data, pattern_preview.cols * 2, pattern_preview.rows * 2);
+            shape_pts = tCorners(homo3x3[current_pattern].data, pattern_preview[current_pattern].cols * 2, pattern_preview[current_pattern].rows * 2);
 
             ctx.strokeStyle = "rgb(0,255,0)";
             ctx.beginPath();
