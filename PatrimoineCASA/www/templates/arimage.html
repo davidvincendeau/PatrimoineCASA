@@ -5,10 +5,10 @@
     </ion-nav-buttons>
 
     <ion-content data-tap-disabled="true">
-        <webcam id="cam" style="position: absolute;display: block!important;top: -9999px;left: -9999px;" cameraid="1" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)"></webcam>
+        <webcam id="cam" style="position: absolute;display: block!important;top: -9999px;left: -9999px" cameraid="1" channel="channel" on-stream="onStream(stream)" on-streaming="onSuccess()" on-error="onError(err)"></webcam>
 
-        <canvas id="canevas"  width="640" height="480" class="overlapcanvas"> </canvas>
-        <canvas id="canvas3d" width="640" height="480" class="overlapcanvas"></canvas>
+        <canvas id="canevas"   class="overlapcanvas"> </canvas>
+        <canvas id="canvas3d"  class="overlapcanvas"></canvas>
         <canvas hidden id="container" width="640" height="480" ></canvas>
         <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
         <div id="log" class="alert alert-info"></div>
@@ -20,9 +20,9 @@
         <img hidden id="trained2" ng-src="img/batiments/eilenpattern.jpg" style="position: absolute;top: 960px;left: 320px;">
         <img hidden id="trained3" ng-src="img/batiments/picassopattern.jpg" style="position: absolute;top: 960px;left: 320px;">
         <div style="position: absolute;top: 320px;left: 320px;width:320px; height:240px;">
-            <!--Reference name:<input type="text" ng-model="refname" required>-->
-            <button class="button" ng-click="train_pattern();" >Train</button>
-            The time is : <span id="timeproc"  ></span><br>
+            <!--Reference name:<input type="text" ng-model="refname" required> The time is : -->
+            <!--<button class="button" ng-click="train_pattern();" >Train</button>-->
+            <span id="timeproc"  ></span><br>
         </div>
 
     </ion-content>

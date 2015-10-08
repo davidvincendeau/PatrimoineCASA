@@ -92,7 +92,7 @@ angular.module('casa').controller('ARImageController',
         var container = document.getElementById('container');
         var timeproc = document.getElementById('timeproc');
 
-        var stat = new profiler();
+        //var stat = new profiler();
         // our point match structure
         var match_t = (function () {
             function match_t(screen_idx, pattern_lev, pattern_idx, distance) {
@@ -306,13 +306,13 @@ angular.module('casa').controller('ARImageController',
              gui.add(options, "match_threshold", 16, 128);
              gui.add(options, "train_pattern");*/
 
-            stat.add("grayscale");
+            /*stat.add("grayscale");
             stat.add("gauss blur");
             stat.add("keypoints");
             stat.add("orb descriptors");
             stat.add("matching");
             stat.add("Posit");
-            stat.add("update");
+            stat.add("update");*/
 
             load_trained_patterns("trained0");
             load_trained_patterns("trained1");
@@ -331,7 +331,7 @@ angular.module('casa').controller('ARImageController',
         // animation loop
         function tick() {
 
-            stat.new_frame();
+            //stat.new_frame();
             $scope.video = $scope.channel.video;
 
             if ($scope.video) {
@@ -341,24 +341,24 @@ angular.module('casa').controller('ARImageController',
                     $scope.ctx.putImageData(videoData, 0, 0);
                     $scope.imageData = $scope.ctx.getImageData(0, 0, 640, 480);
 
-                    stat.start("grayscale");
+                    //stat.start("grayscale");
                     jsfeat.imgproc.grayscale($scope.imageData.data, 640, 480, img_u8);
-                    stat.stop("grayscale");
+                    //stat.stop("grayscale");
 
-                    stat.start("gauss blur");
+                    //stat.start("gauss blur");
                     jsfeat.imgproc.gaussian_blur(img_u8, img_u8_smooth, options.blur_size | 0);
-                    stat.stop("gauss blur");
+                   // stat.stop("gauss blur");
 
                     jsfeat.yape06.laplacian_threshold = options.lap_thres | 0;
                     jsfeat.yape06.min_eigen_value_threshold = options.eigen_thres | 0;
 
-                    stat.start("keypoints");
+                    //stat.start("keypoints");
                     num_corners = detect_keypoints(img_u8_smooth, screen_corners, 500);
-                    stat.stop("keypoints");
+                    //stat.stop("keypoints");
 
-                    stat.start("orb descriptors");
+                    //stat.start("orb descriptors");
                     jsfeat.orb.describe(img_u8_smooth, screen_corners, num_corners, screen_descriptors);
-                    stat.stop("orb descriptors");
+                    //stat.stop("orb descriptors");
 
                     // render result back to canvas
                     var data_u32 = new Uint32Array($scope.imageData.data.buffer);
@@ -368,12 +368,13 @@ angular.module('casa').controller('ARImageController',
                     var num_matches = [];
                     var good_matches = 0;
                     // search for the rigth pattern
-                    stat.start("matching");
+                    //stat.start("matching");
                     var id = 0;
-                    var str, found = false;
+                    var str = "";
+                    var found = false;
                     for (id = 0; id < nb_trained; ++id) {
                         num_matches[id] = match_pattern(id);
-                        str += "<br>Id : " + id + " nbMatches : " + num_matches[id];
+                        str += " Id : " + id + " nbMatches : " + num_matches[id];
                         if (num_matches[id] < 20 || found)
                             continue;
 
@@ -384,13 +385,13 @@ angular.module('casa').controller('ARImageController',
                             found = true;
                         }
                     }
-                    $scope.infos = str;
+                    //$scope.infos = str;
                     console.log(str);
-                    stat.stop("matching");
+                    //stat.stop("matching");
 
                     // display last detected pattern
                     if (pattern_preview[current_pattern]) {
-                        $scope.infos = "trouve";
+                        //$scope.infos = "trouve";
                         //render_mono_image(pattern_preview[current_pattern].data, data_u32, pattern_preview[current_pattern].cols, pattern_preview[current_pattern].rows, 640);
                     }
 
@@ -401,14 +402,14 @@ angular.module('casa').controller('ARImageController',
                            
                         if (found) {
                             render_pattern_shape($scope.ctx);
-                            updateScenes(shape_pts);
                             
                         }
                         //else
                             //renderer3d.clear();
+                        updateScenes(shape_pts);
                         render();
                     }
-                    timeproc.innerHTML = stat.log();
+                    //timeproc.innerHTML = stat.log();
                 }
             }
             $scope.requestId = requestAnimationFrame(tick);
@@ -421,7 +422,8 @@ angular.module('casa').controller('ARImageController',
         function createRenderers() {
             renderer3d = new THREE.WebGLRenderer({ canvas: canvas3D, alpha: true });
             renderer3d.setClearColor(0xffffff, 0);
-            renderer3d.setSize($scope.canvas[0].width, $scope.canvas[0].height);
+            //renderer3d.setSize($scope.canvas[0].width, $scope.canvas[0].height);
+            renderer3d.setSize(720, 720);
 
             //on ne peut que dans canvas ou aussi dans video
 
@@ -442,8 +444,8 @@ angular.module('casa').controller('ARImageController',
         };
 
         function createScenes() {
-            plane = createPlane();
-            scene2.add(plane);
+            //plane = createPlane();
+            //scene2.add(plane);
 
             texture = createTexture();
             scene1.add(texture);
@@ -541,17 +543,17 @@ angular.module('casa').controller('ARImageController',
                 corner.y = ($scope.canvas[0].height / 2) - corner.y;
             }
 
-            stat.start("Posit");
+            //stat.start("Posit");
             pose = posit.pose(corners);
-            stat.stop("Posit");
+            //stat.stop("Posit");
 
-            stat.start("update");
-            updateObject(plane, pose.bestRotation, pose.bestTranslation);
+            //stat.start("update");
+            //updateObject(plane, pose.bestRotation, pose.bestTranslation);
             updateObject(model1, pose.bestRotation, pose.bestTranslation);
             updateObject(model2, pose.bestRotation, pose.bestTranslation);
             updateObject(model3, pose.bestRotation, pose.bestTranslation);
             updatePose("pose1", pose.bestError, pose.bestRotation, pose.bestTranslation);
-            stat.stop("update");
+            //stat.stop("update");
 
             //plane.visible = false;
             model1.visible = (current_pattern === 0);
@@ -585,7 +587,7 @@ angular.module('casa').controller('ARImageController',
             var pitch = -Math.asin(-rotation[1][2]);
             var roll = Math.atan2(rotation[1][0], rotation[1][1]);
 
-            var d = document.getElementById(id);
+            /*var d = document.getElementById(id);
             d.innerHTML = " error: " + error
                         + "<br/>"
                         + " x: " + (translation[0] | 0)
@@ -594,7 +596,7 @@ angular.module('casa').controller('ARImageController',
                         + "<br/>"
                         + " yaw: " + Math.round(-yaw * 180.0 / Math.PI)
                         + " pitch: " + Math.round(-pitch * 180.0 / Math.PI)
-                        + " roll: " + Math.round(roll * 180.0 / Math.PI);
+                        + " roll: " + Math.round(roll * 180.0 / Math.PI);*/
         };
 
         /////////////////////
