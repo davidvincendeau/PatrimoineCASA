@@ -44,14 +44,16 @@ angular.module('casa').controller('ARImageController',
 
             }
             $scope.initialized = true;
-            main_app();
             startAnimation();
         });
         $scope.$on("$ionicView.loaded", function (e) {
+            setTimeout(function () {
+                // canevas
+                $scope.canvas = angular.element(document.getElementById('canevas'));
+                $scope.ctx = $scope.canvas[0].getContext("2d");
+                main_app();
 
-            // canevas
-            $scope.canvas = angular.element(document.getElementById('canevas'));
-            $scope.ctx = $scope.canvas[0].getContext("2d");
+            }, 500);
 
         });
 
@@ -115,7 +117,7 @@ angular.module('casa').controller('ARImageController',
         var maxCorners = 2000, maxMatches = 2000;
         var trained_8u;
         var nb_trained = 0, current_pattern = -1;
-        var templateX = 400, templateY = 600;
+        var templateX = 640, templateY = 480;
 
         // ARuco
         var posit;
@@ -388,20 +390,23 @@ angular.module('casa').controller('ARImageController',
 
                     // display last detected pattern
                     if (pattern_preview[current_pattern]) {
-                        render_mono_image(pattern_preview[current_pattern].data, data_u32, pattern_preview[current_pattern].cols, pattern_preview[current_pattern].rows, 640);
+                        $scope.infos = "trouve";
+                        //render_mono_image(pattern_preview[current_pattern].data, data_u32, pattern_preview[current_pattern].cols, pattern_preview[current_pattern].rows, 640);
                     }
 
                     $scope.ctx.putImageData($scope.imageData, 0, 0);
 
                     if (num_matches[current_pattern]) { // last detected
-                        render_matches($scope.ctx, matches[current_pattern], num_matches[current_pattern]);
+                        //render_matches($scope.ctx, matches[current_pattern], num_matches[current_pattern]);
+                           
                         if (found) {
                             render_pattern_shape($scope.ctx);
                             updateScenes(shape_pts);
-                            render();
+                            
                         }
-                        else
-                            renderer3d.clear();
+                        //else
+                            //renderer3d.clear();
+                        render();
                     }
                     timeproc.innerHTML = stat.log();
                 }
@@ -532,8 +537,8 @@ angular.module('casa').controller('ARImageController',
 
             for (i = 0; i < corners.length; ++i) {
                 corner = corners[i];
-                corner.x = corner.x - (canvas2d.width / 2);
-                corner.y = (canvas2d.height / 2) - corner.y;
+                corner.x = corner.x - ($scope.canvas[0].width / 2);
+                corner.y = ($scope.canvas[0].height / 2) - corner.y;
             }
 
             stat.start("Posit");
@@ -812,17 +817,17 @@ angular.module('casa').controller('ARImageController',
             // get the projected pattern corners
             shape_pts = tCorners(homo3x3[current_pattern].data, pattern_preview[current_pattern].cols * 2, pattern_preview[current_pattern].rows * 2);
 
-            ctx.strokeStyle = "rgb(0,255,0)";
-            ctx.beginPath();
+            //ctx.strokeStyle = "rgb(0,255,0)";
+            //ctx.beginPath();
 
-            ctx.moveTo(shape_pts[0].x, shape_pts[0].y);
-            ctx.lineTo(shape_pts[1].x, shape_pts[1].y);
-            ctx.lineTo(shape_pts[2].x, shape_pts[2].y);
-            ctx.lineTo(shape_pts[3].x, shape_pts[3].y);
-            ctx.lineTo(shape_pts[0].x, shape_pts[0].y);
+            //ctx.moveTo(shape_pts[0].x, shape_pts[0].y);
+            //ctx.lineTo(shape_pts[1].x, shape_pts[1].y);
+            //ctx.lineTo(shape_pts[2].x, shape_pts[2].y);
+            //ctx.lineTo(shape_pts[3].x, shape_pts[3].y);
+            //ctx.lineTo(shape_pts[0].x, shape_pts[0].y);
 
-            ctx.lineWidth = 4;
-            ctx.stroke();
+            //ctx.lineWidth = 4;
+            //ctx.stroke();
         }
 
         function render_corners(corners, count, img, step) {

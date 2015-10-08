@@ -9,18 +9,19 @@
 
         <canvas id="canevas"  width="640" height="480" class="overlapcanvas"> </canvas>
         <canvas id="canvas3d" width="640" height="480" class="overlapcanvas"></canvas>
-        <canvas id="container" style="position: absolute;top: 640px;left: 0px;width:480px; height:640px; background: green;"></canvas>
+        <canvas hidden id="container" width="640" height="480" ></canvas>
         <div id="no_rtc" class="alert alert-error" style="display:none;"></div>
         <div id="log" class="alert alert-info"></div>
         <span id="infos" style="position: absolute;top: 0px;left: 320px;width:320px; height:200px;" ng-bind="infos">Infos</span>
         <span id="erreur" style="position: absolute;top: 240px;left: 320px;width:320px; height:40px;" ng-bind="erreur">erreur</span>
-        <img hidden id="trained0" ng-src="img/batiments/pinedepattern.jpg" style="position: absolute;top: 480px;left: 320px;width:320px; height:240px;">
-        <img hidden id="trained1" ng-src="img/batiments/palaispattern.jpg" style="position: absolute;top: 720px;left: 320px;width:320px; height:240px;">
-        <img hidden id="trained2" ng-src="img/batiments/eilenpattern.jpg" style="position: absolute;top: 960px;left: 320px;width:320px; height:240px;">
-        <img hidden id="trained3" ng-src="img/batiments/picassopattern.jpg" style="position: absolute;top: 960px;left: 320px;width:320px; height:240px;">
+        <div id="pose1" style="position: absolute;top: 490px;left: 320px;width:320px; height:40px;" ></div>
+        <img hidden id="trained0" ng-src="img/batiments/pinedepattern.jpg" style="position: absolute;top: 480px;left: 320px;">
+        <img hidden id="trained1" ng-src="img/batiments/palaispattern.jpg" style="position: absolute;top: 720px;left: 320px;">
+        <img hidden id="trained2" ng-src="img/batiments/eilenpattern.jpg" style="position: absolute;top: 960px;left: 320px;">
+        <img hidden id="trained3" ng-src="img/batiments/picassopattern.jpg" style="position: absolute;top: 960px;left: 320px;">
         <div style="position: absolute;top: 320px;left: 320px;width:320px; height:240px;">
-            <!--Reference name:<input type="text" ng-model="refname" required>
-            <button class="button" ng-click="train_pattern();" >Train</button>-->
+            <!--Reference name:<input type="text" ng-model="refname" required>-->
+            <button class="button" ng-click="train_pattern();" >Train</button>
             The time is : <span id="timeproc"  ></span><br>
         </div>
 
