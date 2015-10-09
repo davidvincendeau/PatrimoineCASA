@@ -347,7 +347,7 @@ angular.module('casa').controller('ARImageController',
 
                     //stat.start("gauss blur");
                     jsfeat.imgproc.gaussian_blur(img_u8, img_u8_smooth, options.blur_size | 0);
-                   // stat.stop("gauss blur");
+                    // stat.stop("gauss blur");
 
                     jsfeat.yape06.laplacian_threshold = options.lap_thres | 0;
                     jsfeat.yape06.min_eigen_value_threshold = options.eigen_thres | 0;
@@ -399,13 +399,13 @@ angular.module('casa').controller('ARImageController',
 
                     if (num_matches[current_pattern]) { // last detected
                         //render_matches($scope.ctx, matches[current_pattern], num_matches[current_pattern]);
-                           
+
                         if (found) {
                             render_pattern_shape($scope.ctx);
-                            
+
                         }
                         //else
-                            //renderer3d.clear();
+                        //renderer3d.clear();
                         updateScenes(shape_pts);
                         render();
                     }
@@ -554,6 +554,7 @@ angular.module('casa').controller('ARImageController',
             updateObject(model1, pose.bestRotation, pose.bestTranslation);
             updateObject(model2, pose.bestRotation, pose.bestTranslation);
             updateObject(model3, pose.bestRotation, pose.bestTranslation);
+            updateObject(model4, pose.bestRotation, pose.bestTranslation);
             updatePose("pose1", pose.bestError, pose.bestRotation, pose.bestTranslation);
             //stat.stop("update");
 
@@ -561,11 +562,13 @@ angular.module('casa').controller('ARImageController',
             model1.visible = (current_pattern === 0);
             model2.visible = (current_pattern === 1);
             model3.visible = (current_pattern === 2);
+            model4.visible = (current_pattern === 3);
 
             step += 0.025;
-            model1.rotation.y -= step;
-            model2.rotation.y -= step;
-            model3.rotation.y -= step;
+            model1.rotation.y = step;
+            model2.rotation.y = step;
+            model3.rotation.y = step;
+            model4.rotation.y = step;
 
             texture.children[0].material.map.needsUpdate = true;
         };
@@ -575,13 +578,15 @@ angular.module('casa').controller('ARImageController',
             object.scale.y = modelSize;
             object.scale.z = modelSize;
 
-            object.rotation.x = -Math.asin(-rotation[1][2]);
+            /*object.rotation.x = -Math.asin(-rotation[1][2]);
             object.rotation.y = -Math.atan2(rotation[0][2], rotation[2][2]);
-            object.rotation.z = Math.atan2(rotation[1][0], rotation[1][1]);
+            object.rotation.z = Math.atan2(rotation[1][0], rotation[1][1]);*/
+            if (translation[0] > 0) {
+                object.position.x = translation[0];
+                object.position.y = translation[1];
+                object.position.z = -translation[2];
 
-            object.position.x = translation[0];
-            object.position.y = translation[1];
-            object.position.z = -translation[2];
+            }
         };
 
         function updatePose(id, error, rotation, translation) {
