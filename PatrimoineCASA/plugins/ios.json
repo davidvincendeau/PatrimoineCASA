@@ -97,6 +97,10 @@
                         {
                             "xml": "<feature name=\"FileTransfer\"><param name=\"ios-package\" value=\"CDVFileTransfer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -145,6 +149,9 @@
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         },
         "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.patrimoinecasa405089"
         }
     },

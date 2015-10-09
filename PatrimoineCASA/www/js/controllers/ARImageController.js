@@ -484,10 +484,12 @@ angular.module('casa').controller('ARImageController',
 
             return object;
         };
-
+        var boxWidth = 0.5;
+        var boxHeight = 0.2;
+        var boxDepth = 0.2;
         function createModel1() {
             var object = new THREE.Object3D();
-            var geometry = new THREE.SphereGeometry(0.2, 15, 15, Math.PI);
+            var geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
             var texture = THREE.ImageUtils.loadTexture("img/batiments/jazz3.jpg");
             var material = new THREE.MeshBasicMaterial({ map: texture });
             var mesh = new THREE.Mesh(geometry, material);
@@ -499,7 +501,7 @@ angular.module('casa').controller('ARImageController',
 
         function createModel2() {
             var object = new THREE.Object3D();
-            var geometry = new THREE.SphereGeometry(0.2, 15, 15, Math.PI);
+            var geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
             var texture = THREE.ImageUtils.loadTexture("img/batiments/palais3.jpg");
             var material = new THREE.MeshBasicMaterial({ map: texture });
             var mesh = new THREE.Mesh(geometry, material);
@@ -512,7 +514,7 @@ angular.module('casa').controller('ARImageController',
 
         function createModel3() {
             var object = new THREE.Object3D();
-            var geometry = new THREE.SphereGeometry(0.2, 15, 15, Math.PI);
+            var geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
             var texture = THREE.ImageUtils.loadTexture("img/batiments/eilen3.jpg");
             var material = new THREE.MeshBasicMaterial({ map: texture });
             var mesh = new THREE.Mesh(geometry, material);
@@ -524,7 +526,7 @@ angular.module('casa').controller('ARImageController',
 
         function createModel4() {
             var object = new THREE.Object3D();
-            var geometry = new THREE.SphereGeometry(0.2, 15, 15, Math.PI);
+            var geometry = new THREE.CubeGeometry(boxWidth, boxHeight, boxDepth);
             var texture = THREE.ImageUtils.loadTexture("img/batiments/picasso3.jpg");
             var material = new THREE.MeshBasicMaterial({ map: texture });
             var mesh = new THREE.Mesh(geometry, material);
